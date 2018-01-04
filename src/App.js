@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Routes from './Routes';
 import './App.css';
 
-class App extends Component{
+class App extends Component {
 
-    render(){
+    render() {
         return (
             <div className="App">
                 <Routes/>

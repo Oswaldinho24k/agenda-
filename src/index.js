@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {MuiThemeProvider} from "material-ui";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
+import './index.css';
 
-
-const store = configureStore();
+export const store = configureStore();
 
 const Main = () => (
     <MuiThemeProvider>
-        <App/>
+        <ReduxProvider/>
     </MuiThemeProvider>
 );
 
@@ -27,10 +26,10 @@ const WithRouter = () => (
 
 const ReduxProvider = () => (
     <Provider store={store}>
-        <WithRouter/>
+        <App/>
     </Provider>
 );
 
-ReactDOM.render(<ReduxProvider />, document.getElementById('root'));
+ReactDOM.render(<WithRouter/>, document.getElementById('root'));
 registerServiceWorker();
 

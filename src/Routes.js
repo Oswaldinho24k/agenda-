@@ -4,7 +4,7 @@ import LoginContainer from './components/login/LoginContainer';
 
 const Routes = () => (
     <Switch>
-        <Route path="/" component={LoginContainer}/>
+        <Route path="/login" component={LoginContainer}/>
     </Switch>
 
 );

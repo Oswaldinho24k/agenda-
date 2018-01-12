@@ -12,8 +12,7 @@ const buttonStyle = {
 
 class Navbar extends Component {
 
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
           isUser:null,
@@ -55,7 +54,15 @@ tok=()=>{
             <IconButton><MenuIcon/></IconButton>
         );
 
-        return(
+        /*if (typeof usuario !== 'undefined' && usuario !== null) {
+            iconRight = (
+                <NavLink to="/">
+                    <FlatButton style={buttonStyle} label="Cerrar sesión"/>
+                </NavLink>
+            );
+        }*/
+
+        return (
             <div>
                 <AppBar
                 title="Agenda"
@@ -63,6 +70,7 @@ tok=()=>{
                 style={{top:0, position: 'fixed'}}
                 iconElementRight={iconRight}
                 iconElementLeft={iconLeft}
+
                 />
             </div>
         );

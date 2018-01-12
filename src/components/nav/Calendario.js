@@ -66,6 +66,7 @@ class Calendario extends Component{
                     activeStyle={{fontWeight: 'bold',}}
                     exact
                     to="/">
+
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Calendario"

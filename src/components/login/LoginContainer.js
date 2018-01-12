@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import LoginComponent from "./LoginComponent";
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import './Form.css';
+import * as userActions from '../../redux/actions/userActions'
 
 const containerStyle = {
     height: '100%',
@@ -13,6 +13,7 @@ class LoginContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading:false,
             usuario: {
                 email: '',
                 password: '',
@@ -20,29 +21,34 @@ class LoginContainer extends Component {
         };
     }
 
-    loginWithPassword = (e) => {
-        e.preventDefault();
-        const user = Object.assign({}, this.state.usuario);
-        console.log(user.email + user.password);
-        //this.props.usuarioActions.iniciarSesion(user)
-            //.then(() => {
-                this.props.history.push('/login');
-          //  });
-
-    };
 
     handleChange = (e) => {
         let usuario = this.state.usuario;
         usuario[e.target.name] = e.target.value;
         this.setState({usuario});
+        console.log(usuario)
     };
+
+    logIn=(e)=>{
+      e.preventDefault();
+      this.props.userActions.logIn(this.state.usuario)
+      .then(r=>{
+        console.log('welcome')
+        this.props.history.push('/')
+
+      }).catch(e=>{
+        console.log(e)
+      })
+    };
+
+
 
     render() {
         return (
             <div id="todo" >
                 <LoginComponent
                     onChange={this.handleChange}
-                    onSubmit={this.loginWithPassword}
+                    onSubmit={this.logIn}
                     usuario={this.state.usuario}
                 />
             </div>
@@ -56,5 +62,11 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
+function mapDispatchToProps(dispatch){
+  return{
+    userActions:bindActionCreators(userActions,dispatch)
+  }
+}
 
-export default connect(mapStateToProps)(LoginContainer);
+LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default LoginContainer;

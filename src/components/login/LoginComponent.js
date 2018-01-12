@@ -2,21 +2,21 @@ import React from 'react';
 import {TextField, RaisedButton} from 'material-ui';
 import {Card} from 'material-ui/Card'
 
-import './Form.css'
 
 
-const LoginComponent = (props) => {
+const LoginComponent = ({onChange,onSubmit,usuario}) => {
     return (
         <div id="todo">
             <Card id="car">
-                <form onSubmit={props.onSubmit}
+                <form
+                      onSubmit={onSubmit}
                       className="formStyle">
                     <h1>Acceder</h1>
                     <TextField
                         name="email"
                         required
                         floatingLabelText="E-mail"
-                        onChange={props.onChange}
+                        onChange={onChange}
                         type="email"
                         className="textFieldStyle"
                         fullWidth={true}
@@ -25,7 +25,7 @@ const LoginComponent = (props) => {
                         name="password"
                         required
                         floatingLabelText="Contraseña"
-                        onChange={props.onChange}
+                        onChange={onChange}
                         type="password"
                         className="textFieldStyle"
                         fullWidth={true}
@@ -42,5 +42,4 @@ const LoginComponent = (props) => {
         </div>
     );
 };
-
-export default LoginComponent;
+  export default LoginComponent;

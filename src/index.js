@@ -4,7 +4,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter} from 'react-router-dom';
-import configureStore from './store/configureStore';
+import configureStore from './redux/store/configureStore';
 import {Provider} from 'react-redux';
 import './index.css';
 
@@ -32,4 +32,3 @@ const ReduxProvider = () => (
 
 ReactDOM.render(<WithRouter/>, document.getElementById('root'));
 registerServiceWorker();
-

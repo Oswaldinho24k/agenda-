@@ -9,7 +9,7 @@ const buttonStyle = {
 };
 
 class Navbar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {}
     }
@@ -26,14 +26,22 @@ class Navbar extends Component {
             <IconButton><MenuIcon/></IconButton>
         );
 
-        return(
+        /*if (typeof usuario !== 'undefined' && usuario !== null) {
+            iconRight = (
+                <NavLink to="/">
+                    <FlatButton style={buttonStyle} label="Cerrar sesión"/>
+                </NavLink>
+            );
+        }*/
+
+        return (
             <div>
                 <AppBar
-                title="Agenda"
-                onLeftIconButtonTouchTap = { usuario ? this.props.openDrawer : null}
-                style={{top:0, position: 'fixed'}}
-                iconElementRight={iconRight}
-                iconElementLeft={iconLeft}
+                    title="Agenda"
+                    onLeftIconButtonClick={this.props.openDrawer}
+                    style={{top: 0, position: 'fixed'}}
+                    iconElementRight={iconRight}
+                    iconElementLeft={iconLeft}
                 />
             </div>
         );

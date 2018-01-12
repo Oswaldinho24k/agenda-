@@ -2,19 +2,19 @@
 import axios from 'axios';
 
 
-let debug = true;
+let debug = false;
 
-let urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
-let urlRegister='https://backend-agenda.herokuapp.com/users/register/'
-let urlTasks='https://backend-agenda.herokuapp.com/tasks/'
-let urlProfile='https://backend-agenda.herokuapp.com/profile/'
-let urlUser='https://backend-agenda.herokuapp.com/users/user/'
-if(debug){
-  urlLogin="http://localhost:8000/rest-auth/login/"
-  urlRegister="http://localhost:8000/users/register/"
-  urlTasks="http://localhost:8000/tasks/"
-  urlProfile="http://localhost:8000/profile/"
-  urlUser="http://localhost:8000/users/user/"
+let urlLogin="http://localhost:8000/rest-auth/login/"
+let urlRegister="http://localhost:8000/users/register/"
+let urlTasks="http://localhost:8000/tasks/"
+let urlProfile="http://localhost:8000/profile/"
+let urlUser="http://localhost:8000/users/user/"
+if(!debug){
+    urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
+    urlRegister='https://backend-agenda.herokuapp.com/users/register/'
+    urlTasks='https://backend-agenda.herokuapp.com/tasks/'
+    urlProfile='https://backend-agenda.herokuapp.com/profile/'
+    urlUser='https://backend-agenda.herokuapp.com/users/user/'
 }
 
 

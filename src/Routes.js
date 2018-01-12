@@ -5,7 +5,7 @@ import TasksContainer from './components/tasks/TasksContainer';
 
 const Routes = () => (
     <Switch>
-        <Route path="/" component={LoginContainer}/>
+        <Route path="/login" component={LoginContainer}/>
         <Route path="/tasks" component={TasksContainer}/>
     </Switch>
 

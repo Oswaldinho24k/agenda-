@@ -22,7 +22,10 @@ class App extends Component {
                 <NavBar openDrawer={this.openDrawer}/>
                 <Calendario open={this.state.showDrawer} toogleDrawer={this.openDrawer}/>
                 <div style={this.state.showDrawer ? styles.drawer: styles.showDrawerw}>
-                <Routes/>
+                <div className="Rutes">
+                    <Routes/>
+                </div>
+
             </div>
     </div>
     );

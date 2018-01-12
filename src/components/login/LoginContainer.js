@@ -34,7 +34,7 @@ class LoginContainer extends Component {
       this.props.userActions.logIn(this.state.usuario)
       .then(r=>{
         console.log('welcome')
-        this.props.history.push('/')
+        this.props.history.push('/tasks')
 
       }).catch(e=>{
         console.log(e)

@@ -1,4 +1,5 @@
 @import './components/login/Form.css';
+@import './components/tasks/tasks.css';
 body {
   margin: 0;
   padding: 0;

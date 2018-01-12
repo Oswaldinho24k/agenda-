@@ -27,6 +27,10 @@
   padding-top :70px;
 }
 
+.Rutes{
+  background-color: #fafafa;
+  margin-top: 65px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

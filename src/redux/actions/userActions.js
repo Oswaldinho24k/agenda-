@@ -14,7 +14,8 @@ export const logIn =(data)=>(dispatch,getState)=>{
 
   return api.logIn(data)
     .then(r=>{
-      localStorage.setItem('userToken',JSON.stringify(r.token));
+
+      localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
     }).catch(e=>{
       console.log(e)
@@ -29,6 +30,24 @@ export function logOutSuccess(){
 }
 
 export const logOut=()=>(dispatch)=>{
-  localStorage.removeItem('userToken')
+  localStorage.removeItem('userAgendaToken')
   dispatch(logOutSuccess())
+};
+
+//user Get USER
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+
+export function getUserSuccess(user){
+    return{
+        type:GET_USER_SUCCESS, user
+    }
+}
+
+export const getUser=()=>(dispatch, getState)=>{
+    return api.getUser()
+        .then(r=>{
+            dispatch(getUserSuccess(r))
+        }).catch(e=>{
+            console.log(e)
+        })
 };

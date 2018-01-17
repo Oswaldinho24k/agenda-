@@ -1,33 +1,22 @@
 import React, {Component} from 'react';
 import Routes from './Routes';
 import './App.css';
-import NavBar from "./components/nav/Navbar";
-import Calendario from "./components/nav/Calendario";
+// import NavBar from "./components/nav/Navbar";
+
 
 class App extends Component {
-    state = {
-        showDrawer: false
-    };
-
-    openDrawer = () => {
-        let {showDrawer} = this.state;
-        showDrawer = !showDrawer;
-        this.setState({showDrawer})
-    };
-
+    // <NavBar openDrawer={this.openDrawer}/>
+    // <Calendario open={this.state.showDrawer} toogleDrawer={this.openDrawer}/>
 
     render() {
         return (
             <div className="App">
-                <NavBar openDrawer={this.openDrawer}/>
-                <Calendario open={this.state.showDrawer} toogleDrawer={this.openDrawer}/>
-                <div style={this.state.showDrawer ? styles.drawer: styles.showDrawerw}>
                 <div className="Rutes">
                     <Routes/>
                 </div>
 
             </div>
-    </div>
+
     );
     }
 }

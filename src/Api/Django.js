@@ -2,19 +2,19 @@
 import axios from 'axios';
 
 
-let debug = false;
+let debug = true;
 
 let urlLogin="http://localhost:8000/rest-auth/login/"
 let urlRegister="http://localhost:8000/users/register/"
 let urlTasks="http://localhost:8000/tasks/"
 let urlProfile="http://localhost:8000/profile/"
-let urlUser="http://localhost:8000/users/user/"
+let urlUser="http://localhost:8000/rest-auth/user/"
 if(!debug){
     urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
     urlRegister='https://backend-agenda.herokuapp.com/users/register/'
     urlTasks='https://backend-agenda.herokuapp.com/tasks/'
     urlProfile='https://backend-agenda.herokuapp.com/profile/'
-    urlUser='https://backend-agenda.herokuapp.com/users/user/'
+    urlUser='https://backend-agenda.herokuapp.com/rest-auth/user/'
 }
 
 
@@ -28,7 +28,6 @@ const api={
               // timeout: 2000,
               headers: {
                   'Content-Type': 'application/json',
-                  //'Authorization': 'Bearer ' + userToken
               }
           });
           instance.post('', data)
@@ -62,8 +61,6 @@ const api={
                   console.log('el error: ', error.response);
                   reject(error);
               });
-
-
       });
 
     },

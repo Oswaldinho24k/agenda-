@@ -29,7 +29,7 @@ class Calendario extends Component{
                 activeClassName="selected"
                 activeStyle={{fontWeight: 'bold',}}
                 exact
-                to="/">
+                to="/agenda/tasks">
                 <MenuItem
                     style={active?styles.active:null}
                     primaryText="Tareas"

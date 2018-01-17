@@ -1,14 +1,13 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Card, CardTitle} from 'material-ui/Card';
 
 
 
 const TasksComponents = ()=>{
   return(
-    <Card className="cardTasks">
+    <Card className="cardConte">
      <CardTitle title="Tasks" />
-
+      <span>Hola aquie van las tareas del usuario</span>
      </Card>
   );
 

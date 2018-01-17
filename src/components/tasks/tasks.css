@@ -1,6 +1,7 @@
 .padre{
   display:flex;
+  justify-content: center;
 }
-.cardTasks{
+.cardConte{
   width: 70%;
 }

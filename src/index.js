@@ -7,8 +7,10 @@ import {BrowserRouter} from 'react-router-dom';
 import configureStore from './redux/store/configureStore';
 import {Provider} from 'react-redux';
 import './index.css';
+import {checkIfUser} from "./redux/actions/userActions";
 
 export const store = configureStore();
+store.dispatch(checkIfUser());
 
 const Main = () => (
     <MuiThemeProvider>

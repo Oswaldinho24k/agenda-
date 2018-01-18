@@ -1,0 +1,7 @@
+.padre{
+  display:flex;
+  justify-content: center;
+}
+.cardConte{
+  width: 70%;
+}

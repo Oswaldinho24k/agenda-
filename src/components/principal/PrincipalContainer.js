@@ -24,7 +24,6 @@ class PrincipalContainer extends Component{
     this.props.history.push('/login')
   }
 };
-
 logOut=()=>{
    console.log("Cerre papu");
     this.props.userActions.logOut();
@@ -39,7 +38,10 @@ logOut=()=>{
             user={this.props.user}
             logOut={this.logOut}
           />
-        <Calendario open={this.state.showDrawer} toogleDrawer={this.openDrawer}/>
+        <Calendario
+            open={this.state.showDrawer}
+            toogleDrawer={this.openDrawer}
+          />
           <div className="padre">
             <Pages/>
           </div>
@@ -50,10 +52,11 @@ logOut=()=>{
 }
 
 function mapStateToProps(state, ownProps) {
-  //console.log(state)
+  console.log(state.user)
     return {
-       user: state.user.object
+       user: state.user.object,
     }
+
 }
 
 function mapDispatchToProps(dispatch){

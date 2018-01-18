@@ -31,6 +31,7 @@ class LoginContainer extends Component {
       .then(r=>{
         console.log('welcome')
         this.props.history.push('/agenda')
+        //window.location.reload();
 
       }).catch(e=>{
         console.log(e)

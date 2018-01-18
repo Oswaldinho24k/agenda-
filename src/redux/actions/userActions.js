@@ -16,6 +16,7 @@ export const logIn =(data)=>(dispatch,getState)=>{
 
       localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
+      dispatch(getUser());
     }).catch(e=>{
       console.log(e)
     })
@@ -33,7 +34,8 @@ export function logOutSuccess(){
 
 export const logOut=()=>(dispatch)=>{
   localStorage.removeItem('userAgendaToken')
-  dispatch(logOutSuccess())
+  dispatch(logOutSuccess());
+  dispatch(checkIfUser());
 };
 
 //user Get USER

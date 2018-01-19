@@ -5,14 +5,19 @@ import NoteAdd from 'material-ui/svg-icons/action/note-add';
 import Accesibility from 'material-ui/svg-icons/action/accessibility';
 import Desempeno from 'material-ui/svg-icons/editor/insert-chart';
 import Calendar from 'material-ui/svg-icons/action/date-range';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+//Registermolda
 
 
 class Calendario extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+        open: false,
+      };
     }
+
 
     handleToggle = () => this.setState({open: !this.state.open});
 
@@ -73,6 +78,14 @@ class Calendario extends Component{
                         leftIcon={<Calendar/>}
                     />
                 </NavLink>
+                  {this.props.user.is_staff === false ? null :
+                    <MenuItem
+                        style={active?styles.active:null}
+                        primaryText="Registro"
+                        leftIcon={<PersonAdd/>}
+                        onClick={this.props.handleOpenCloseRegister}
+                    />}
+
             </Drawer>
         );
     }

@@ -52,9 +52,9 @@ export const getUser=()=>(dispatch, getState)=>{
         .then(r=>{
             dispatch(getUserSuccess(r))
             console.log(r)
-        }).catch(e=>{
+        }).catch(e=>
             console.log(e)
-        })
+        )
 };
 
 //if there ar user
@@ -66,4 +66,23 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       //dispatch the functions
       dispatch(getUser());
     }
+};
+
+//User Registeruser
+export const USER_REGISTER_SUCCESS='USER_REGISTER_SUCCESS';
+
+export function userRegisterSuccess(register){
+    return{
+        type:USER_REGISTER_SUCCESS, register
+    }
+}
+
+export const newUser =(register)=>(dispatch, getState)=>{
+    return api.newUser(register)
+      .then(r=>{
+          console.log('is done');
+          dispatch(userRegisterSuccess(r))
+      }).catch(e=>{
+      console.log(e)
+  })
 };

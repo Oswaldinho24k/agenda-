@@ -1,31 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {MuiThemeProvider} from "material-ui";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter} from 'react-router-dom';
+import configureStore from './redux/store/configureStore';
+import {Provider} from 'react-redux';
+import './index.css';
+import {checkIfUser} from "./redux/actions/userActions";
 
+export const store = configureStore();
+store.dispatch(checkIfUser());
 
-
+const Main = () => (
+    <MuiThemeProvider>
+        <ReduxProvider/>
+    </MuiThemeProvider>
+);
 
 
 const WithRouter = () => (
 
     <BrowserRouter>
-        <App />
+        <Main/>
     </BrowserRouter>
-
-
 );
 
-const Main = ()=>(
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <Provider store={store}>
-            <WithRouter/>
-        </Provider>
-    </MuiThemeProvider>
+const ReduxProvider = () => (
+    <Provider store={store}>
+        <App/>
+    </Provider>
 );
-ReactDOM.render(<Main />, document.getElementById('root'));
+
+ReactDOM.render(<WithRouter/>, document.getElementById('root'));
 registerServiceWorker();
-

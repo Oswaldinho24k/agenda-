@@ -7,12 +7,13 @@ import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
 import RegisterContainer from '../register/RegisterContainer';
 import AlertRegister from '../common/AlertRegister';
-
+import ProfileContainer from '../profile/ProfileContainer';
 class PrincipalContainer extends Component{
   state = {
       showDrawer: false,
       openRegister: false,
       openAlertR:false,
+      openProfile:false,
   };
 
   openDrawer = () => {
@@ -45,6 +46,11 @@ class PrincipalContainer extends Component{
       openAlertR = !openAlertR
       this.setState({openAlertR});
     }
+    openProfile = ()=>{
+      let {openProfile}=this.state;
+      openProfile = !openProfile
+      this.setState({openProfile})
+    }
 
   render(){
     return(
@@ -53,8 +59,9 @@ class PrincipalContainer extends Component{
             openDrawer={this.openDrawer}
             user={this.props.user}
             logOut={this.logOut}
+            openProfile={this.openProfile}
           />
-        <Calendario
+          <Calendario
             user={this.props.user}
             open={this.state.showDrawer}
             handleOpenCloseRegister={this.handleOpenCloseRegister}
@@ -64,12 +71,16 @@ class PrincipalContainer extends Component{
             open={this.state.openRegister}
             handleOpenCloseRegister={this.handleOpenCloseRegister}
             AlertOpenCloseR={this.AlertOpenCloseR}
-            />
-            <AlertRegister
+           />
+           <AlertRegister
               open={this.state.openAlertR}
               handleOpenCloseRegister={this.handleOpenCloseRegister}
               AlertOpenCloseR={this.AlertOpenCloseR}
-
+            />
+            <ProfileContainer
+              user={this.props.user}
+             open={this.state.openProfile}
+             openProfile={this.openProfile}
             />
           <div className="padre">
             <Pages/>

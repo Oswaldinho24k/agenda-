@@ -1,8 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import ErrorIcon from 'material-ui/svg-icons/alert/error-outline';
 
-const EditProfileComponents =()=>{
+const EditProfileComponents =({cancel,user})=>{
 
   return (
     <div>
@@ -12,14 +11,22 @@ const EditProfileComponents =()=>{
       <form
         className="form"
         >
-
-           <label htmlFor="">
+             <label htmlFor="">
+                 <input
+                   name="user"
+                   required
+                   value={user.username}
+                   placeholder="username"
+                   type="text"
+                   />
+             </label>
+             <label htmlFor="">
                <input
                  name="full_name"
                  required
                  placeholder="Full Name"
                  type="text" />
-           </label>
+             </label>
            <label htmlFor="">
                <input
                  name="address"
@@ -36,10 +43,19 @@ const EditProfileComponents =()=>{
                  type="number"
                  />
            </label>
+           <label htmlFor="">
+               <input
+                 name="avatar"
+                 required
+                 type="file"
+                 accept="image/*"
+                 />
+           </label>
            <div className="btnMod">
              <FlatButton
                label="Cancel"
                primary={true}
+               onClick={cancel}
              />
              <FlatButton
                label="Save"

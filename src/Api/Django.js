@@ -9,6 +9,7 @@ let urlRegister="http://localhost:8000/users/register/"
 let urlTasks="http://localhost:8000/tasks/"
 let urlProfile="http://localhost:8000/profile/"
 let urlUser="http://localhost:8000/rest-auth/user/"
+let urlMeProfile="http://localhost:8000/users/meprofile/"
 if(!debug){
     urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
     urlRegister='https://backend-agenda.herokuapp.com/users/register/'
@@ -85,10 +86,32 @@ const api={
                   reject(error);
               });
       });
-    }
+    },
 
-////////
+//user Profile
+    getProfile:()=>{
+      const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+      return new Promise(function (resolve, reject) {
+          const instance = axios.create({
+              baseURL: urlMeProfile,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.get('')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+      });
 
+    },
+///////
 
 }
 

@@ -17,6 +17,7 @@ export const logIn =(data)=>(dispatch,getState)=>{
       localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
       dispatch(getUser());
+      dispatch(getProfile());
     }).catch(e=>{
       console.log(e)
     })
@@ -65,6 +66,7 @@ export const checkIfUser=()=>(dispatch, getState)=>{
     if(userToken){
       //dispatch the functions
       dispatch(getUser());
+      dispatch(getProfile());
     }
 };
 
@@ -85,4 +87,22 @@ export const newUser =(register)=>(dispatch, getState)=>{
       }).catch(e=>{
       console.log(e)
   })
+};
+//user Get Profile
+export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
+
+export function getProfileSuccess(profile){
+    return{
+        type:GET_PROFILE_SUCCESS, profile
+    }
+}
+
+export const getProfile=()=>(dispatch, getState)=>{
+    return api.getProfile()
+        .then(r=>{
+            dispatch(getProfileSuccess(r))
+            console.log(r)
+        }).catch(e=>
+            console.log(e)
+        )
 };

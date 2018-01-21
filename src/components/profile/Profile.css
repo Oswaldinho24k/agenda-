@@ -10,8 +10,9 @@
 }
 
 .textTitle{
-  font-size: 19px;
+  font-size: 20px;
   margin-bottom: 5px;
+  font-family: inherit;
 }
 
 .cardAvatar{
@@ -19,3 +20,22 @@
   align-items:center;
   flex-direction: column;
 }
+.ProfileData{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+.title{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.labelProfile{
+  margin-bottom: 3px;
+  color:#31e3fd;
+}
+.textdata{
+  font-size: 20px;
+  font-family: initial;
+  margin-bottom: 10px;
+  }

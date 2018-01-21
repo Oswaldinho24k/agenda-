@@ -78,7 +78,7 @@ class PrincipalContainer extends Component{
               AlertOpenCloseR={this.AlertOpenCloseR}
             />
             <ProfileContainer
-              user={this.props.user}
+             user={this.props.user}
              open={this.state.openProfile}
              openProfile={this.openProfile}
             />
@@ -92,7 +92,7 @@ class PrincipalContainer extends Component{
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log(state.user)
+
     return {
        user: state.user.object,
     }

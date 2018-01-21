@@ -1,19 +1,22 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import Card from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
 import Security from 'material-ui/svg-icons/hardware/security';
 import Edit from 'material-ui/svg-icons/action/account-box';
+import Aprofile from '../../img/avatar.png'
 import './Profile.css'
 const cardAvatar={
     marginTop:20
 };
-const CardExampleWithAvatar = ({user,openPass}) => (
+
+const CardExampleWithAvatar = ({user,openPass,openEdit,full_name,address,phone_number,avatar}) => (
+
   <div>
       <Card className="cardProfile">
         <div className="cardAvatar">
-            <Avatar size={150} style={cardAvatar} src="http://www.lol-wallpapers.com/wp-content/uploads/2017/01/Vi-Concept-Art-2-League-of-Legends-Artwork-Wallpaper-lol.jpg"/>
+          {avatar===undefined ?   <Avatar size={150} style={cardAvatar} src={Aprofile}/>:
+            <Avatar size={150} style={cardAvatar} src={avatar}/>}
             <span className="textTitle">{user.username}</span>
             <span className="textTitle">{user.email}</span>
         </div>
@@ -21,42 +24,24 @@ const CardExampleWithAvatar = ({user,openPass}) => (
 
       <Card className="cardProfile">
         <div className="title">
-          <span className="textTitle">User information</span>
+          <span className="Title">User information</span>
         </div>
 
-        <form>
-          <TextField
-            disabled={true}
-            style={styles.Inputs}
-            value="Brenda Ortega"
-            underlineDisabledStyle={ styles.underlineStyle}
-            floatingLabelStyle={styles.floatingLabelStyle}
-            floatingLabelText="Full Name"
-          /><br />
-          <TextField
-            disabled={true}
-            style={styles.Inputs}
-            value="tulancingo"
-            underlineDisabledStyle={ styles.underlineStyle}
-            floatingLabelStyle={styles.floatingLabelStyle}
-            floatingLabelText="Address"
-          /><br />
-          <TextField
-            disabled={true}
-            style={styles.Inputs}
-            value="7754567897"
-            floatingLabelStyle={styles.floatingLabelStyle}
-            underlineDisabledStyle={ styles.underlineStyle}
-            floatingLabelText="Phone Number"
-          /><br />
-        </form>
+        <div className="ProfileData">
+            <label className="labelProfile"htmlFor="">Full Name</label>
+              <span className="textdata">{full_name}</span>
+              <label className="labelProfile"htmlFor="">Address</label>
+              <span className="textdata">{address}</span>
+            <label className="labelProfile"htmlFor="">Phone Number </label>
+              <span className="textdata">{phone_number}</span>
+        </div>
       </Card>
 
       <Card className="cardProfile">
           <FlatButton onClick={openPass} style={styles.btn} fullWidth={true} icon={<Security/>} label='Change password'/>
       </Card>
       <Card className="cardProfile">
-          <FlatButton  fullWidth={true} icon={<Edit/>} label='Edit profile'/>
+          <FlatButton onClick={openEdit} fullWidth={true} icon={<Edit/>} label='Edit profile'/>
       </Card>
   </div>
 

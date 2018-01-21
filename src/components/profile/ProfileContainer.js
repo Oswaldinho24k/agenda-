@@ -3,20 +3,24 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
-import TabProfile from './TabProfile';
-
+import ProfileComponents from './ProfileComponents';
+import ChangePasswordContainer from '../changepass/ChangePasswordContainer';
 export default class ProfileContainer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
           openEditProfile: false,
-          openChangePasswor:false
+          openChangePassword:false
                 };
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
 
+  openClosePassword = () => {
+    let {openChangePassword}=this.state;
+    openChangePassword = !openChangePassword
+    this.setState({openChangePassword});
+  };
   render() {
 
     return (
@@ -30,10 +34,16 @@ export default class ProfileContainer extends React.Component {
           >
           <AppBar
             iconElementLeft={<IconButton><NavigationClose onClick={this.props.openProfile} /></IconButton>}
-            style={appStyle}
+            title='Pofile'
            />
-          <TabProfile
-            user={this.props.user}/>
+         <ChangePasswordContainer
+            open={this.state.openChangePassword}
+            openClosePassword={this.openClosePassword}
+           />
+         <ProfileComponents
+           openPass={this.openClosePassword}
+           user={this.props.user}
+          />
         </Drawer>
       </div>
     );

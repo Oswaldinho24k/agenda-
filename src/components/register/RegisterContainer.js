@@ -32,7 +32,7 @@ import RegisterComponents from './RegisterComponents';
   const nuevoRegistro= this.state.usuario;
 
   if(nuevoRegistro.password !== nuevoRegistro.password2){
-    this.setState({error:'Passwor doest mach',passNo:true})
+    this.setState({error:'Password doest mach',passNo:true})
   }
   else{
     this.props.registerActions.newUser(nuevoRegistro)

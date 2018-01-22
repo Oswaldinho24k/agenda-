@@ -1,81 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
-import {NavLink} from 'react-router-dom';
-import { ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import {AppBar, DropDownMenu, MenuItem, FontIcon, RaisedButton, IconMenu, IconButton, FlatButton, Avatar} from 'material-ui';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import MenuNav from './MenuNav'
 
-const buttonStyle = {
-    color: 'white'
-};
+//onLeftIconButtonTouchTap = { isUser ? this.props.openDrawer : null}
 
-class Navbar extends Component {
+const Navbar = ({logOut,user,openDrawer}) => (
+    <div>
+        <AppBar
+          title={<span className="titleNav">Welcome, {user.username}</span>}
+          iconElementLeft={<IconButton><MenuIcon onClick={openDrawer}/></IconButton>}
+          iconElementRight={ <MenuNav logOut={logOut} /> }
+        />
+    </div>
+);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          isUser:null,
-          user:{},
-        }
-    }
-
-componentWillMount(){
- this.tok();
-}
-tok=()=>{
-  const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
-  if(!userToken || userToken==undefined){
-    this.setState({isUser:false});
-
-  }
-  console.log(userToken)
-}
-
-    render() {
-        let {isUser} = this.state;
-        console.log(isUser)
-        let iconRight = null;
-
-            if(isUser==false){
-              iconRight=(
-              <NavLink to='/login'>
-                  <FlatButton style={buttonStyle} label="Iniciar Sesión"/>
-              </NavLink>);
-            }else{
-              iconRight=(
-              <NavLink to='/logout'>
-                  <FlatButton style={buttonStyle} label="Cerrar Sesión"/>
-              </NavLink>);
-            }
-
-
-        let iconLeft = (
-            <IconButton><MenuIcon/></IconButton>
-        );
-
-        /*if (typeof usuario !== 'undefined' && usuario !== null) {
-            iconRight = (
-                <NavLink to="/">
-                    <FlatButton style={buttonStyle} label="Cerrar sesión"/>
-                </NavLink>
-            );
-        }*/
-
-        return (
-            <div>
-                <AppBar
-                title="Agenda"
-                onLeftIconButtonTouchTap = { isUser ? this.props.openDrawer : null}
-                style={{top:0, position: 'fixed'}}
-                iconElementRight={iconRight}
-                iconElementLeft={iconLeft}
-
-                />
-            </div>
-        );
-    }
-
-}
 
 export default Navbar

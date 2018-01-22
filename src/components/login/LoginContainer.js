@@ -4,10 +4,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as userActions from '../../redux/actions/userActions'
 
-const containerStyle = {
-    height: '100%',
-    justifyContent: 'center'
-};
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -34,7 +30,7 @@ class LoginContainer extends Component {
       this.props.userActions.logIn(this.state.usuario)
       .then(r=>{
         console.log('welcome')
-        this.props.history.push('/tasks')
+        this.props.history.push('/agenda')
 
       }).catch(e=>{
         console.log(e)

@@ -1,5 +1,4 @@
 import api from '../../Api/Django';
-import setAuthorizationToken from '../../utils/setAuthorizationToken';
 
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
@@ -21,6 +20,9 @@ export const logIn =(data)=>(dispatch,getState)=>{
       console.log(e)
     })
 };
+
+
+//logout Acctions
 export const LOG_OUT_SUCCESS ='LOG_OUT_SUCCESS';
 
 export function logOutSuccess(){
@@ -47,7 +49,19 @@ export const getUser=()=>(dispatch, getState)=>{
     return api.getUser()
         .then(r=>{
             dispatch(getUserSuccess(r))
+            console.log(r)
         }).catch(e=>{
             console.log(e)
         })
+};
+
+//if there ar user
+export const checkIfUser=()=>(dispatch, getState)=>{
+    console.log(getState())
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    console.log(userToken)
+    if(userToken){
+      //dispatch the functions
+      dispatch(getUser());
+    }
 };

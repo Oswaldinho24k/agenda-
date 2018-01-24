@@ -58,7 +58,7 @@ import Loader from '../common/Loading'
               uploadPhoto={this.uploadphoto}
               onSubmit={this.onSubmit}
               {...profile}
-              cancel={this.cancel}
+              cancel={this.props.openCloseEdit}
             />
           </Dialog>
     );

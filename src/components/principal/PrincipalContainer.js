@@ -6,8 +6,8 @@ import * as userActions from '../../redux/actions/userActions';
 import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
 import RegisterContainer from '../register/RegisterContainer';
-import AlertRegister from '../common/AlertRegister';
 import ProfileContainer from '../profile/ProfileContainer';
+import ToastrContainer, {Toast} from 'react-toastr-basic'
 class PrincipalContainer extends Component{
   state = {
       showDrawer: false,
@@ -26,9 +26,9 @@ class PrincipalContainer extends Component{
   const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
   console.log(userToken)
   if(!userToken){
-    this.props.history.push('/login')
-  }
-};
+        this.props.history.push('/login')
+      }
+    };
     logOut=()=>{
       console.log("Cerre papu");
       this.props.userActions.logOut();
@@ -40,6 +40,9 @@ class PrincipalContainer extends Component{
       openRegister = !openRegister
       this.setState({openRegister, showDrawer:false});
     };
+    closeAll=()=>{
+      this.setState({openRegister:false, openAlertR:false})
+    }
 
     AlertOpenCloseR =()=>{
       let {openAlertR}=this.state;
@@ -51,10 +54,14 @@ class PrincipalContainer extends Component{
       openProfile = !openProfile
       this.setState({openProfile})
     }
+    showToast=(message)=>{
+      Toast(message);
+    }
 
   render(){
     return(
       <div className="todo">
+        <ToastrContainer />
         <Navbar
             openDrawer={this.openDrawer}
             user={this.props.user}
@@ -69,18 +76,14 @@ class PrincipalContainer extends Component{
           />
           <RegisterContainer
             open={this.state.openRegister}
+            showToast={this.showToast}
             handleOpenCloseRegister={this.handleOpenCloseRegister}
-            AlertOpenCloseR={this.AlertOpenCloseR}
            />
-           <AlertRegister
-              open={this.state.openAlertR}
-              handleOpenCloseRegister={this.handleOpenCloseRegister}
-              AlertOpenCloseR={this.AlertOpenCloseR}
-            />
             <ProfileContainer
              user={this.props.user}
              open={this.state.openProfile}
              openProfile={this.openProfile}
+             showToast={this.showToast}
             />
           <div className="padre">
             <Pages/>

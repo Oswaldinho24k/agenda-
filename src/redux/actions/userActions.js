@@ -1,5 +1,5 @@
 import api from '../../Api/Django';
-
+import {getProfile}from './profileActions'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -87,22 +87,4 @@ export const newUser =(register)=>(dispatch, getState)=>{
       }).catch(e=>{
       console.log(e)
   })
-};
-//user Get Profile
-export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
-
-export function getProfileSuccess(profile){
-    return{
-        type:GET_PROFILE_SUCCESS, profile
-    }
-}
-
-export const getProfile=()=>(dispatch, getState)=>{
-    return api.getProfile()
-        .then(r=>{
-            dispatch(getProfileSuccess(r))
-            console.log(r)
-        }).catch(e=>
-            console.log(e)
-        )
 };

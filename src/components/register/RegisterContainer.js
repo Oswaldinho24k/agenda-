@@ -12,11 +12,10 @@ import RegisterComponents from './RegisterComponents';
           usuario: {
               username:'',
               email: '',
-              password: '',
-              password2:'',
+              password:'Perro182',
+              password2:'Perro182',
           },
-          error:null,
-          passNo:null,
+          message:'Register Success!!!'
       };
   }
 
@@ -24,29 +23,26 @@ import RegisterComponents from './RegisterComponents';
       let usuario = this.state.usuario;
       usuario[e.target.name] = e.target.value;
       this.setState({usuario});
-
       console.log(usuario)
   };
-  onSubmit=(e)=>{
-  e.preventDefault();
-  const nuevoRegistro= this.state.usuario;
 
-  if(nuevoRegistro.password !== nuevoRegistro.password2){
-    this.setState({error:'Password doest mach',passNo:true})
-  }
-  else{
-    this.props.registerActions.newUser(nuevoRegistro)
-    this.props.AlertOpenCloseR()
-    this.setState({passNo:false})
+  onSubmit=(e)=>{
+      e.preventDefault();
+      const nuevoRegistro= this.state.usuario;
+      const message= this.state.message;
+
+      this.props.registerActions.newUser(nuevoRegistro)
+      this.props.handleOpenCloseRegister()
+      this.props.showToast(message)
   };
-};
+
+
 
 
 
 
   render() {
     return (
-
           <Dialog
             title="User Register"
             modal={false}
@@ -57,8 +53,6 @@ import RegisterComponents from './RegisterComponents';
             <RegisterComponents
               onChange={this.handleChange}
               usuario={this.state.usuario}
-              passNo={this.state.passNo}
-              error={this.state.error}
               cancel={this.props.handleOpenCloseRegister}
               onSubmit={this.onSubmit}
             />

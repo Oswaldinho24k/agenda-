@@ -14,7 +14,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-toastr-basic": "^1.1.14"
   },
   "scripts": {
     "start": "react-scripts start",

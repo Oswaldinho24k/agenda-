@@ -1,7 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
-const EditProfileComponents =({cancel,user})=>{
+const EditProfileComponents =({cancel,onChange,onSubmit,full_name,address,phone_number,uploadPhoto})=>{
 
   return (
     <div>
@@ -10,27 +10,23 @@ const EditProfileComponents =({cancel,user})=>{
       </article>
       <form
         className="form"
+        onSubmit={onSubmit}
         >
-             <label htmlFor="">
-                 <input
-                   name="user"
-                   required
-                   value={user.username}
-                   placeholder="username"
-                   type="text"
-                   />
-             </label>
+
+
              <label htmlFor="">
                <input
                  name="full_name"
-                 required
-                 placeholder="Full Name"
+                 onChange={onChange}
+                 defaultValue={full_name}
+                 placeholder="Full name"
                  type="text" />
              </label>
            <label htmlFor="">
                <input
                  name="address"
-                 required
+                 onChange={onChange}
+                 defaultValue={address}
                  placeholder="Address"
                  type="text"
                  />
@@ -38,7 +34,8 @@ const EditProfileComponents =({cancel,user})=>{
            <label htmlFor="">
                <input
                  name="phone_number"
-                 required
+                 defaultValue={phone_number}
+                 onChange={onChange}
                  placeholder="Phone Number"
                  type="number"
                  />
@@ -46,11 +43,12 @@ const EditProfileComponents =({cancel,user})=>{
            <label htmlFor="">
                <input
                  name="avatar"
-                 required
+                 onChange={uploadPhoto}
                  type="file"
                  accept="image/*"
                  />
            </label>
+
            <div className="btnMod">
              <FlatButton
                label="Cancel"

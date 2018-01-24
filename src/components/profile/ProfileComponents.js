@@ -4,19 +4,17 @@ import FlatButton from 'material-ui/FlatButton';
 import Avatar from 'material-ui/Avatar';
 import Security from 'material-ui/svg-icons/hardware/security';
 import Edit from 'material-ui/svg-icons/action/account-box';
-import Aprofile from '../../img/avatar.png'
 import './Profile.css'
 const cardAvatar={
     marginTop:20
 };
 
-const CardExampleWithAvatar = ({user,openPass,openEdit,full_name,address,phone_number,avatar}) => (
+const CardExampleWithAvatar = ({openPass,openEdit,full_name,user,address,phone_number,avatar}) => (
 
   <div>
       <Card className="cardProfile">
         <div className="cardAvatar">
-          {avatar===undefined ?   <Avatar size={150} style={cardAvatar} src={Aprofile}/>:
-            <Avatar size={150} style={cardAvatar} src={avatar}/>}
+            <Avatar size={150} style={cardAvatar} src={avatar}/>
             <span className="textTitle">{user.username}</span>
             <span className="textTitle">{user.email}</span>
         </div>

@@ -6,7 +6,7 @@ import Card from 'material-ui/Card';
 const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
 
   return (
-    <Card>
+    <div>
       <article>
 
         {passNo===true ?<span style={{color:'red'}}>Error: {error}</span>:<span>Note: Please complete all fields</span>}
@@ -18,7 +18,7 @@ const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
 
            <label htmlFor="">
                <input
-                 name="password"
+                 name="new_password1"
                  required
                  placeholder="Password"
                  type="password"
@@ -28,7 +28,7 @@ const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
            <label htmlFor="">
                <input
                  onChange={onChange}
-                 name="password2"
+                 name="new_password2"
                  required
                  placeholder="Confirm password"
                  type="password"
@@ -50,7 +50,7 @@ const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
            </div>
        </form>
 
-    </Card>
+    </div>
 
   );
 

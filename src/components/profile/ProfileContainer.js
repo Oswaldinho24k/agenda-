@@ -9,6 +9,7 @@ import EditProfileContainer from '../editprofile/EditProfileContainer';
 import {bindActionCreators}from 'redux';
 import {connect} from 'react-redux';
 import * as userActions from '../../redux/actions/userActions';
+import * as profileActions from '../../redux/actions/profileActions';
 
 
 class ProfileContainer extends React.Component {
@@ -17,8 +18,8 @@ class ProfileContainer extends React.Component {
     super(props);
     this.state = {
           openEditProfile: false,
-          openChangePassword:false
-                };
+          openChangePassword:false,
+        };
   }
 
 
@@ -31,10 +32,11 @@ class ProfileContainer extends React.Component {
     let {openEditProfile}=this.state;
     openEditProfile = !openEditProfile
     this.setState({openEditProfile});
+    this.props.openProfile()
   };
   render() {
-    console.log(this.props)
     const {profile} = this.props;
+    console.log(profile)
     return (
       <div>
         <Drawer
@@ -51,17 +53,19 @@ class ProfileContainer extends React.Component {
          <ChangePasswordContainer
             open={this.state.openChangePassword}
             openClosePassword={this.openClosePassword}
+            showToast={this.props.showToast}
            />
          <EditProfileContainer
-            user={this.props.user}
             open={this.state.openEditProfile}
             openCloseEdit={this.openCloseEdit}
+            showToast={this.props.showToast}
            />
          <ProfileComponents
             {...profile}
            openPass={this.openClosePassword}
            openEdit={this.openCloseEdit}
            user={this.props.user}
+
           />
         </Drawer>
       </div>
@@ -72,7 +76,7 @@ class ProfileContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
 let profile = state.profile.list
-profile=profile[0]
+
     return {
        profile
     }
@@ -81,7 +85,8 @@ profile=profile[0]
 
 function mapDispatchToProps(dispatch){
   return{
-    userActions:bindActionCreators(userActions,dispatch)
+    userActions:bindActionCreators(userActions,dispatch),
+    profileActions:bindActionCreators(profileActions,dispatch)
   }
 }
 

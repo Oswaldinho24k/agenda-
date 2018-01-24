@@ -1,5 +1,5 @@
 import api from '../../Api/Django';
-
+import {getProfile}from './profileActions'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -17,6 +17,7 @@ export const logIn =(data)=>(dispatch,getState)=>{
       localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
       dispatch(getUser());
+      dispatch(getProfile());
     }).catch(e=>{
       console.log(e)
     })
@@ -65,6 +66,7 @@ export const checkIfUser=()=>(dispatch, getState)=>{
     if(userToken){
       //dispatch the functions
       dispatch(getUser());
+      dispatch(getProfile());
     }
 };
 

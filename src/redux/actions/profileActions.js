@@ -26,7 +26,7 @@ export function saveProfileSuccess(profile){
 }
 
 export const saveProfile=(profile)=>(dispatch, getState)=>{
-    api.saveProfile(profile)
+    return api.saveProfile(profile)
         .then(r=>{
             console.log(r);
             dispatch(saveProfileSuccess(r))

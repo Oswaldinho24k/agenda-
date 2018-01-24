@@ -75,7 +75,7 @@ class ProfileContainer extends React.Component {
 
 
 function mapStateToProps(state, ownProps) {
-let profile = state.profile.list
+let profile = state.profile.object
 
     return {
        profile

@@ -4,7 +4,7 @@ import EditProfileComponents from './EditProfileComponents';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as profileActions from '../../redux/actions/profileActions'
-
+import Loader from '../common/Loading'
 
  class EditProfileContainer extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ import * as profileActions from '../../redux/actions/profileActions'
       let data = this.props.profile;
       data[e.target.name] = e.target.value;
       this.setState({data});
+      console.log(data)
 
   };
   uploadphoto=(e)=>{
@@ -35,13 +36,15 @@ import * as profileActions from '../../redux/actions/profileActions'
   const nuevoRegistro= this.state.data;
   this.props.showToast(message)
   this.props.openCloseEdit()
+  console.log(nuevoRegistro)
   this.props.profileActions.saveProfile(nuevoRegistro)
 
 };
 
-
   render() {
-    const{profile}=this.props;
+    const{profile, fetched}=this.props;
+
+    if(!fetched) return(<loader/>)
     return (
           <Dialog
             title="Edit Profile"
@@ -67,10 +70,12 @@ var modStyle={
   minWidth: '250px',
 }
 function mapStateToProps(state, ownProps) {
-  let profile= state.profile.list
+  let profile= state.profile.object
+
   console.log(profile)
     return {
-        profile
+        profile,
+        fetched:profile!=undefined
     }
 }
 

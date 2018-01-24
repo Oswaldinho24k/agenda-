@@ -119,6 +119,7 @@ const api={
       for(let key in profile){
         data.append(key, profile[key])
       }
+
         return new Promise(function (resolve, reject) {
             const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
             const instance = axios.create({
@@ -131,7 +132,7 @@ const api={
             });
             instance.patch(profile.id+'/', data)
                 .then(function (response) {
-                    resolve(response.profile);
+                    resolve(response.data);
                 })
                 .catch(function (error) {
                     console.log(profile);

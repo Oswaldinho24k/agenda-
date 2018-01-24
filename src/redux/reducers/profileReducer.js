@@ -3,10 +3,12 @@ import {GET_PROFILE_SUCCESS,SAVE_PROFILE_SUCCESS} from "../actions/profileAction
 
 
 
-function list(state={}, action){
+function object(state={}, action){
     switch(action.type){
         case SAVE_PROFILE_SUCCESS:
-            return  action.profile;
+            //let  updatedProfile = Object.assign({},action.profile)
+            //return updatedProfile
+            return action.profile;
         case GET_PROFILE_SUCCESS:
             return action.profile;
         default:
@@ -16,7 +18,7 @@ function list(state={}, action){
 
 
 const registerReducer = combineReducers({
-    list:list,
+    object:object,
 });
 
 export default registerReducer;

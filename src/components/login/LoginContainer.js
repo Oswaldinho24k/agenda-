@@ -16,7 +16,13 @@ class LoginContainer extends Component {
             }
         };
     }
-
+    componentWillMount(){
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    console.log(userToken)
+    if(userToken){
+          this.props.history.push('/agenda')
+        }
+      };
 
     handleChange = (e) => {
         let usuario = this.state.usuario;

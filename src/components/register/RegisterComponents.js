@@ -1,6 +1,5 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import ErrorIcon from 'material-ui/svg-icons/alert/error-outline';
 
 const RegisterComponents =({onChange,onSubmit,cancel})=>{
 

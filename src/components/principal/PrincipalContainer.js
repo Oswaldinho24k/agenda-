@@ -6,7 +6,7 @@ import * as userActions from '../../redux/actions/userActions';
 import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
 import RegisterContainer from '../register/RegisterContainer';
-import ProfileContainer from '../profile/ProfileContainer';
+import ProfileContainer from '../profile/ProfilePage';
 import ToastrContainer, {Toast} from 'react-toastr-basic'
 class PrincipalContainer extends Component{
   state = {
@@ -85,7 +85,7 @@ class PrincipalContainer extends Component{
              openProfile={this.openProfile}
              showToast={this.showToast}
             />
-          <div className="padre">
+          <div  style={{ minHeight: '90vh' }}>
             <Pages/>
           </div>
       </div>

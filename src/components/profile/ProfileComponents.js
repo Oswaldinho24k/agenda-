@@ -1,68 +1,47 @@
 import React from 'react';
-import Card from 'material-ui/Card';
+
 import FlatButton from 'material-ui/FlatButton';
 import Avatar from 'material-ui/Avatar';
 import Security from 'material-ui/svg-icons/hardware/security';
 import Edit from 'material-ui/svg-icons/action/account-box';
+import ProfileData from './ProfileData';
 import './Profile.css'
-const cardAvatar={
-    marginTop:20
-};
 
-const CardExampleWithAvatar = ({openPass,openEdit,full_name,user,address,phone_number,avatar}) => (
+const ProfileComponents = ({openClosePassword,onChange,onSubmit,openPass,activeEdit,user,avatar,full_name,phone_number,address,edit,uploadPhoto,imagePreviewUrl}) => (
+  <form
+    onSubmit={onSubmit}
+    >
+    <div className="coverphoto">
+      <div className="profile_avatar">
+        {imagePreviewUrl ? <Avatar size={130} src={imagePreviewUrl} />:
+        <Avatar id="img"  size={130} src={avatar}/>}
+      </div>
+    </div>
 
-  <div>
-      <Card className="cardProfile">
-        <div className="cardAvatar">
-            <Avatar size={150} style={cardAvatar} src={avatar}/>
-            <span className="textTitle">{user.username}</span>
-            <span className="textTitle">{user.email}</span>
+      <div className="conteProfile">
+          <div className="left_colBottons">
+              <FlatButton onClick={openClosePassword} style={{textAlign:'left', marginBottom:'10px'}} labelStyle={{fontSize:'9px'}} fullWidth={true} icon={<Security/>} label='Change password'/>
+              <FlatButton onClick={activeEdit} style={{textAlign:'left'}} labelStyle={{fontSize:'10px'}}  fullWidth={true} icon={<Edit/>} label='Edit profile'/>
+          </div>
+          <div className="right_colData">
+            <span className="usernameProfil">{user.username}</span><br/>
+            <span className="userEmail">{user.email}</span>
+            <ProfileData
+              edit={edit}
+              cancel={activeEdit}
+              name={full_name}
+              phone={phone_number}
+              address={address}
+              onChange={onChange}
+              uploadPhoto={uploadPhoto}
+              />
+          </div>
         </div>
-      </Card>
+      </form>
 
-      <Card className="cardProfile">
-        <div className="title">
-          <span className="Title">User information</span>
-        </div>
 
-        <div className="ProfileData">
-            <label className="labelProfile"htmlFor="">Full Name</label>
-              <span className="textdata">{full_name}</span>
-              <label className="labelProfile"htmlFor="">Address</label>
-              <span className="textdata">{address}</span>
-            <label className="labelProfile"htmlFor="">Phone Number </label>
-              <span className="textdata">{phone_number}</span>
-        </div>
-      </Card>
-
-      <Card className="cardProfile">
-          <FlatButton onClick={openPass} style={styles.btn} fullWidth={true} icon={<Security/>} label='Change password'/>
-      </Card>
-      <Card className="cardProfile">
-          <FlatButton onClick={openEdit} fullWidth={true} icon={<Edit/>} label='Edit profile'/>
-      </Card>
-  </div>
 
 );
 
-const styles = {
-  Inputs:{
-    marginLeft:'25px',
-    heigth:'61px',
-  },
-  floatingLabelStyle: {
-    color: 'blue',
-  },
-  floatingLabelFocusStyle: {
-    color: 'red'
-  },
-  underlineStyle: {
-  borderColor: 'white',
-},
-btn:{
 
-  alignItems:'flex-start'
-}
-};
-
-export default CardExampleWithAvatar;
+export default ProfileComponents;

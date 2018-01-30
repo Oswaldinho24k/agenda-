@@ -41,18 +41,19 @@ class Calendario extends Component{
                     leftIcon={<NoteAdd/>}
                 />
                 </NavLink>
+                {this.props.user.is_staff === false ? null :
                 <NavLink
                     onClick={this.props.toogleDrawer}
                     activeClassName="selected"
                     activeStyle={{fontWeight: 'bold',}}
                     exact
-                    to="/">
+                    to="/agenda/employees">
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Empleados"
                         leftIcon={<Accesibility/>}
                     />
-                </NavLink>
+                </NavLink>} 
                 <NavLink
                     onClick={this.props.toogleDrawer}
                     activeClassName="selected"

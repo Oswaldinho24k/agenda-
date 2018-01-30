@@ -81,7 +81,7 @@ const api={
           });
           instance.post('',register)
               .then(function (response) {
-                  resolve(response.data);
+                  resolve(response.register);
               })
               .catch(function (error) {
                   console.log('el error: ', error.response);
@@ -90,7 +90,7 @@ const api={
       });
     },
 
-//user Profile
+//user Me Profile
     getProfile:()=>{
       const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
       return new Promise(function (resolve, reject) {
@@ -118,6 +118,11 @@ const api={
       let data = new FormData()
       for(let key in profile){
         data.append(key, profile[key])
+      }
+      if(typeof profile.avatar === 'string'){
+        data.delete('avatar')
+      }else{
+        data.append('avatar', profile.avatar);
       }
 
         return new Promise(function (resolve, reject) {
@@ -168,6 +173,29 @@ const api={
 
         });
     },
+    //user ALL Profiles
+        getAllProfiles:()=>{
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          return new Promise(function (resolve, reject) {
+              const instance = axios.create({
+                  baseURL: urlProfile,
+                  // timeout: 2000,
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Token ' + userToken
+                  }
+              });
+              instance.get('')
+                  .then(function (response) {
+                      resolve(response.data);
+                  })
+                  .catch(function (error) {
+                      console.log('el error: ', error.response);
+                      reject(error);
+                  });
+          });
+
+        },
 
 }
 

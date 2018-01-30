@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as employeesActions from '../../redux/actions/employeesActions';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Loader from '../common/Loading'
-import DetailComponents from './DetailEmployees0'
+import DetailComponents from './DetailEmployees'
 
-//jose Style
-import Avatar from 'material-ui/Avatar';
 
 
 class DetailEmployeesPage extends Component{
@@ -18,19 +15,11 @@ class DetailEmployeesPage extends Component{
         console.log(employee)
         if(!fetched)return(<Loader/>);
         return(
-          <Card className="cardDetail">
-            <div style={{ display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-                <Avatar size={125} src={employee.avatar}/>
-                <div style={{ justifyContent:'space-around', width:'80%', marginLeft:10}}>
+                <div>
                    <DetailComponents
                         {...employee}
                   />
                 </div>
-
-            </div>
-
-
-          </Card>
         )
     }
 }
@@ -57,8 +46,3 @@ function mapDispatchToProps(dispatch) {
 
 DetailEmployeesPage = connect(mapStateToProps, mapDispatchToProps)(DetailEmployeesPage);
 export default DetailEmployeesPage;
-
-// <CardTitle title="Detail" />
-//   <DetailComponents
-//       {...employee}
-//   />

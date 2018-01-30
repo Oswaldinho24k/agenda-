@@ -1,39 +1,61 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import Avatar from 'material-ui/Avatar';
-import './employees.css'
-import Divider from 'material-ui/Divider';
+import {CardText} from 'material-ui/Card';
+import './employees.css';
+import BasicInfo from './BasicInfo';
+import TabsComponents from  './TabsComponents';
 
-const CardExampleWithAvatar = ({user,full_name,address,phone_number,avatar}) => (
+const CardExampleWithAvatar = ({avatar,user,full_name,phone_number,address}) => (
   <div>
-    <div className="Header">
-      <div className="conteDetail">
-        <div className='avatarDetail'>
-          <Avatar size={125} src={avatar}/>
-        </div>
-          <section className="detailInfo">
-            <CardTitle className="detailTitle" title={user.username} subtitle={user.email} />
-            <div className="detailData">
-              <section className="detailData1">
-                  <label className="labelProfile"htmlFor="">Name:</label>
-                    <span className="textdata">{full_name}</span>
-                    <label className="labelProfile"htmlFor="">Address</label>
-                    <span className="textdata">{address}</span>
-              </section>
-              <section className="detailData1">
-                  <label className="labelProfile"htmlFor="">Phone Number </label>
-                  <span className="textdata">{phone_number}</span>
-              </section>
-            </div>
-        </section>
-        <Divider />
-      </div>
+    <div className="perfil-container">
+      <CardText
+           style={
+               {
+                   position: 'relative',
+                   textAlign:"center",
+                   background:"url('http://movilarena.com/wp-content/uploads/todo_list.jpg')",
+                   backgroundSize: 'cover',
+                   padding:0,
+               }}>
+           <div
+               style={
+                   {
+                       backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                       padding: 55, color:"white"
+                   }}>
+               <img style={styles.image} src={avatar} alt="user pic"/>
+               <h2 className="DetailUserName">{user.username}</h2>
+           </div>
+       </CardText>
+        <BasicInfo
+            name={full_name}
+            phone={phone_number}
+            user={user}
+            address={address}
+           />
+            <TabsComponents/>
     </div>
-    <section>
-        Aqui va el contenido
-    </section>
   </div>
 );
+const styles = {
+    image:{
+        borderRadius:"50%",
+        width:"200px",
+        height: "200px",
+        border: '5px solid white'
+    },
+    botonFlotante:{
+        position:"absolute",
+        bottom:"5px",
+        right:"5px",
+        background: "white",
+
+    }
+};
 
 export default CardExampleWithAvatar;
+
+/*
+
+
+
+*/

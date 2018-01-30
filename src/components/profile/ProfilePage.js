@@ -15,6 +15,7 @@ class ProfilePage extends React.Component {
       super(props);
       this.state = {
           edit:true,
+          defaultP:{},
           data: {},
           message:"Change success!!",
           file: '',
@@ -30,10 +31,12 @@ class ProfilePage extends React.Component {
     let {edit} = this.state;
     edit = !edit;
     this.setState({edit})
+    console.log(this.state.defaultP)
   };
   cancelEdit = ()=>{
     this.setState({edit:true})
     console.log('gola')
+    this.props.openProfile();
   }
   handleChange = (e) => {
       let data = this.props.profile;

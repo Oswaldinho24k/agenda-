@@ -1,65 +1,10 @@
-.cardDetail{
-  width: 80%;
-   margin: 0 auto;
-  min-width: 320px;
-  padding: 15px;
-  margin-top: 15px;
-
+.perfil-container{
+  width: 57%;
+  margin: 0 auto;
+  padding-top: 40px;
 }
-
-.conteDetail{
-  width: 706px;
-  display: flex;
-  height: 194px;
-  justify-content: space-around;
-
+.DetailUserName{
+color: black;
+font-size: 3em;
+margin: 0px;
 }
-.Header{
-    display: flex;
-    justify-content: center;
-}
-
-.avatarDetail{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 154px;
-    min-width: 149px;
-}
-
-.detailData{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
-
-}
-.detailData1{
-  display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
-.detailInfo{
-  width: 52%;
-}
-.detailTitle{
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-
-
-  @media screen and (min-width: 320px){
-    .conteDetail{
-      height: auto;
-      min-width: 300px;
-
-    }
-  }
-  @media (width: 320px){
-    .detailData{
-      display: flex;
-      flex-direction: column;
-    }
-  }

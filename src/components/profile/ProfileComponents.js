@@ -7,13 +7,18 @@ import Edit from 'material-ui/svg-icons/action/account-box';
 import ProfileData from './ProfileData';
 import './Profile.css'
 
+
+
+
+
 const ProfileComponents = ({openClosePassword,onChange,onSubmit,openPass,activeEdit,user,avatar,full_name,phone_number,address,edit,uploadPhoto,imagePreviewUrl}) => (
+
   <form
     onSubmit={onSubmit}
     >
     <div className="coverphoto">
-      <div className="profile_avatar">
-        {imagePreviewUrl ? <Avatar size={130} src={imagePreviewUrl} />:
+      <div className="profile_avatar" >
+        {imagePreviewUrl ? <Avatar size={130} src={imagePreviewUrl}   />:
         <Avatar id="img"  size={130} src={avatar}/>}
       </div>
     </div>

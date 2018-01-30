@@ -73,3 +73,16 @@
     justify-content: center;
     border: none
 }
+.Buttons{
+  display: flex;
+      justify-content: center;
+      /* align-items: center; */
+      flex-direction: column;
+}
+/* #upload{
+  visibility: hidden;
+  height: 0px
+} */
+.btnMod{
+  margin-top: 5px
+}

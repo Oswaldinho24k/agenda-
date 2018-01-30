@@ -23,6 +23,9 @@ class ProfilePage extends React.Component {
       };
   }
 
+
+
+
   activeEdit = () => {
     let {edit} = this.state;
     edit = !edit;
@@ -30,7 +33,7 @@ class ProfilePage extends React.Component {
   };
   cancelEdit = ()=>{
     this.setState({edit:true})
-    this.props.openProfile();
+    console.log('gola')
   }
   handleChange = (e) => {
       let data = this.props.profile;

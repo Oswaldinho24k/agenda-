@@ -2,6 +2,14 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import Camera from 'material-ui/svg-icons/image/camera-alt';
+
+let elinput;
+function clickin(){
+  elinput.click();
+  console.log(elinput)
+}
 const ProfileData = ({name,phone,address,edit,onChange,cancel,uploadPhoto}) => (
   <div>
     <TextField
@@ -33,17 +41,14 @@ const ProfileData = ({name,phone,address,edit,onChange,cancel,uploadPhoto}) => (
       floatingLabelText="phone_number"
     />
   {edit !== false ?null:
-    <div>
-    <br/>
-      <label htmlFor="">
-          <input
-            name="avatar"
-            onChange={uploadPhoto}
-            type="file"
-            id="upload"
-            accept="image/*"
-            />
-      </label>
+    <div className="Buttons">
+      <RaisedButton
+        label="Choose Avatar"
+        labelPosition="before"
+        primary={true}
+        icon={<Camera />}
+        onClick={clickin}
+      />
       <div className="btnMod">
       <FlatButton
         label="Cancel"
@@ -56,6 +61,17 @@ const ProfileData = ({name,phone,address,edit,onChange,cancel,uploadPhoto}) => (
         type='submit'
       />
     </div>
+    <label htmlFor="">
+        <input
+          ref={input=>elinput=input}
+          name="avatar"
+          hidden
+          onChange={uploadPhoto}
+          type="file"
+          id="upload"
+          accept="image/*"
+          />
+    </label>
   </div>}
   </div>
 );

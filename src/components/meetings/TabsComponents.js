@@ -1,6 +1,9 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
   headline: {
@@ -10,32 +13,62 @@ const styles = {
     fontWeight: 400,
   },
     paper: {
-      width:'45%',
-      margin: '3% auto',
-      height:'500px'
+      width:'50%',
+      margin: '3px auto',
+      maxHeight:'500px'
 
-    }
+    },
+    btn:{
+      textAlign:'right',
+      bottom:'0'
+    },
 };
+
+// <div style={styles.btn}>
+//   <FloatingActionButton mini={true}>
+//     <ContentAdd />
+//   </FloatingActionButton>
+// </div>
 
 
 const TabsComponents = () => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
-                  <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264"}}>
-                      Hola Mundo
+                  <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
+                    <div className="muro">
+                      <div className="Btns">
+                        <RaisedButton
+                          primary={true}
+                          label="Nueva Tareas"
+                          />
+                      </div>
+
+                    </div>
                   </Tab>
-                  <Tab label="Acuerdos" style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264", borderLeft:"1px dotted #87316C", borderRight:"1px dotted #87316C"}}>
-                    asda
+                  <Tab label="Acuerdos" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
+                    <div className="muro">
+                      <div className="Btns">
+                        <RaisedButton
+                          primary={true}
+                          label="Nuevo Acuerdo"
+                          />
+                     </div>
+                    </div>
                   </Tab>
                   <Tab
                       label="Archivos"
                       data-route="/home"
-
-                      style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264", borderLeft:"1px dotted #87316C", borderRight:"1px dotted #87316C"}}
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1"}}
                   >
-                    Mhola mun
+                    <div className="muro">
+                      <div className="Btns">
+                        <RaisedButton
+                          primary={true}
+                          label="Nuevo Archivo"
+                          />
+                     </div>
+                    </div>
                   </Tab>
-
                 </Tabs>
       </Paper>
 );

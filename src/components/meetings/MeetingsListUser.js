@@ -7,22 +7,26 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import AddParticipants from './AddParticipants';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 const style = {
   ListUser: {
-    width:'30%',
-    margin: '3% auto',
+    width:'35%',
+    margin: '3px auto',
 
 
   },
   Paper:{
-    overflow: 'auto',
-    maxHeight:'350px',
+    maxHeight:'500px',
   },
   menu:{
     width:' 100%'
   },
   titile:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
     height:'73px'
   },
   btn:{
@@ -30,9 +34,13 @@ const style = {
     justifyContent:'flex-end',
     position: 'relative',
     top: '-46px',
+  },
+  btnNewAsis:{
+    marginTop:'5px',
   }
 };
-let pokemon = true;
+let pokemon = false;
+let usuario = true;
 const MeetingsListUser = () => (
       <div style={style.ListUser}>
         <Paper style={style.Paper}  zDepth={1}>
@@ -43,16 +51,23 @@ const MeetingsListUser = () => (
             <List  desktop={true}>
                <Subheader style={style.titile}>Lista de participantes</Subheader>
                <Divider/>
-                 <ListItem style={{textAlign:'start'}}
+              {usuario ==false?
+                <RaisedButton
+                  primary={true}
+                  label="Agregar Asistentes"
+                  style={style.btnNewAsis}
+                  />
+                  :
+                <ListItem style={{textAlign:'start'}}
                  primaryText="Root"
                  leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
                  secondaryText="foggy@gmail.com"
-                 />
+                 />}
              </List>}
           </div>
         </Paper>
-        {pokemon == true ? null:<div style={style.btn}>
-          <FloatingActionButton mini={true} style={style}>
+        {usuario == false ? null:<div style={style.btn}>
+          <FloatingActionButton mini={true} >
             <ContentAdd />
           </FloatingActionButton>
         </div>}

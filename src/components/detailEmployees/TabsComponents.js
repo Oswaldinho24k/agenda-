@@ -21,24 +21,24 @@ const styles = {
 const TabsComponents = () => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
-                  <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264"}}>
+                  <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
                       Hola Mundo
                   </Tab>
-                  <Tab label="Proyectos" style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264", borderLeft:"1px dotted #87316C", borderRight:"1px dotted #87316C"}}>
+                  <Tab label="Proyectos" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
                     asda
                   </Tab>
                   <Tab
                       label="Aportes"
                       data-route="/home"
 
-                      style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264", borderLeft:"1px dotted #87316C", borderRight:"1px dotted #87316C"}}
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}
                   >
                     Mhola mun
                   </Tab>
                   <Tab
                       label="Acuerdos"
                       data-route="/home"
-                      style={{backgroundColor:"white", borderBottom:"2px solid #87316C", color:"#5f6264"}}
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
                   >
                   asadasd
                   </Tab>

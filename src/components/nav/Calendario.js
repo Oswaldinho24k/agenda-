@@ -53,13 +53,13 @@ class Calendario extends Component{
                         primaryText="Empleados"
                         leftIcon={<Accesibility/>}
                     />
-                </NavLink>} 
+                </NavLink>}
                 <NavLink
                     onClick={this.props.toogleDrawer}
                     activeClassName="selected"
                     activeStyle={{fontWeight: 'bold',}}
                     exact
-                    to="/">
+                    to="/agenda/meetings">
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Desempeño"

@@ -1,0 +1,25 @@
+.meetings-container{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}

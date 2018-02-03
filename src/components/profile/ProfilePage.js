@@ -83,6 +83,7 @@ openClosePassword = () => {
               open={this.props.open}
               onRequestClose={this.cancelEdit}
               contentStyle={modStyle}
+              style={{minHeight:'250px'}}
               bodyStyle={{padding:'0px !important'}}
 
             >

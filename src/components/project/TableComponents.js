@@ -6,8 +6,8 @@ TableRowColumn,
 import {Link} from 'react-router-dom';
 
 
-  const TableComponents = ({data, ...others})=>{
-          return(
+        const TableComponents = ({data, ...others})=>{
+return(
          <TableRow {...others} >
             {others.children[0] /* checkbox passed down from Table-Body*/}
            <TableRowColumn>{data.user.username}</TableRowColumn>
@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom';
            <TableRowColumn><Link to={`/agenda/employees/${data.id}`}>Detalle</Link></TableRowColumn>
          </TableRow>
 
-       );
+);
 
 };
 

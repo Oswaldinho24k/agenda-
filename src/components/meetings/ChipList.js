@@ -6,7 +6,7 @@ import Avatar from 'material-ui/Avatar';
  * Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth
  * while clicked or touched.
  */
-export default class ChipExampleArray extends React.Component {
+export default class ChipList extends React.Component {
 
   constructor(props) {
     super(props);

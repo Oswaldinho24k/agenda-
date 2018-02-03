@@ -5,12 +5,16 @@ import PrincipalComponents from './PrincipalComponents';
 import EmployeesContainer from '../employees/EmployeesContainer';
 import DetailEmployees from '../detailEmployees/DetailEmployeesPage';
 import MeetingPage from '../meetings/MeetingPage';
+import ProjectContainer from '../project/ProjectContainer';
+import ProjectsDetailPage from '../projectdetail/ProjectsDetailPage'
+//<Route path="/agenda/project" component={ProjectsPage}/>
 
 const Pages = ({props}) => (
     <Switch>
         <Route exact path="/agenda" component={PrincipalComponents}/>
         <Route path="/agenda/tasks" component={TasksContainer}/>
-        <Route path="/agenda/meetings" component={MeetingPage}/>
+        <Route path="/agenda/meetings" component={ProjectsDetailPage}/>
+
 
         <Route path="/agenda/employees/:id" component={DetailEmployees}/>
         <Route path="/agenda/employees" component={EmployeesContainer}/>

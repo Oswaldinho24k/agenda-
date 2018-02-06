@@ -1,6 +1,11 @@
 @import './components/login/Form.css';
 @import './components/tasks/tasks.css';
 @import './components/nav/Nav.css';
+@import './components/calendario/Calendario.css';
+@import '../node_modules/fullcalendar/dist/fullcalendar.css';
+@import '../node_modules/fullcalendar/dist/fullcalendar.print.css';
+
+
 body {
   margin: 0;
   padding: 0;

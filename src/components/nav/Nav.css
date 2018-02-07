@@ -1,0 +1,12 @@
+.selected{
+    background-color: darkorange;
+    color:blue;
+}
+.titleNav{
+  display: flex;
+  justify-content:flex-end;
+  font-size: 20px;
+}
+.botonesNav{
+  color: rgb(255, 255, 255) !important;
+}

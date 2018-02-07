@@ -19,12 +19,17 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/jquery": "^3.3.0",
     "awesome-typescript-loader": "^3.4.1",
     "react-scripts": "1.0.17",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.7.1",
     "webpack": "^3.10.0"
+=======
+    "react-scripts": "1.0.17",
+    "react-toastr-basic": "^1.1.14"
+>>>>>>> caad4259e7e92756316456fe98bc42205a630543
   },
   "scripts": {
     "start": "react-scripts start",

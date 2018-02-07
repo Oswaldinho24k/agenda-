@@ -1,0 +1,54 @@
+.projects-detail-container{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+.Porcertaje{
+  display: flex;
+  justify-content: space-between;
+}
+.projectsdetailComponent{
+  display: flex;
+  margin: 20px auto;
+  justify-content: space-around;
+}
+.detailTasks{
+  display: flex;
+  flex-direction: column;
+
+}
+.detailTasksHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailDateTasks{
+  display: flex;
+}
+@media screen and (max-width: 750px) and (min-width: 310px) {
+    .projectsdetailComponent {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        flex-direction:column;
+        margin:10px
+    }
+    .detailTasksHeader{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction:column;
+    }
+    .detailDateTasks{
+      display: flex;
+      flex-direction: column;
+    }
+    .detailTasks{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: auto;
+
+    }
+}

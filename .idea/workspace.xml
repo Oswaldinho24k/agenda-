@@ -24,16 +24,25 @@
   <component name="FileEditorManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="130">
               <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
 =======
 =======
 
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+            <state relative-caret-position="47">
+              <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
     <leaf>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
@@ -82,6 +91,10 @@
 =======
             <state relative-caret-position="61">
               <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+<<<<<<< HEAD
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -139,8 +152,11 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
         <option value="$PROJECT_DIR$/src/components/login/LoginComponent.js" />
         <option value="$PROJECT_DIR$/src/components/login/LoginContainer.js" />
         <option value="$PROJECT_DIR$/src/components/login/Form.css" />
@@ -151,10 +167,14 @@
         <option value="$PROJECT_DIR$/src/components/nav/Navbar.js" />
         <option value="$PROJECT_DIR$/src/components/nav/Calendario.js" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
       </list>
     </option>
   </component>
@@ -206,10 +226,14 @@
 =======
       <pane id="Scope" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -241,10 +265,14 @@
 =======
       <pane id="Scratches" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,9 +321,12 @@
       <workItem from="1512510759746" duration="208000" />
       <workItem from="1512592338073" duration="41000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1518038994702" duration="1376000" />
 =======
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
 =======
       <workItem from="1512510759746" duration="59000" />
       <workItem from="1512669308405" duration="635000" />
@@ -312,14 +343,19 @@
       <workItem from="1515780645191" duration="498000" />
       <workItem from="1515783753304" duration="2862000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="1809000" />
@@ -343,6 +379,9 @@
     <option name="totallyTimeSpent" value="433000" />
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
 =======
+    <option name="totallyTimeSpent" value="433000" />
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
+=======
     <option name="totallyTimeSpent" value="67974000" />
   </component>
   <component name="TodoView">
@@ -354,16 +393,23 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1319" height="743" extended-state="6" />
     <layout>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8681319" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -390,7 +436,10 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 =======
+<<<<<<< HEAD
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2646605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998326" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -410,9 +459,13 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> ramaSam
 >>>>>>> caad4259e7e92756316456fe98bc42205a630543
+=======
+>>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
+>>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>

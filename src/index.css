@@ -1,16 +1,9 @@
 @import './components/login/Form.css';
 @import './components/tasks/tasks.css';
 @import './components/nav/Nav.css';
-<<<<<<< HEAD
 @import './components/register/register.css';
 @import './components/calendar/Calendar.css';
-=======
-@import './components/calendario/Calendario.css';
-@import '../node_modules/fullcalendar/dist/fullcalendar.css';
-@import '../node_modules/fullcalendar/dist/fullcalendar.print.css';
 
-
->>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
 body {
   margin: 0;
   padding: 0;

@@ -7,8 +7,6 @@
     "fullcalendar": "^3.8.2",
     "jquery": "^3.3.1",
     "axios": "^0.17.1",
-    "fullcalendar": "^3.8.2",
-    "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -19,22 +17,13 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
-
-=======
->>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
     "@types/jquery": "^3.3.0",
     "awesome-typescript-loader": "^3.4.1",
     "react-scripts": "1.0.17",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.7.1",
-<<<<<<< HEAD
     "webpack": "^3.10.0",
-    "react-scripts": "1.0.17",
     "react-toastr-basic": "^1.1.14"
-=======
-    "webpack": "^3.10.0"
->>>>>>> 33ec1c2e1710dda9364a6c942538a2324c3c6018
   },
   "scripts": {
     "start": "react-scripts start",

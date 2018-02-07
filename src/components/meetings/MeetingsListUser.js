@@ -33,44 +33,52 @@ const style = {
     display:'flex',
     justifyContent:'flex-end',
     position: 'relative',
-    top: '-46px',
   },
   btnNewAsis:{
     marginTop:'5px',
   }
 };
-let pokemon = false;
-let usuario = true;
-const MeetingsListUser = () => (
+
+const MeetingsListUser = ({employees,addEmployes,employessListAdd,meeting,openListAdd,listAddEmp,addParticipants}) => (
       <div style={style.ListUser}>
         <Paper style={style.Paper}  zDepth={1}>
             <div style={style.menu}>
-        {pokemon == true ?
-                <AddParticipants/>
+        {listAddEmp == false ?
+                <AddParticipants
+                    employessListAdd={employessListAdd}
+                    employees={employees}
+                    addEmployes={addEmployes}
+                    addParticipants={addParticipants}
+                  />
                 :
             <List  desktop={true}>
                <Subheader style={style.titile}>Lista de participantes</Subheader>
                <Divider/>
-              {usuario ==false?
+              {meeting.participants.length<= 0?
                 <RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
                   style={style.btnNewAsis}
+                  onClick={openListAdd}
                   />
                   :
-                <ListItem style={{textAlign:'start'}}
-                 primaryText="Root"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 secondaryText="foggy@gmail.com"
-                 />}
+                  <List>
+                {meeting['participants'].map(data => <ListItem key={data.id} style={{textAlign:'start'}}
+                 primaryText={data.user.username}
+                 leftAvatar={<Avatar src={data.avatar} />}
+                 secondaryText={data.user.email}
+                 />)}
+                 </List>
+             }
+             {meeting.participants.length<= 0 ? null:<div style={style.btn}>
+               <FloatingActionButton mini={true} onClick={openListAdd} >
+                 <ContentAdd />
+               </FloatingActionButton>
+             </div>}
              </List>}
           </div>
         </Paper>
-        {usuario == false ? null:<div style={style.btn}>
-          <FloatingActionButton mini={true} >
-            <ContentAdd />
-          </FloatingActionButton>
-        </div>}
+
       </div>
 
 

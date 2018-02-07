@@ -22,15 +22,15 @@ const style = {
     maxHeight:'260px'
   }
 };
-let partic=true;
-const AddParticipants = () => (
+
+
+const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants}) => (
             <List  desktop={true}>
                <Subheader style={style.titile}>Agregar Participante</Subheader>
               <Divider/>
-                  {partic == true ?
-                    <ChipList/>
-                    :null
-                  }
+                    <ChipList
+                      employessListAdd={employessListAdd}
+                      />
                     <div class="search">
                        <input type="text" class="searchTerm" placeholder="What are you looking for?"/>
                          <RaisedButton
@@ -40,61 +40,25 @@ const AddParticipants = () => (
                     </div>
                <Divider/>
                <List style={style.listEmployess}>
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
+                 { employees.map(data =>
+                  <ListItem
+                 key={data.id}
+                 value={data}
+                 style={{textAlign:'start'}}
+                 primaryText={data.user.username}
+                 secondaryText={data.user.email}
+                 leftAvatar={<Avatar src={data.avatar} />}
                  rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
-                 <ListItem style={{textAlign:'start'}}
-                 primaryText="Pepe"
-                 secondaryText="foggy@gmail.com"
-                 leftAvatar={<Avatar src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />}
-                 rightIcon={<ContentAdd/>}
-                 />
+                 onClick={()=>addEmployes(data)}
+                 />)}
              </List>
               <Divider/>
-                <RaisedButton
+              {employessListAdd.length<= 0 ? null : <RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
                   style={style.btnAddAsis}
-                  />
+                  onClick={addParticipants}
+                  />}
             </List>
 
     );

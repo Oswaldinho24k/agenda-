@@ -1,4 +1,4 @@
-//import $ from "jquery";
+///import $ from "jquery";
 import axios from 'axios';
 
 
@@ -11,6 +11,9 @@ let urlProfile="http://localhost:8000/profile/"
 let urlUser="http://localhost:8000/rest-auth/user/"
 let urlMeProfile="http://localhost:8000/users/meprofile/"
 let urlPassChan="http://localhost:8000/rest-auth/password/change/";
+let urlProject='http://localhost:8000/project/'
+let urlMeeting='http://localhost:8000/meeting/'
+
 if(!debug){
     urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
     urlRegister='https://backend-agenda.herokuapp.com/users/register/'
@@ -18,6 +21,8 @@ if(!debug){
     urlProfile='https://backend-agenda.herokuapp.com/profile/'
     urlUser='https://backend-agenda.herokuapp.com/rest-auth/user/'
     urlPassChan='https://backend-agenda.herokuapp.com/rest-auth/password/change/'
+    urlProject='https://backend-agenda.herokuapp.com/project/'
+    urlMeeting='https://backend-agenda.herokuapp.com/meeting/'
 }
 
 
@@ -196,6 +201,55 @@ const api={
           });
 
         },
+
+//new Meeting
+    newMeeting:(meeting)=>{
+
+        return new Promise(function (resolve, reject) {
+            const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+            const instance = axios.create({
+                baseURL: urlMeeting,
+                // timeout: 2000,
+                headers: {
+                    'Content-Type': undefined,
+                    'Authorization': 'Token ' + userToken
+                }
+            });
+            instance.post('',meeting)
+                .then(function(response) {
+                    resolve(response.data);
+                })
+                .catch(function (error) {
+                    console.log('el error: ', error.response);
+                    reject(error);
+                });
+
+
+        });
+    },
+
+    getMeeting:()=>{
+      const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+      return new Promise(function (resolve, reject) {
+          const instance = axios.create({
+              baseURL: urlMeeting,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.get('')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+      });
+
+    },
 
 }
 

@@ -18,6 +18,7 @@ class PrincipalContainer extends Component{
       openRegister: false,
       openAlertR:false,
       openProfile:false,
+      openNewMeeting:false,
   };
 
   openDrawer = () => {
@@ -62,6 +63,7 @@ class PrincipalContainer extends Component{
       Toast(message);
     }
 
+
   render(){
     const {profile} = this.props;
     return(
@@ -78,6 +80,7 @@ class PrincipalContainer extends Component{
             open={this.state.showDrawer}
             handleOpenCloseRegister={this.handleOpenCloseRegister}
             toogleDrawer={this.openDrawer}
+            openCloseNewMeeting={this.openCloseNewMeeting}
           />
           <RegisterContainer
             open={this.state.openRegister}

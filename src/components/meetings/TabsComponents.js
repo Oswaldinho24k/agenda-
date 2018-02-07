@@ -31,7 +31,7 @@ const styles = {
 // </div>
 
 
-const TabsComponents = () => (
+const TabsComponents = ({openNewTask,openNewProject}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
@@ -40,17 +40,19 @@ const TabsComponents = () => (
                         <RaisedButton
                           primary={true}
                           label="Nueva Tareas"
+                          onClick={openNewTask}
                           />
                       </div>
 
                     </div>
                   </Tab>
-                  <Tab label="Acuerdos" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
+                  <Tab label="Proyecto" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
                     <div className="muro">
                       <div className="Btns">
                         <RaisedButton
                           primary={true}
-                          label="Nuevo Acuerdo"
+                          label="Nuevo Proyecto"
+                          onClick={openNewProject}
                           />
                      </div>
                     </div>

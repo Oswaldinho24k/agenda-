@@ -10,19 +10,6 @@ export default class ChipList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {chipData: [
-      {key: 0, label: 'Angular'},
-      {key: 1, label: 'JQuery'},
-      {key: 2, label: 'Polymer'},
-      {key: 3, label: 'ReactJS'},
-      {key: 4, label: 'Polymer'},
-      {key: 5, label: 'Polymer'},
-      {key: 6, label: 'Polymer'},
-      {key: 7, label: 'Polymer'},
-      {key: 8, label: 'Polymer'},
-      {key: 9, label: 'Polymer'},
-
-    ]};
     this.styles = {
       chip: {
         margin: 4,
@@ -36,31 +23,33 @@ export default class ChipList extends React.Component {
     };
   }
 
-  handleRequestDelete = (key) => {
-    this.chipData = this.state.chipData;
-    const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
+  handleRequestDelete = (id) => {
+    this.chipData = this.props.employessListAdd;
+    const chipToDelete = this.chipData.map((chip) => chip.id).indexOf(id);
     this.chipData.splice(chipToDelete, 1);
     this.setState({chipData: this.chipData});
   };
 
   renderChip(data) {
+
     return (
       <Chip
-        key={data.key}
-        onRequestDelete={() => this.handleRequestDelete(data.key)}
+        key={data.id}
+        onRequestDelete={() => this.handleRequestDelete(data.id)}
         style={this.styles.chip}
         labelStyle={{fontSize:'10px '}}
       >
-      <Avatar size={40} src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-kayn-reveal/es_MX/94dcc05587bfb7cf3b581917f3dd6662df5eb212/assets/img/base-wallpaper.jpg" />
-        {data.label}
+      <Avatar src={data.avatar} />
+        {data.user.username}
       </Chip>
     );
   }
 
   render() {
+    const {employessListAdd}=this.props;
     return (
       <div style={this.styles.wrapper}>
-        {this.state.chipData.map(this.renderChip, this)}
+        {employessListAdd.map(this.renderChip, this)}
       </div>
     );
   }

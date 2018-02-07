@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
+
     "fullcalendar": "^3.8.2",
     "jquery": "^3.3.1",
-=======
     "axios": "^0.17.1",
->>>>>>> e7abebb1acce4083103d223f82ba9bb222e21736
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -19,17 +17,15 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
+
     "@types/jquery": "^3.3.0",
     "awesome-typescript-loader": "^3.4.1",
     "react-scripts": "1.0.17",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.7.1",
-    "webpack": "^3.10.0"
-=======
+    "webpack": "^3.10.0",
     "react-scripts": "1.0.17",
     "react-toastr-basic": "^1.1.14"
->>>>>>> caad4259e7e92756316456fe98bc42205a630543
   },
   "scripts": {
     "start": "react-scripts start",

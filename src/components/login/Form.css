@@ -30,6 +30,8 @@
     padding-top: 3%;
     padding-bottom: 7%;
     background-image: url("../../img/bg.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 h1{
@@ -38,4 +40,3 @@ h1{
     line-height: 32px;
     text-align: left;
 }
-

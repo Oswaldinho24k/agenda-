@@ -14,9 +14,10 @@ class TableMeetingContainer extends Component{
   render(){
     const {meeting,user}=this.props;
     console.log(meeting)
+    console.log(user)
     return(
         <div className="Tablemeeting-container">
-            {user.is_staff =!true? null : <RaisedButton onClick={this.newMeeting}label="New Meeting" primary={true} />}
+            {user.is_staff ==! true ? null : <RaisedButton onClick={this.newMeeting}label="New Meeting" primary={true} />}
 
             <TableMeetingComponents
               meeting={meeting}

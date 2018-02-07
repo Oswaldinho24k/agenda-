@@ -56,7 +56,6 @@ class Calendario extends Component{
                         leftIcon={<Accesibility/>}
                     />
                 </NavLink>}
-                {this.props.user.is_staff === false ? null :
                   <NavLink
                       style={{ textDecoration: 'none',textAlign:'start' }}
                       onClick={this.props.toogleDrawer}
@@ -69,7 +68,7 @@ class Calendario extends Component{
                         primaryText="Reuniones"
                         leftIcon={<Desempeno/>}
                     />
-                </NavLink>}
+                </NavLink>
 
                 <NavLink
                     style={{ textDecoration: 'none',textAlign:'start' }}
@@ -98,13 +97,6 @@ class Calendario extends Component{
                         leftIcon={<Calendar/>}
                     />
                 </NavLink>
-                  {this.props.user.is_staff === false ? null :
-                    <MenuItem
-                        style={active?styles.active: {textAlign:'start'}}
-                        primaryText="Registro"
-                        leftIcon={<PersonAdd/>}
-                        onClick={this.props.handleOpenCloseRegister}
-                    />}
 
             </Drawer>
         );

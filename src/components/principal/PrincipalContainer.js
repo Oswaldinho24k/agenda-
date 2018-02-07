@@ -15,7 +15,6 @@ import * as profileActions from '../../redux/actions/profileActions';
 class PrincipalContainer extends Component{
   state = {
       showDrawer: false,
-      openRegister: false,
       openAlertR:false,
       openProfile:false,
       openNewMeeting:false,
@@ -40,11 +39,6 @@ class PrincipalContainer extends Component{
       this.props.history.push('/login');
     };
 
-    handleOpenCloseRegister = () => {
-      let {openRegister}=this.state;
-      openRegister = !openRegister
-      this.setState({openRegister, showDrawer:false});
-    };
     closeAll=()=>{
       this.setState({openRegister:false, openAlertR:false})
     }
@@ -82,11 +76,6 @@ class PrincipalContainer extends Component{
             toogleDrawer={this.openDrawer}
             openCloseNewMeeting={this.openCloseNewMeeting}
           />
-          <RegisterContainer
-            open={this.state.openRegister}
-            showToast={this.showToast}
-            handleOpenCloseRegister={this.handleOpenCloseRegister}
-           />
             <ProfileContainer
              open={this.state.openProfile}
              openProfile={this.openProfile}

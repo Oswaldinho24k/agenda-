@@ -18,7 +18,7 @@ class MeetingsPage extends Component{
               meeting_date:'',
               participants:[],
           },
-          openNewMeeting:false,
+          openNewMeeting:true,
           emploList:[],
           employSelec:{},
           listAddEmp:true,

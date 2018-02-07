@@ -12,8 +12,8 @@ import RegisterComponents from './RegisterComponents';
           usuario: {
               username:'',
               email: '',
-              password:'Perro182',
-              password2:'Perro182',
+              password:'Agenda182',
+              password2:'Agenda182',
           },
           message:'Register Success!!!'
       };
@@ -32,7 +32,7 @@ import RegisterComponents from './RegisterComponents';
       const message= this.state.message;
 
       this.props.registerActions.newUser(nuevoRegistro)
-      this.props.handleOpenCloseRegister()
+      this.props.openRegister()
       this.props.showToast(message)
   };
 
@@ -48,12 +48,12 @@ import RegisterComponents from './RegisterComponents';
             modal={false}
             open={this.props.open}
             contentStyle={modStyle}
-            onRequestClose={this.props.handleOpenCloseRegister}
+            onRequestClose={this.props.openRegister}
           >
             <RegisterComponents
               onChange={this.handleChange}
               usuario={this.state.usuario}
-              cancel={this.props.handleOpenCloseRegister}
+              cancel={this.props.openRegister}
               onSubmit={this.onSubmit}
             />
           </Dialog>

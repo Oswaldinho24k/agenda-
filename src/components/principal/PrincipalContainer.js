@@ -6,14 +6,19 @@ import * as userActions from '../../redux/actions/userActions';
 import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
 import RegisterContainer from '../register/RegisterContainer';
-import ProfileContainer from '../profile/ProfileContainer';
+import ProfileContainer from '../profile/ProfilePage';
 import ToastrContainer, {Toast} from 'react-toastr-basic'
+import * as profileActions from '../../redux/actions/profileActions';
+
+
+
 class PrincipalContainer extends Component{
   state = {
       showDrawer: false,
       openRegister: false,
       openAlertR:false,
       openProfile:false,
+      openNewMeeting:false,
   };
 
   openDrawer = () => {
@@ -58,21 +63,24 @@ class PrincipalContainer extends Component{
       Toast(message);
     }
 
+
   render(){
+    const {profile} = this.props;
     return(
       <div className="todo">
         <ToastrContainer />
         <Navbar
             openDrawer={this.openDrawer}
-            user={this.props.user}
             logOut={this.logOut}
             openProfile={this.openProfile}
+            {...profile}
           />
           <Calendario
             user={this.props.user}
             open={this.state.showDrawer}
             handleOpenCloseRegister={this.handleOpenCloseRegister}
             toogleDrawer={this.openDrawer}
+            openCloseNewMeeting={this.openCloseNewMeeting}
           />
           <RegisterContainer
             open={this.state.openRegister}
@@ -80,12 +88,11 @@ class PrincipalContainer extends Component{
             handleOpenCloseRegister={this.handleOpenCloseRegister}
            />
             <ProfileContainer
-             user={this.props.user}
              open={this.state.openProfile}
              openProfile={this.openProfile}
              showToast={this.showToast}
             />
-          <div className="padre">
+          <div  style={{ minHeight: '90vh' }}>
             <Pages/>
           </div>
       </div>
@@ -98,13 +105,15 @@ function mapStateToProps(state, ownProps) {
 
     return {
        user: state.user.object,
+       profile: state.profile.object
     }
 
 }
 
 function mapDispatchToProps(dispatch){
   return{
-    userActions:bindActionCreators(userActions,dispatch)
+    userActions:bindActionCreators(userActions,dispatch),
+    profileActions:bindActionCreators(profileActions,dispatch)
   }
 }
 

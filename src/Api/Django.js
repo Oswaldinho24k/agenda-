@@ -1,4 +1,4 @@
-//import $ from "jquery";
+///import $ from "jquery";
 import axios from 'axios';
 
 
@@ -11,6 +11,9 @@ let urlProfile="http://localhost:8000/profile/"
 let urlUser="http://localhost:8000/rest-auth/user/"
 let urlMeProfile="http://localhost:8000/users/meprofile/"
 let urlPassChan="http://localhost:8000/rest-auth/password/change/";
+let urlProject='http://localhost:8000/project/'
+let urlMeeting='http://localhost:8000/meeting/'
+
 if(!debug){
     urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
     urlRegister='https://backend-agenda.herokuapp.com/users/register/'
@@ -18,6 +21,8 @@ if(!debug){
     urlProfile='https://backend-agenda.herokuapp.com/profile/'
     urlUser='https://backend-agenda.herokuapp.com/rest-auth/user/'
     urlPassChan='https://backend-agenda.herokuapp.com/rest-auth/password/change/'
+    urlProject='https://backend-agenda.herokuapp.com/project/'
+    urlMeeting='https://backend-agenda.herokuapp.com/meeting/'
 }
 
 
@@ -81,7 +86,7 @@ const api={
           });
           instance.post('',register)
               .then(function (response) {
-                  resolve(response.data);
+                  resolve(response.register);
               })
               .catch(function (error) {
                   console.log('el error: ', error.response);
@@ -90,7 +95,7 @@ const api={
       });
     },
 
-//user Profile
+//user Me Profile
     getProfile:()=>{
       const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
       return new Promise(function (resolve, reject) {
@@ -118,6 +123,11 @@ const api={
       let data = new FormData()
       for(let key in profile){
         data.append(key, profile[key])
+      }
+      if(typeof profile.avatar === 'string'){
+        data.delete('avatar')
+      }else{
+        data.append('avatar', profile.avatar);
       }
 
         return new Promise(function (resolve, reject) {
@@ -167,6 +177,78 @@ const api={
 
 
         });
+    },
+    //user ALL Profiles
+        getAllProfiles:()=>{
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          return new Promise(function (resolve, reject) {
+              const instance = axios.create({
+                  baseURL: urlProfile,
+                  // timeout: 2000,
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Token ' + userToken
+                  }
+              });
+              instance.get('')
+                  .then(function (response) {
+                      resolve(response.data);
+                  })
+                  .catch(function (error) {
+                      console.log('el error: ', error.response);
+                      reject(error);
+                  });
+          });
+
+        },
+
+//new Meeting
+    newMeeting:(meeting)=>{
+
+        return new Promise(function (resolve, reject) {
+            const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+            const instance = axios.create({
+                baseURL: urlMeeting,
+                // timeout: 2000,
+                headers: {
+                    'Content-Type': undefined,
+                    'Authorization': 'Token ' + userToken
+                }
+            });
+            instance.post('',meeting)
+                .then(function(response) {
+                    resolve(response.data);
+                })
+                .catch(function (error) {
+                    console.log('el error: ', error.response);
+                    reject(error);
+                });
+
+
+        });
+    },
+
+    getMeeting:()=>{
+      const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+      return new Promise(function (resolve, reject) {
+          const instance = axios.create({
+              baseURL: urlMeeting,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.get('')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+      });
+
     },
 
 }

@@ -7,9 +7,6 @@ import {MuiThemeProvider} from "material-ui";
 import {BrowserRouter} from 'react-router-dom';
 
 
-
-
-
 const WithRouter = () => (
 
     <BrowserRouter>

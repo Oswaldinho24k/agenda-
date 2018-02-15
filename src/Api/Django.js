@@ -13,6 +13,7 @@ let urlMeProfile="http://localhost:8000/users/meprofile/"
 let urlPassChan="http://localhost:8000/rest-auth/password/change/";
 let urlProject='http://localhost:8000/project/'
 let urlMeeting='http://localhost:8000/meeting/'
+let urlUsersAll='http://127.0.0.1:8000/usersall/'
 
 if(!debug){
     urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
@@ -227,7 +228,7 @@ const api={
 
         });
     },
-
+//get Meeting
     getMeeting:()=>{
       const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
       return new Promise(function (resolve, reject) {
@@ -250,6 +251,78 @@ const api={
       });
 
     },
+//get users ALL
+getAllUser:()=>{
+  const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+  return new Promise(function (resolve, reject) {
+      const instance = axios.create({
+          baseURL: urlUsersAll,
+          // timeout: 2000,
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Token ' + userToken
+          }
+      });
+      instance.get('')
+          .then(function (response) {
+              resolve(response.data);
+          })
+          .catch(function (error) {
+              console.log('el error: ', error.response);
+              reject(error);
+          });
+  });
+
+},
+
+  //get all tasks
+  getTasks:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlTasks,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+
+  },
+  //
+  newTask:(task)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',task)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
 
 }
 

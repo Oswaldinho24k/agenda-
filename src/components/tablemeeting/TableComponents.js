@@ -13,7 +13,7 @@ import {Link} from 'react-router-dom';
            <TableRowColumn>{data.name}</TableRowColumn>
            <TableRowColumn>{data.meeting_date}</TableRowColumn>
            <TableRowColumn>{data.user.username}</TableRowColumn>
-           <TableRowColumn><Link to={`/agenda//${data.id}`}>Detalle</Link></TableRowColumn>
+           <TableRowColumn><Link to={`/agenda/meeting/${data.id}`}>Detalle</Link></TableRowColumn>
          </TableRow>
 
        );

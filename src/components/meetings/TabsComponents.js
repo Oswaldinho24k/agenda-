@@ -4,6 +4,9 @@ import Paper from 'material-ui/Paper';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
+import NewTask from './NewTask';
+import Divider from 'material-ui/Divider';
+import TextField from 'material-ui/TextField';
 
 const styles = {
   headline: {
@@ -13,7 +16,7 @@ const styles = {
     fontWeight: 400,
   },
     paper: {
-      width:'50%',
+      width:'70%',
       margin: '3px auto',
       maxHeight:'500px'
 
@@ -24,26 +27,31 @@ const styles = {
     },
 };
 
-// <div style={styles.btn}>
-//   <FloatingActionButton mini={true}>
-//     <ContentAdd />
-//   </FloatingActionButton>
-// </div>
 
 
-const TabsComponents = ({openNewTask,openNewProject}) => (
+
+const TabsComponents = ({onChange,onSubmit,openNewTask,openNewProject,employees,tasks}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
                     <div className="muro">
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nueva Tareas"
-                          onClick={openNewTask}
-                          />
-                      </div>
-
+                      <NewTask
+                          employees={employees}
+                          tasks={tasks}
+                        />
+                       <Divider/>
+                       <form
+                         onSubmit={onSubmit}
+                         >
+                         <div class="search">
+                            <input required onChange={onChange} name="name"type="text" class="searchTerm" placeholder="New Tasks"/>
+                              <RaisedButton
+                                primary={true}
+                               icon={<ContentAdd />}
+                               type='submit'
+                             />
+                         </div>
+                       </form>
                     </div>
                   </Tab>
                   <Tab label="Proyecto" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>

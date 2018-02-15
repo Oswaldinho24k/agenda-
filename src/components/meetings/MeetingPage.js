@@ -2,23 +2,21 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as employeesActions from '../../redux/actions/employeesActions';
+import * as meetingActions from '../../redux/actions/meetingActions';
+import * as tasksActions from '../../redux/actions/tasksActions';
 import Loader from '../common/Loading'
 import MeetingsComponents from './MeetingsComponents'
 import NewMeetingContainer from './NewMeetingContainer';
 import NewTask from './NewTask';
 import NewProject from './NewProject';
 
-
 class MeetingsPage extends Component{
   constructor(props) {
       super(props);
       this.state = {
-          meeting: {
-              name:'',
-              meeting_date:'',
-              participants:[],
-          },
-          openNewMeeting:true,
+          task: {},
+          meeting:{},
+          openNewMeeting:false,
           emploList:[],
           employSelec:{},
           listAddEmp:true,
@@ -55,16 +53,16 @@ class MeetingsPage extends Component{
   };
   addParticipants=()=>{
     let meeting=this.state.meeting;
-    let data=this.state.emploList;
+    let data=this.props.emploList;
     meeting['participants']= data;
     console.log(this.state.meeting)
     this.openListAdd()
   }
   handleChange = (e) => {
-      let meeting = this.state.meeting;
-      meeting[e.target.name] = e.target.value;
-      this.setState({meeting});
-      console.log(meeting)
+      let task = this.state.task;
+      task[e.target.name] = e.target.value;
+      this.setState({task});
+      console.log(task)
   };
   handleChangeDate = (e,date) => {
       let meeting= this.state.meeting;
@@ -74,12 +72,15 @@ class MeetingsPage extends Component{
   };
   onSubmit=(e)=>{
       e.preventDefault();
-      let newMeeting= this.state.meeting;
-      //this.props.meetingActions.saveMeeting(newMeeting)
-      this.setState({openNewMeeting:false})
+      let newTask= this.state.task;
+      newTask['meeting']=parseInt(this.props.match.params.id)
+      this.props.tasksActions.saveTask(newTask);
+      console.log(newTask)
   };
     render(){
-          const {employees} = this.props;
+          const {employees, meeting,fetched,tasks} = this.props;
+          console.log(tasks)
+        if(!fetched)return<Loader/>
         return(
                 <div>
                   <NewMeetingContainer
@@ -88,10 +89,6 @@ class MeetingsPage extends Component{
                     handleChange={this.handleChange}
                     handleChangeDate={this.handleChangeDate}
                     onSubmit={this.onSubmit}
-                  />
-                <NewTask
-                  openTask={this.state.openTask}
-                   openNewTask={this.openNewTask}
                   />
                  <NewProject
                     openProject={this.state.openProject}
@@ -102,11 +99,15 @@ class MeetingsPage extends Component{
                      meeting={this.state.meeting}
                      listAddEmp={this.state.listAddEmp}
                      employees={employees}
+                     meeting={meeting}
+                     tasks={tasks}
                      addEmployes={this.addEmployes}
                      openListAdd={this.openListAdd}
                      addParticipants={this.addParticipants}
                      openNewProject={this.openNewProject}
                      openNewTask={this.openNewTask}
+                     onSubmit={this.onSubmit}
+                     onChange={this.handleChange}
                   />
                 </div>
         )
@@ -114,15 +115,30 @@ class MeetingsPage extends Component{
 }
 
 function mapStateToProps(state, ownProps) {
+  let id = ownProps.match.params.id;
+  let meeting= state.meeting.list.filter(a=>{
+      return id == a.id;
+  });
+  let tasks = state.tasks.list.filter(b=>{
+    return id == b.meeting.id;
+  })
 
+  console.log(id)
+  meeting=meeting[0]
+  tasks=tasks
     return {
-      employees: state.employees.list
+      employees: state.employees.list,
+      tasks,
+      meeting,
+      fetched:  meeting!==undefined && state.meeting.list!==undefined,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return{
-        employeesActions:bindActionCreators(employeesActions,dispatch)
+        employeesActions:bindActionCreators(employeesActions,dispatch),
+        meetingActions:bindActionCreators(meetingActions,dispatch),
+        tasksActions:bindActionCreators(tasksActions,dispatch),
     }
 }
 

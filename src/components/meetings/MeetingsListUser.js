@@ -12,10 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
   ListUser: {
-    width:'35%',
+    width:'25%',
     margin: '3px auto',
-
-
   },
   Paper:{
     maxHeight:'500px',
@@ -54,7 +52,7 @@ const MeetingsListUser = ({employees,addEmployes,employessListAdd,meeting,openLi
             <List  desktop={true}>
                <Subheader style={style.titile}>Lista de participantes</Subheader>
                <Divider/>
-              {meeting.participants.length<= 0?
+              {meeting.participants.length <= 0 ?
                 <RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
@@ -63,7 +61,7 @@ const MeetingsListUser = ({employees,addEmployes,employessListAdd,meeting,openLi
                   />
                   :
                   <List>
-                {meeting['participants'].map(data => <ListItem key={data.id} style={{textAlign:'start'}}
+                {meeting.participants.map(data => <ListItem key={data.id} style={{textAlign:'start'}}
                  primaryText={data.user.username}
                  leftAvatar={<Avatar src={data.avatar} />}
                  secondaryText={data.user.email}

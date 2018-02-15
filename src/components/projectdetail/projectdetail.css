@@ -25,6 +25,9 @@
 .detailDateTasks{
   display: flex;
 }
+.New-Tasks{
+  display: flex
+}
 @media screen and (max-width: 750px) and (min-width: 310px) {
     .projectsdetailComponent {
         display: flex;
@@ -50,5 +53,9 @@
       flex-direction: column;
       overflow: auto;
 
+    }
+    .New-Tasks{
+      display: flex;
+      flex-direction: column;
     }
 }

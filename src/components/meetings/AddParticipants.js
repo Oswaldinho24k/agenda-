@@ -53,7 +53,9 @@ const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants
                  />)}
              </List>
               <Divider/>
-              {employessListAdd.length<= 0 ? null : <RaisedButton
+              {employessListAdd.length<= 0 ? null :
+
+              <RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
                   style={style.btnAddAsis}

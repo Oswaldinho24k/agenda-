@@ -10,9 +10,9 @@ import {Link} from 'react-router-dom';
           return(
          <TableRow {...others} >
             {others.children[0] /* checkbox passed down from Table-Body*/}
-           <TableRowColumn>{data.user.username}</TableRowColumn>
-           <TableRowColumn>{data.full_name}</TableRowColumn>
-           <TableRowColumn>{data.user.email}</TableRowColumn>
+           <TableRowColumn>{data.username}</TableRowColumn>
+           <TableRowColumn>{data.email}</TableRowColumn>
+           <TableRowColumn>{data.is_staff}</TableRowColumn>
            <TableRowColumn><Link to={`/agenda/employees/${data.id}`}>Detalle</Link></TableRowColumn>
          </TableRow>
 

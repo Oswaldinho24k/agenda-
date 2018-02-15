@@ -9,7 +9,7 @@ import {
 } from 'material-ui/Table';
 import TableComponents from './TableComponents'
 
-const EmployeesComponents = ({employees})=>{
+const EmployeesComponents = ({userAll})=>{
   return(
     <Card className="cardConte">
      <CardTitle title="Employees" />
@@ -28,7 +28,7 @@ const EmployeesComponents = ({employees})=>{
            </TableRow>
          </TableHeader>
          <TableBody >
-           {employees.map(row=> <TableComponents key={row.id} data={row}/>)}
+           {userAll.map(row=> <TableComponents key={row.id} data={row}/>)}
          </TableBody>
         </Table>
      </Card>

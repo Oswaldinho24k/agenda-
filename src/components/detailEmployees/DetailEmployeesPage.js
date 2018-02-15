@@ -27,7 +27,7 @@ class DetailEmployeesPage extends Component{
 function mapStateToProps(state, ownProps) {
     let id = ownProps.match.params.id;
     let employee= state.employees.list.filter(a=>{
-        return id == a.id;
+        return id == a.user.id;
     });
     console.log(id)
 
@@ -41,6 +41,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return{
         employeesActions:bindActionCreators(employeesActions,dispatch)
+
     }
 }
 

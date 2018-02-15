@@ -19,7 +19,7 @@ const ProfileData = ({name,phone,address,edit,onChange,cancel,uploadPhoto}) => (
       disabled={edit}
        name="full_name"
       defaultValue={name}
-      underlineDisabledStyle={{display :  ' none '}}
+      underlineStyle={{display :  ' none '}}
       floatingLabelText="Name"
     /><br />
     <TextField

@@ -1,7 +1,9 @@
 import api from '../../Api/Django';
 import {getProfile}from './profileActions'
 import {getAllProfiles} from './employeesActions'
+import {getAllUser} from './userAllActions'
 import {getMeeting} from './meetingActions'
+import {getTasks} from './tasksActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -70,7 +72,9 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getUser());
       dispatch(getProfile());
       dispatch(getAllProfiles());
+      dispatch(getAllUser());
       dispatch(getMeeting());
+      dispatch(getTasks());
     }
 };
 

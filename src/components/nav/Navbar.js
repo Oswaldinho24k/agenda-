@@ -9,8 +9,8 @@ import MenuNav from './MenuNav'
 
 const Navbar = ({logOut,avatar,openDrawer,openProfile}) => (
     <div>
-        <AppBar
-          title={<span className="titleNav">Welcome,
+        <AppBar style={{backgroundColor:"#ffa726"}}
+          title={<span className="titleNav">Bienvenido
           <Avatar
           src={avatar}
           size={50}
@@ -23,4 +23,4 @@ const Navbar = ({logOut,avatar,openDrawer,openProfile}) => (
 );
 
 
-export default Navbar
+export default Navbar;

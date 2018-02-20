@@ -6,12 +6,12 @@ import {Card} from 'material-ui/Card'
 
 const LoginComponent = ({onChange,onSubmit,usuario}) => {
     return (
-        <div id="todo">
+        <div className="fl_lg">
             <Card id="car">
                 <form
                       onSubmit={onSubmit}
                       className="formStyle">
-                    <h1>Acceder</h1>
+                    <h1>Iniciar sesión</h1>
                     <TextField
                         name="email"
                         required

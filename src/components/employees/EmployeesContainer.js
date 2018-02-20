@@ -7,7 +7,7 @@ import * as userActions from '../../redux/actions/userActions';
 import RegisterContainer from '../register/RegisterContainer';
 import ToastrContainer, {Toast} from 'react-toastr-basic';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import './Employees.css';
 
 class EmployeesContainer extends Component{
   state = {
@@ -25,16 +25,19 @@ class EmployeesContainer extends Component{
     const {employees,user} = this.props;
     console.log(employees)
     return(
-      <div className="Tablemeeting-container">
-          {user.is_staff =!true ? null : <RaisedButton onClick={this.newUser}label="New User" primary={true} />}
-          <RegisterContainer
-            open={this.state.openRegister}
-            showToast={this.showToast}
-            openRegister={this.newUser}
-           />
-            <EmployeesComponents
-              employees={employees}
-            />
+      <div className=" tareas_box">
+          <div className="cubierta">
+
+                <EmployeesComponents
+                  employees={employees}
+                />
+                {user.is_staff =!true ? null : <RaisedButton style={{marginTop:"100px"}} onClick={this.newUser}label="New User" primary={true} />}
+                <RegisterContainer
+                  open={this.state.openRegister}
+                  showToast={this.showToast}
+                  openRegister={this.newUser}
+              />
+            </div>
       </div>
 
     );

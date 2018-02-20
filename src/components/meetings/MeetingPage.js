@@ -7,7 +7,6 @@ import * as tasksActions from '../../redux/actions/tasksActions';
 import Loader from '../common/Loading'
 import MeetingsComponents from './MeetingsComponents'
 import NewMeetingContainer from './NewMeetingContainer';
-import NewTask from './NewTask';
 import NewProject from './NewProject';
 
 class MeetingsPage extends Component{
@@ -20,24 +19,34 @@ class MeetingsPage extends Component{
           emploList:[],
           employSelec:{},
           listAddEmp:true,
-          openTask:false,
           openProject:false,
+          user:{},
+          value:'',
       };
   }
-  openNewTask=()=>{
-    let {openTask} = this.state;
-    openTask = !openTask;
-    this.setState({openTask})
-  }
+
+
+
   openNewProject=()=>{
     let {openProject} = this.state;
     openProject = !openProject;
     this.setState({openProject})
   }
+  //Meeting
   closeNewMeeting=()=>{
     this.setState({openNewMeeting:false})
     this.props.history.push('/agenda/meeting')
   }
+
+    handleChangeDate = (e,date) => {
+        let meeting= this.state.meeting;
+        meeting['meeting_date'] = date;
+        this.setState({meeting});
+        console.log(meeting)
+    };
+
+
+  //list User
   addEmployes=(data)=>{
     let employSelec=this.state.employSelec;
     employSelec=data
@@ -58,27 +67,44 @@ class MeetingsPage extends Component{
     console.log(this.state.meeting)
     this.openListAdd()
   }
-  handleChange = (e) => {
-      let task = this.state.task;
-      task[e.target.name] = e.target.value;
-      this.setState({task});
-      console.log(task)
-  };
-  handleChangeDate = (e,date) => {
-      let meeting= this.state.meeting;
-      meeting['meeting_date'] = date;
-      this.setState({meeting});
-      console.log(meeting)
-  };
+//////////////////////////////////777
+
+  //add new Task
   onSubmit=(e)=>{
       e.preventDefault();
       let newTask= this.state.task;
       newTask['meeting']=parseInt(this.props.match.params.id)
       this.props.tasksActions.saveTask(newTask);
       console.log(newTask)
+      e.target.name.value="";
   };
+  handleChange = (e) => {
+      let task = this.state.task;
+      task[e.target.name] = e.target.value;
+      this.setState({task});
+      console.log(task)
+  };
+  //Table TASK
+  addPerson=(taskId, userId)=>{
+     let newPerson= this.state.user;
+     newPerson['id'] =parseInt(taskId)
+     newPerson['user']=parseInt(userId)
+    // console.log(newPerson)
+    console.log(newPerson);
+     this.props.tasksActions.editTask(newPerson);
+  }
+  onDelete=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.tasksActions.deleteTask(i);
+  };
+
+  handleChangePerson = (event, index, value) => this.setState({value});
+
+
+////////////////////////////////////////////
     render(){
-          const {employees, meeting,fetched,tasks} = this.props;
+          let {selectedRowKeys} = this.state;
+          const {employees, meeting,fetched,tasks,id,} = this.props;
           console.log(tasks)
         if(!fetched)return<Loader/>
         return(
@@ -108,6 +134,10 @@ class MeetingsPage extends Component{
                      openNewTask={this.openNewTask}
                      onSubmit={this.onSubmit}
                      onChange={this.handleChange}
+                     onDelete={this.onDelete}
+                     addPerson={this.addPerson}
+                     onChangePerson={this.handleChangePerson}
+                     valuePerson={this.state.value}
                   />
                 </div>
         )

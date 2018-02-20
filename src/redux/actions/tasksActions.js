@@ -1,7 +1,7 @@
 import api from '../../Api/Django';
+import {checkIfUser} from './userActions';
 
-
-//Get Meeting
+//Get Tasks
 
 export const GET_TASKS_SUCCESS = 'GET_TASKS_SUCCESS';
 
@@ -36,7 +36,52 @@ export const saveTask=(task)=>(dispatch,getState)=>{
     .then(r=>{
       console.log(r);
       dispatch(saveTaskSuccess(r))
+      dispatch(getTasks());
     }).catch(e=>{
       console.log(e)
     })
 }
+
+// Delete Tasks
+
+
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS';
+
+export function deleteTaskSuccess(taskId){
+    return {
+        type:DELETE_TASK_SUCCESS, taskId
+    }
+}
+
+export const deleteTask=(taskId)=>(dispatch, getState)=>{
+    return api.deleteTask(taskId)
+        .then(r=>{
+            dispatch(deleteTaskSuccess(taskId))
+        }).catch(e=>{
+            throw e;
+        })
+};
+
+//Edit Task
+export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS';
+export function editTaskSuccess(etask){
+    return{
+        type:EDIT_TASK_SUCCESS, etask
+    }
+}
+
+export const editTask=(etask)=>(dispatch, getState)=>{
+
+    return api.editTask(etask)
+        .then(r=>{
+
+            let meeting = getState().meeting.list.find(a=>{
+              return a.id=r.meeting
+            })
+            r["meeting"]=meeting
+            dispatch(editTaskSuccess(r))
+            console.log(r);
+        }).catch(e=>{
+        console.log(e)
+    })
+};

@@ -20,8 +20,7 @@ export const logIn =(data)=>(dispatch,getState)=>{
 
       localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
-      dispatch(getUser());
-      dispatch(getProfile());
+      dispatch(checkIfUser());
     }).catch(e=>{
       console.log(e)
     })
@@ -92,6 +91,7 @@ export const newUser =(register)=>(dispatch, getState)=>{
       .then(r=>{
           console.log('is done');
           dispatch(userRegisterSuccess(r))
+          dispatch(getAllUser())
       }).catch(e=>{
       console.log(e)
   })

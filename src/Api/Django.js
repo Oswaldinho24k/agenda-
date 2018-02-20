@@ -16,14 +16,17 @@ let urlMeeting='http://localhost:8000/meeting/'
 let urlUsersAll='http://127.0.0.1:8000/usersall/'
 
 if(!debug){
-    urlLogin='https://backend-agenda.herokuapp.com/rest-auth/login/'
-    urlRegister='https://backend-agenda.herokuapp.com/users/register/'
-    urlTasks='https://backend-agenda.herokuapp.com/tasks/'
-    urlProfile='https://backend-agenda.herokuapp.com/profile/'
-    urlUser='https://backend-agenda.herokuapp.com/rest-auth/user/'
-    urlPassChan='https://backend-agenda.herokuapp.com/rest-auth/password/change/'
-    urlProject='https://backend-agenda.herokuapp.com/project/'
-    urlMeeting='https://backend-agenda.herokuapp.com/meeting/'
+    urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
+    urlRegister='https://backend-arnulfo.herokuapp.com/users/register/'
+    urlTasks='https://backend-arnulfo.herokuapp.com/tasks/'
+    urlProfile='https://backend-arnulfo.herokuapp.com/profile/'
+    urlUser='https://backend-arnulfo.herokuapp.com/rest-auth/user/'
+    urlMeProfile="https://backend-arnulfo.herokuapp.com/users/meprofile/"
+    urlPassChan='https://backend-arnulfo.herokuapp.com/rest-auth/password/change/'
+    urlProject='https://backend-arnulfo.herokuapp.com/project/'
+    urlMeeting='https://backend-arnulfo.herokuapp.com/meeting/'
+    urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
+
 }
 
 
@@ -298,7 +301,7 @@ getAllUser:()=>{
     });
 
   },
-  //
+  // nueva Tarea
   newTask:(task)=>{
 
       return new Promise(function (resolve, reject) {
@@ -313,6 +316,57 @@ getAllUser:()=>{
           });
           instance.post('',task)
               .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Task
+  deleteTask:(taskId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(taskId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+
+  //edit Tasks
+  editTask:(task)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': undefined,
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(task.id+'/',task)
+              .then(function (response) {
                   resolve(response.data);
               })
               .catch(function (error) {

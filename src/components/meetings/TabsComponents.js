@@ -30,7 +30,7 @@ const styles = {
 
 
 
-const TabsComponents = ({onChange,onSubmit,openNewTask,openNewProject,employees,tasks}) => (
+const TabsComponents = ({valuePerson,onChange,onChangePerson,onSubmit,openNewTask,openNewProject,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
@@ -38,13 +38,17 @@ const TabsComponents = ({onChange,onSubmit,openNewTask,openNewProject,employees,
                       <NewTask
                           employees={employees}
                           tasks={tasks}
+                          onDelete={onDelete}
+                          addPerson={addPerson}
+                          onChangePerson={onChangePerson}
+                          valuePerson={valuePerson}
                         />
                        <Divider/>
                        <form
                          onSubmit={onSubmit}
                          >
                          <div class="search">
-                            <input required onChange={onChange} name="name"type="text" class="searchTerm" placeholder="New Tasks"/>
+                            <input required onChange={onChange} name="name" type="text" class="searchTerm" placeholder="New Tasks"/>
                               <RaisedButton
                                 primary={true}
                                icon={<ContentAdd />}

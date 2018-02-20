@@ -10,21 +10,25 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import Delete from 'material-ui/svg-icons/action/delete';
+import IconButton from 'material-ui/IconButton';
 
 
 export default class NewTask extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value:''};
+    this.state = {value:0};
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+handleChange = (event, index, value) => this.setState({value});
+
   render() {
     return (
       <div>
         <Table
            fixedHeader={true}
-            height={'300px'}
+           height={'300px'}
+           multiSelectable={true}
           >
           <TableHeader
             displaySelectAll={false}
@@ -33,23 +37,19 @@ export default class NewTask extends React.Component {
             <TableRow>
               <TableHeaderColumn>Name Task</TableHeaderColumn>
               <TableHeaderColumn>Person</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
               <TableHeaderColumn>Date Start</TableHeaderColumn>
               <TableHeaderColumn>Date Finsh</TableHeaderColumn>
-              <TableHeaderColumn>Priority</TableHeaderColumn>
+              <TableHeaderColumn> priority</TableHeaderColumn>
+              <TableHeaderColumn></TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody
-            displayRowCheckbox={false}
-            >
+          <TableBody displayRowCheckbox={false} >
             {this.props.tasks.map(row =>
-              <TableRow key={row.id} >
+              <TableRow key={row.id} data-my-row-identifier={row.id}>
               <TableRowColumn>{row.name}</TableRowColumn>
-              <TableRowColumn
-                >
+              <TableRowColumn>
                   <SelectField
                     value={this.state.value}
-                    onChange={this.handleChange}
                     underlineStyle={{display:'none'}}
                     autoWidth={true}
                     labelStyle={{paddingLeft:'none',paddingRigth:'none'}}
@@ -57,14 +57,13 @@ export default class NewTask extends React.Component {
                     style={{fontSize:'13px',top:'7px'}}
                     maxHeight={200}
                     hintStyle={{color:'rgba(0, 0, 0, 0.87)'}}
-                    hintText={row.user === null ? " ": row.user.username  }
+                    onChange={this.handleChange}
                     >
                     { this.props.employees.map(data =>
-                      <MenuItem key={data.id} value={data.user.username}  primaryText={data.user.username} />
+                      <MenuItem key={data.id} value={data.user.id}  primaryText={data.user.username} onClick={()=>this.props.addPerson(row.id, data.user.id)}/>
               )}
                   </SelectField>
               </TableRowColumn>
-              <TableRowColumn>{row.status}</TableRowColumn>
               <TableRowColumn>
                   <DatePicker
                      hintText={row.starts}
@@ -82,6 +81,11 @@ export default class NewTask extends React.Component {
                    />
               </TableRowColumn>
               <TableRowColumn>{row.priority}</TableRowColumn>
+              <TableRowColumn>
+                <IconButton onClick={()=>this.props.onDelete(row.id)}>
+                  <Delete />
+                </IconButton>
+              </TableRowColumn>
             </TableRow>)}
           </TableBody>
           </Table>

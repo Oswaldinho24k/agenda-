@@ -6,6 +6,7 @@
   display: flex;
   justify-content:flex-end;
   font-size: 20px;
+    background-color: #ffa726;
 }
 .botonesNav{
   color: rgb(255, 255, 255) !important;

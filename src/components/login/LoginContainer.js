@@ -16,6 +16,7 @@ class LoginContainer extends Component {
             }
         };
     }
+
     componentWillMount(){
     const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
     console.log(userToken)
@@ -44,8 +45,6 @@ class LoginContainer extends Component {
       })
     };
 
-
-
     render() {
         return (
             <div id="todo" >
@@ -55,9 +54,9 @@ class LoginContainer extends Component {
                     usuario={this.state.usuario}
                 />
             </div>
-        );
+            );
+        }
     }
-}
 
 function mapStateToProps(state, ownProps) {
     return {

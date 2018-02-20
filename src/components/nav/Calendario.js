@@ -30,6 +30,21 @@ class Calendario extends Component{
                 docked={true}
                 width='20%'>
                 <NavLink
+                    style={{ textDecoration: 'none',textAlign:'start' }}
+                    onClick={this.props.toogleDrawer}
+                    activeClassName="selected"
+                    activeStyle={{fontWeight: 'bold',}}
+                    exact
+                    to="/">
+
+                    <MenuItem
+                        style={active?styles.active:null}
+                        primaryText="Calendario"
+                        leftIcon={<Calendar/>}
+                    />
+                </NavLink>
+
+                <NavLink
                 style={{ textDecoration: 'none',textAlign:'start' }}
                 onClick={this.props.toogleDrawer}
                 activeClassName="selected"
@@ -83,20 +98,7 @@ class Calendario extends Component{
                         leftIcon={<Desempeno/>}
                     />
                 </NavLink>
-                <NavLink
-                    style={{ textDecoration: 'none',textAlign:'start' }}
-                    onClick={this.props.toogleDrawer}
-                    activeClassName="selected"
-                    activeStyle={{fontWeight: 'bold',}}
-                    exact
-                    to="/">
 
-                    <MenuItem
-                        style={active?styles.active:null}
-                        primaryText="Calendario"
-                        leftIcon={<Calendar/>}
-                    />
-                </NavLink>
 
             </Drawer>
         );

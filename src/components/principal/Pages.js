@@ -14,7 +14,7 @@ const Pages = ({props}) => (
         <Route exact path="/agenda" component={PrincipalComponents}/>
         <Route path="/agenda/tasks" component={TasksContainer}/>
         <Route path="/agenda/project" component={ProjectContainer}/>
-        <Route path="/agenda/meeting/newmeetings" component={MeetingPage}/>
+        <Route path="/agenda/meeting/:id" component={MeetingPage}/>
         <Route path="/agenda/meeting" component={TableMeetingContainer}/>
         <Route path="/agenda/employees/:id" component={DetailEmployees}/>
         <Route path="/agenda/employees" component={EmployeesContainer}/>

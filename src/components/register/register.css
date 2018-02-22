@@ -12,24 +12,12 @@
     font-size: 20px;
 
 }
-input {
-    margin:4px 0;
-    height:35px;
-    border:1px solid #e1e1e1;
-    border-radius: 50px;
-    padding-left: 2%;
-    width: 78%;
-}
+
 
 .btn{
   width: 50%;
 }
 .btnMod{
-  display: flex;
-  justify-content: center;
-}
-
-label {
   display: flex;
   justify-content: center;
 }

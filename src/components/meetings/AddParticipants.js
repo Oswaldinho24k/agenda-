@@ -4,7 +4,6 @@ import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ActionSearch from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
 import ChipList from './ChipList';
 
@@ -33,10 +32,6 @@ const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants
                       />
                     <div class="search">
                        <input type="text" class="searchTerm" placeholder="What are you looking for?"/>
-                         <RaisedButton
-                           primary={true}
-                          icon={<ActionSearch />}
-                        />
                     </div>
                <Divider/>
                <List style={style.listEmployess}>
@@ -53,7 +48,9 @@ const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants
                  />)}
              </List>
               <Divider/>
-              {employessListAdd.length<= 0 ? null : <RaisedButton
+              {employessListAdd.length<= 0 ? null :
+
+              <RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
                   style={style.btnAddAsis}

@@ -4,6 +4,7 @@ TableRow,
 TableRowColumn,
 } from 'material-ui/Table';
 import {Link} from 'react-router-dom';
+import moment from 'moment'
 
 
   const TableComponents = ({data, ...others})=>{
@@ -11,9 +12,9 @@ import {Link} from 'react-router-dom';
          <TableRow {...others} >
             {others.children[0] /* checkbox passed down from Table-Body*/}
            <TableRowColumn>{data.name}</TableRowColumn>
-           <TableRowColumn>{data.meeting_date}</TableRowColumn>
+           <TableRowColumn>{ moment(data.meeting_date).fromNow()}</TableRowColumn>
            <TableRowColumn>{data.user.username}</TableRowColumn>
-           <TableRowColumn><Link to={`/agenda//${data.id}`}>Detalle</Link></TableRowColumn>
+           <TableRowColumn><Link style={{color:'black',textDecoration:'none',fontWeight:'bold'}} to={`/agenda/meeting/${data.id}`}>Detalle</Link></TableRowColumn>
          </TableRow>
 
        );

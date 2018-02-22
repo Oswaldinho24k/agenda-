@@ -13,7 +13,7 @@ const Navbar = ({logOut,avatar,openDrawer,openProfile}) => (
           title={<span className="titleNav">Bienvenido
           <Avatar
           src={avatar}
-          size={50}
+          size={40}
           style={{marginLeft:' 5px',marginTop: '5px'}}
         /></span>}
           iconElementLeft={<IconButton><MenuIcon onClick={openDrawer}/></IconButton>}

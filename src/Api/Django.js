@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-let debug = false;
+let debug = true;
 
 let urlLogin="http://localhost:8000/rest-auth/login/"
 let urlRegister="http://localhost:8000/users/register/"
@@ -26,7 +26,6 @@ if(!debug){
     urlProject='https://backend-arnulfo.herokuapp.com/project/'
     urlMeeting='https://backend-arnulfo.herokuapp.com/meeting/'
     urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
-
 }
 
 const api={
@@ -89,7 +88,7 @@ const api={
           });
           instance.post('',register)
               .then(function (response) {
-                  resolve(response.register);
+                  resolve(response.data);
               })
               .catch(function (error) {
                   console.log('el error: ', error.response);
@@ -230,7 +229,7 @@ const api={
 
         });
     },
-
+//get Meeting
     getMeeting:()=>{
       const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
       return new Promise(function (resolve, reject) {
@@ -253,6 +252,179 @@ const api={
       });
 
     },
+//get users ALL
+getAllUser:()=>{
+  const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+  return new Promise(function (resolve, reject) {
+      const instance = axios.create({
+          baseURL: urlUsersAll,
+          // timeout: 2000,
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Token ' + userToken
+          }
+      });
+      instance.get('')
+          .then(function (response) {
+              resolve(response.data);
+          })
+          .catch(function (error) {
+              console.log('el error: ', error.response);
+              reject(error);
+          });
+  });
+
+},
+
+  //get all tasks
+  getTasks:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlTasks,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+
+  },
+  // nueva Tarea
+  newTask:(task)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',task)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Task
+  deleteTask:(taskId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(taskId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+
+  //edit Tasks
+  editTask:(task)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlTasks,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': undefined,
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(task.id+'/',task)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete User
+  deleteUser:(userId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlUsersAll,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(userId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Edit User
+  editUser:(user)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlUsersAll,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(user.id+'/',user)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
 
 }
 

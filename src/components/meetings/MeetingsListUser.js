@@ -12,10 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
   ListUser: {
-    width:'35%',
+    width:'25%',
     margin: '3px auto',
-
-
   },
   Paper:{
     maxHeight:'500px',
@@ -39,11 +37,11 @@ const style = {
   }
 };
 
-const MeetingsListUser = ({employees,addEmployes,employessListAdd,meeting,openListAdd,listAddEmp,addParticipants}) => (
+const MeetingsListUser = ({isStaff,employees,addEmployes,employessListAdd,meeting,openListAdd,listAddEmp,addParticipants}) => (
       <div style={style.ListUser}>
         <Paper style={style.Paper}  zDepth={1}>
             <div style={style.menu}>
-        {listAddEmp == false ?
+        {listAddEmp === false ?
                 <AddParticipants
                     employessListAdd={employessListAdd}
                     employees={employees}
@@ -54,27 +52,27 @@ const MeetingsListUser = ({employees,addEmployes,employessListAdd,meeting,openLi
             <List  desktop={true}>
                <Subheader style={style.titile}>Lista de participantes</Subheader>
                <Divider/>
-              {meeting.participants.length<= 0?
-                <RaisedButton
+              {meeting.participants.length <= 0?
+                [(isStaff?<RaisedButton
                   primary={true}
                   label="Agregar Asistentes"
                   style={style.btnNewAsis}
                   onClick={openListAdd}
-                  />
+                  />:null)]
                   :
                   <List>
-                {meeting['participants'].map(data => <ListItem key={data.id} style={{textAlign:'start'}}
+                {meeting.participants.map(data => <ListItem key={data.id} style={{textAlign:'start'}}
                  primaryText={data.user.username}
                  leftAvatar={<Avatar src={data.avatar} />}
                  secondaryText={data.user.email}
                  />)}
                  </List>
              }
-             {meeting.participants.length<= 0 ? null:<div style={style.btn}>
+             {meeting.participants.length<= 0 ? null:[(!isStaff?null:<div style={style.btn}>
                <FloatingActionButton mini={true} onClick={openListAdd} >
                  <ContentAdd />
                </FloatingActionButton>
-             </div>}
+             </div>)]}
              </List>}
           </div>
         </Paper>

@@ -3,6 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 
+
 const NewMeetingComponents =({cancel,onChange,onSubmit,onChangeDate})=>{
 
   return (
@@ -14,21 +15,21 @@ const NewMeetingComponents =({cancel,onChange,onSubmit,onChangeDate})=>{
             name='name'
             onChange={onChange}
             required
-            floatingLabelText="Name of the meeting"
+            floatingLabelText="Nombre de la Reunion"
           />
           <DatePicker
             name='meeting_date'
             onChange={onChangeDate}
             required
-            floatingLabelText="Meeting date"/>
+            floatingLabelText="Fecha de la Reunion"/>
              <div className="btnMod">
                <FlatButton
-                 label="Cancel"
+                 label="Cancelar"
                  primary={true}
                  onClick={cancel}
                />
                <FlatButton
-                 label="Next"
+                 label="Aceptar"
                  primary={true}
                  type='submit'
                />

@@ -2,7 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as userActions from '../../redux/actions/userActions'
+import * as userAllActions from '../../redux/actions/userAllActions'
 import RegisterComponents from './RegisterComponents';
 
  class RegisterContainer extends React.Component {
@@ -31,7 +31,7 @@ import RegisterComponents from './RegisterComponents';
       const nuevoRegistro= this.state.usuario;
       const message= this.state.message;
 
-      this.props.registerActions.newUser(nuevoRegistro)
+      this.props.userAllActions.newUser(nuevoRegistro)
       this.props.openRegister()
       this.props.showToast(message)
   };
@@ -66,7 +66,7 @@ var modStyle={
   minWidth: '250px',
 }
 function mapStateToProps(state, ownProps) {
-  const {usuario}= state.register.list
+  const {usuario}= state.userAll.list
     return {
         usuario
     }
@@ -74,7 +74,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch){
   return{
-    registerActions:bindActionCreators(userActions,dispatch)
+    userAllActions:bindActionCreators(userAllActions,dispatch)
   }
 }
 

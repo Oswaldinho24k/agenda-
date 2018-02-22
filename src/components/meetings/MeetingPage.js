@@ -2,50 +2,43 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as employeesActions from '../../redux/actions/employeesActions';
+import * as meetingActions from '../../redux/actions/meetingActions';
+import * as tasksActions from '../../redux/actions/tasksActions';
+import * as userActions from '../../redux/actions/userActions';
 import Loader from '../common/Loading'
-import MeetingsComponents from './MeetingsComponents'
-import NewMeetingContainer from './NewMeetingContainer';
-import NewTask from './NewTask';
+import MeetingsComponents from './MeetingsComponents';
 import NewProject from './NewProject';
-
+import './meetings.css';
 
 class MeetingsPage extends Component{
   constructor(props) {
       super(props);
       this.state = {
-          meeting: {
-              name:'',
-              meeting_date:'',
-              participants:[],
-          },
-          openNewMeeting:true,
+          task: {},
           emploList:[],
           employSelec:{},
           listAddEmp:true,
-          openTask:false,
           openProject:false,
+          user:{},
+          priority:{},
+          date:{},
       };
   }
-  openNewTask=()=>{
-    let {openTask} = this.state;
-    openTask = !openTask;
-    this.setState({openTask})
-  }
+
+
+
   openNewProject=()=>{
     let {openProject} = this.state;
     openProject = !openProject;
     this.setState({openProject})
   }
-  closeNewMeeting=()=>{
-    this.setState({openNewMeeting:false})
-    this.props.history.push('/agenda/meeting')
-  }
+
+  //list User
   addEmployes=(data)=>{
     let employSelec=this.state.employSelec;
     employSelec=data
     this.state.emploList.push(employSelec)
     this.setState(this.state)
-    this.state
     console.log(this.state.emploList)
   }
   openListAdd = () => {
@@ -55,58 +48,101 @@ class MeetingsPage extends Component{
   };
   addParticipants=()=>{
     let meeting=this.state.meeting;
-    let data=this.state.emploList;
+    let data=this.props.emploList;
     meeting['participants']= data;
     console.log(this.state.meeting)
     this.openListAdd()
   }
-  handleChange = (e) => {
-      let meeting = this.state.meeting;
-      meeting[e.target.name] = e.target.value;
-      this.setState({meeting});
-      console.log(meeting)
-  };
-  handleChangeDate = (e,date) => {
-      let meeting= this.state.meeting;
-      meeting['meeting_date'] = date;
-      this.setState({meeting});
-      console.log(meeting)
-  };
+//////////////////////////////////777
+
+  //add new Task
   onSubmit=(e)=>{
       e.preventDefault();
-      let newMeeting= this.state.meeting;
-      //this.props.meetingActions.saveMeeting(newMeeting)
-      this.setState({openNewMeeting:false})
+      let newTask= this.state.task;
+      newTask['meeting']=parseInt(this.props.match.params.id)
+      this.props.tasksActions.saveTask(newTask);
+      console.log(newTask)
+      e.target.name.value="";
   };
+  handleChange = (e) => {
+      let task = this.state.task;
+      task[e.target.name] = e.target.value;
+      this.setState({task});
+      console.log(task)
+  };
+  //Table TASK
+  addPerson=(taskId, userId)=>{
+     let newPerson= this.state.user;
+     newPerson['id'] =parseInt(taskId)
+     newPerson['user']=parseInt(userId)
+
+    this.props.tasksActions.editTask(newPerson);
+  }
+  addPriority=(taskId,value)=>{
+    let priority= this.state.priority;
+    priority['id'] =parseInt(taskId)
+    priority['priority']=value
+
+    this.props.tasksActions.editTask(priority);
+  }
+  onDelete=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.tasksActions.deleteTask(i);
+  };
+  changeDateStart = (e,date) => {
+      let dateS= this.state.date;
+      dateS['starts'] = date;
+      this.props.tasksActions.editTask(dateS)
+      console.log(dateS)
+  };
+  changeDateFinish = (e,date) => {
+      let dateS= this.state.date;
+      dateS['expiry'] = date;
+      this.props.tasksActions.editTask(dateS)
+      console.log(dateS)
+  };
+
+  onDate=(taskId)=>{
+    let dateS= this.state.date;
+    dateS['id'] =parseInt(taskId)
+    console.log("Voy a cambiar fecha",taskId)
+  }
+
+
+
+////////////////////////////////////////////
     render(){
-          const {employees} = this.props;
+          const {employees, meeting,fetched,tasks,user,} = this.props;
+          console.log(user)
+        if(!fetched)return<Loader/>
         return(
                 <div>
-                  <NewMeetingContainer
-                    open={this.state.openNewMeeting}
-                    openClose={this.closeNewMeeting}
-                    handleChange={this.handleChange}
-                    handleChangeDate={this.handleChangeDate}
-                    onSubmit={this.onSubmit}
-                  />
-                <NewTask
-                  openTask={this.state.openTask}
-                   openNewTask={this.openNewTask}
-                  />
+
                  <NewProject
                     openProject={this.state.openProject}
                      openNewProject={this.openNewProject}
                     />
                    <MeetingsComponents
                      employessListAdd={this.state.emploList}
-                     meeting={this.state.meeting}
+
                      listAddEmp={this.state.listAddEmp}
                      employees={employees}
+                     meeting={meeting}
+                     tasks={tasks}
+                     {...user}
                      addEmployes={this.addEmployes}
                      openListAdd={this.openListAdd}
                      addParticipants={this.addParticipants}
                      openNewProject={this.openNewProject}
                      openNewTask={this.openNewTask}
+                     onSubmit={this.onSubmit}
+                     onChange={this.handleChange}
+                     onDelete={this.onDelete}
+                     addPerson={this.addPerson}
+                     addPriority={this.addPriority}
+                     changeDateStart={this.changeDateStart}
+                     changeDateFinish={this.changeDateFinish}
+                     onDate={this.onDate}
                   />
                 </div>
         )
@@ -114,15 +150,30 @@ class MeetingsPage extends Component{
 }
 
 function mapStateToProps(state, ownProps) {
-
+  let id = ownProps.match.params.id;
+  let meeting= state.meeting.list.filter(a=>{
+      return id == a.id;
+  });
+  let tasks = state.tasks.list.filter(b=>{
+    return id == b.meeting.id;
+  })
+  meeting=meeting[0]
+  tasks=tasks
     return {
-      employees: state.employees.list
+      employees: state.employees.list,
+      user: state.user.object,
+      tasks,
+      meeting,
+      fetched:  meeting!==undefined && state.meeting.list!==undefined,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return{
-        employeesActions:bindActionCreators(employeesActions,dispatch)
+        userActions:bindActionCreators(userActions,dispatch),
+        employeesActions:bindActionCreators(employeesActions,dispatch),
+        meetingActions:bindActionCreators(meetingActions,dispatch),
+        tasksActions:bindActionCreators(tasksActions,dispatch),
     }
 }
 

@@ -5,7 +5,6 @@ import NoteAdd from 'material-ui/svg-icons/action/note-add';
 import Accesibility from 'material-ui/svg-icons/action/accessibility';
 import Desempeno from 'material-ui/svg-icons/editor/insert-chart';
 import Calendar from 'material-ui/svg-icons/action/date-range';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
 //Registermolda
 
 
@@ -30,21 +29,6 @@ class Calendario extends Component{
                 docked={true}
                 width='20%'>
                 <NavLink
-                    style={{ textDecoration: 'none',textAlign:'start' }}
-                    onClick={this.props.toogleDrawer}
-                    activeClassName="selected"
-                    activeStyle={{fontWeight: 'bold',}}
-                    exact
-                    to="/">
-
-                    <MenuItem
-                        style={active?styles.active:null}
-                        primaryText="Calendario"
-                        leftIcon={<Calendar/>}
-                    />
-                </NavLink>
-
-                <NavLink
                 style={{ textDecoration: 'none',textAlign:'start' }}
                 onClick={this.props.toogleDrawer}
                 activeClassName="selected"
@@ -57,7 +41,7 @@ class Calendario extends Component{
                     leftIcon={<NoteAdd/>}
                 />
                 </NavLink>
-                {this.props.user.is_staff === false ? null :
+                {this.props.user.is_superuser === false ? null :
                 <NavLink
                     style={{ textDecoration: 'none',textAlign:'start' }}
                     onClick={this.props.toogleDrawer}
@@ -81,7 +65,7 @@ class Calendario extends Component{
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Reuniones"
-                        leftIcon={<Desempeno/>}
+                        leftIcon={<Calendar/>}
                     />
                 </NavLink>
 
@@ -107,7 +91,7 @@ class Calendario extends Component{
 
 const styles = {
     draw:{
-      top:'64px',
+      top:'50px',
 
     },
     active:{

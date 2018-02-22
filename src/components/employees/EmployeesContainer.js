@@ -6,7 +6,7 @@ import * as employeesActions from '../../redux/actions/employeesActions';
 import * as userActions from '../../redux/actions/userActions';
 import * as userAllActions from '../../redux/actions/userAllActions';
 import RegisterContainer from '../register/RegisterContainer';
-import ToastrContainer, {Toast} from 'react-toastr-basic';
+import {Toast} from 'react-toastr-basic';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DeleteUser from './DeleteUser'
@@ -49,7 +49,6 @@ class EmployeesContainer extends Component{
   editUser=(data)=>{
     let {openEdit}=this.state;
     openEdit = !openEdit
-    let user= this.state.user;
     this.setState({openEdit,user:data});
     console.log(data)
   }
@@ -99,7 +98,7 @@ class EmployeesContainer extends Component{
                   openDelete={this.deleteUser}
                   openEdit={this.editUser}
                 />
-                {user.is_staff ==! true ? null :
+                {!user.is_staff ? null :
                   <div style={{display:'flex', justifyContent:'flex-end', marginRight:'20px'}}>
                   <FloatingActionButton  onClick={this.newUser} style={{ bottom:'30px',position:'fixed'}}>
                       <ContentAdd />

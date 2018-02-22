@@ -4,7 +4,7 @@ import './employees.css';
 import BasicInfo from './BasicInfo';
 import TabsComponents from  './TabsComponents';
 
-const CardExampleWithAvatar = ({avatar,user,full_name,phone_number,address}) => (
+const CardExampleWithAvatar = ({avatar,user,full_name,phone_number,address,tasks}) => (
   <div>
     <div className="perfil-container">
       <CardText
@@ -32,7 +32,9 @@ const CardExampleWithAvatar = ({avatar,user,full_name,phone_number,address}) => 
             user={user}
             address={address}
            />
-            <TabsComponents/>
+            <TabsComponents
+              tasks={tasks}
+              />
     </div>
   </div>
 );

@@ -39,7 +39,6 @@ class MeetingsPage extends Component{
     employSelec=data
     this.state.emploList.push(employSelec)
     this.setState(this.state)
-    this.state
     console.log(this.state.emploList)
   }
   openListAdd = () => {
@@ -125,7 +124,7 @@ class MeetingsPage extends Component{
                     />
                    <MeetingsComponents
                      employessListAdd={this.state.emploList}
-                     meeting={this.state.meeting}
+
                      listAddEmp={this.state.listAddEmp}
                      employees={employees}
                      meeting={meeting}

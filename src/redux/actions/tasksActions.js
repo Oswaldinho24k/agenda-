@@ -1,5 +1,4 @@
 import api from '../../Api/Django';
-import {checkIfUser} from './userActions';
 
 //Get Tasks
 

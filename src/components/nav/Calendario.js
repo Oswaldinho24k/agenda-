@@ -5,7 +5,6 @@ import NoteAdd from 'material-ui/svg-icons/action/note-add';
 import Accesibility from 'material-ui/svg-icons/action/accessibility';
 import Desempeno from 'material-ui/svg-icons/editor/insert-chart';
 import Calendar from 'material-ui/svg-icons/action/date-range';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
 //Registermolda
 
 
@@ -42,7 +41,7 @@ class Calendario extends Component{
                     leftIcon={<NoteAdd/>}
                 />
                 </NavLink>
-                {this.props.user.is_staff === false ? null :
+                {this.props.user.is_superuser === false ? null :
                 <NavLink
                     style={{ textDecoration: 'none',textAlign:'start' }}
                     onClick={this.props.toogleDrawer}

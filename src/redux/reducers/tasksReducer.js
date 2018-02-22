@@ -11,7 +11,7 @@ function list(state=[], action){
             return [ ...state, action.task];
         case DELETE_TASK_SUCCESS:
             let acualList = state.filter(a=>{
-            return a.id!=action.taskId;
+            return a.id!==action.taskId;
             });
             return acualList;
         case EDIT_TASK_SUCCESS:

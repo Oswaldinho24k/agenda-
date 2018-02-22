@@ -55,7 +55,7 @@ class TableMeetingContainer extends Component{
             <TableMeetingComponents
               meeting={meeting}
             />
-            {user.is_staff ==! true ? null :
+            {!user.is_staff ? null :
             <div style={{display:'flex', justifyContent:'flex-end',marginRight:'20px'}}>
               <FloatingActionButton onClick={this.openNewMeeting} style={{bottom:'30px', position:'fixed'}}>
                   <ContentAdd />

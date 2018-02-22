@@ -9,7 +9,7 @@ function list(state=[], action){
             return action.userAll;
         case DELETE_USER_SUCCESS:
             let acualList = state.filter(a=>{
-            return a.id!=action.userId;
+            return a.id!==action.userId;
             });
            return acualList;
         case USER_REGISTER_SUCCESS:

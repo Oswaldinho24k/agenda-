@@ -41,7 +41,7 @@ const MeetingsListUser = ({isStaff,employees,addEmployes,employessListAdd,meetin
       <div style={style.ListUser}>
         <Paper style={style.Paper}  zDepth={1}>
             <div style={style.menu}>
-        {listAddEmp == false ?
+        {listAddEmp === false ?
                 <AddParticipants
                     employessListAdd={employessListAdd}
                     employees={employees}

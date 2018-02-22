@@ -1,6 +1,7 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
+import TaskEmployees from './TaskEmployees';
 
 const styles = {
   headline: {
@@ -18,11 +19,13 @@ const styles = {
 };
 
 
-const TabsComponents = () => (
+const TabsComponents = ({tasks}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
-                      Hola Mundo
+                      <TaskEmployees
+                          tasks={tasks}
+                        />
                   </Tab>
                   <Tab label="Proyectos"   style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
                     asda

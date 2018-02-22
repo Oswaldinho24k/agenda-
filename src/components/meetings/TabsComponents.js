@@ -1,12 +1,10 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import NewTask from './NewTask';
 import Divider from 'material-ui/Divider';
-import TextField from 'material-ui/TextField';
 
 const styles = {
   headline: {

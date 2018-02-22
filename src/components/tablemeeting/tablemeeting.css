@@ -1,0 +1,17 @@
+.meeting_box{
+    width:100%;
+    height:92vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url('https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?w=940&h=650&dpr=2&auto=compress&cs=tinysrgb');
+}
+
+.box_cardTable{
+    padding-top: 50px;
+}
+
+.cardConteidoTable{
+  width: 80%;
+  min-width: 320px;
+  margin: 0px auto;
+}

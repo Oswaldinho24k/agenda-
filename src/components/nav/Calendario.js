@@ -66,7 +66,7 @@ class Calendario extends Component{
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Reuniones"
-                        leftIcon={<Desempeno/>}
+                        leftIcon={<Calendar/>}
                     />
                 </NavLink>
 
@@ -83,20 +83,7 @@ class Calendario extends Component{
                         leftIcon={<Desempeno/>}
                     />
                 </NavLink>
-                <NavLink
-                    style={{ textDecoration: 'none',textAlign:'start' }}
-                    onClick={this.props.toogleDrawer}
-                    activeClassName="selected"
-                    activeStyle={{fontWeight: 'bold',}}
-                    exact
-                    to="/">
 
-                    <MenuItem
-                        style={active?styles.active:null}
-                        primaryText="Calendario"
-                        leftIcon={<Calendar/>}
-                    />
-                </NavLink>
 
             </Drawer>
         );
@@ -105,7 +92,7 @@ class Calendario extends Component{
 
 const styles = {
     draw:{
-      top:'64px',
+      top:'50px',
 
     },
     active:{

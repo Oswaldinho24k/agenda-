@@ -80,6 +80,7 @@ export const editTask=(etask)=>(dispatch, getState)=>{
             })
             r["meeting"]=meeting
             dispatch(editTaskSuccess(r))
+            dispatch(getTasks())
             console.log(r);
         }).catch(e=>{
         console.log(e)

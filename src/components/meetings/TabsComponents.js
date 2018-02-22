@@ -30,7 +30,7 @@ const styles = {
 
 
 
-const TabsComponents = ({valuePerson,onChange,onChangePerson,onSubmit,openNewTask,openNewProject,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,openNewTask,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
@@ -40,8 +40,10 @@ const TabsComponents = ({valuePerson,onChange,onChangePerson,onSubmit,openNewTas
                           tasks={tasks}
                           onDelete={onDelete}
                           addPerson={addPerson}
-                          onChangePerson={onChangePerson}
-                          valuePerson={valuePerson}
+                          addPriority={addPriority}
+                          changeDateStart={changeDateStart}
+                          changeDateFinish={changeDateFinish}
+                          onDate={onDate}
                         />
                        <Divider/>
                        <form
@@ -56,17 +58,6 @@ const TabsComponents = ({valuePerson,onChange,onChangePerson,onSubmit,openNewTas
                              />
                          </div>
                        </form>
-                    </div>
-                  </Tab>
-                  <Tab label="Proyecto" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
-                    <div className="muro">
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nuevo Proyecto"
-                          onClick={openNewProject}
-                          />
-                     </div>
                     </div>
                   </Tab>
                   <Tab

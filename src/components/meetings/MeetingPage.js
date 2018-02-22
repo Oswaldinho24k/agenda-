@@ -5,23 +5,22 @@ import * as employeesActions from '../../redux/actions/employeesActions';
 import * as meetingActions from '../../redux/actions/meetingActions';
 import * as tasksActions from '../../redux/actions/tasksActions';
 import Loader from '../common/Loading'
-import MeetingsComponents from './MeetingsComponents'
-import NewMeetingContainer from './NewMeetingContainer';
+import MeetingsComponents from './MeetingsComponents';
 import NewProject from './NewProject';
+import './meetings.css';
 
 class MeetingsPage extends Component{
   constructor(props) {
       super(props);
       this.state = {
           task: {},
-          meeting:{},
-          openNewMeeting:false,
           emploList:[],
           employSelec:{},
           listAddEmp:true,
           openProject:false,
           user:{},
-          value:'',
+          priority:{},
+          date:{},
       };
   }
 
@@ -32,19 +31,6 @@ class MeetingsPage extends Component{
     openProject = !openProject;
     this.setState({openProject})
   }
-  //Meeting
-  closeNewMeeting=()=>{
-    this.setState({openNewMeeting:false})
-    this.props.history.push('/agenda/meeting')
-  }
-
-    handleChangeDate = (e,date) => {
-        let meeting= this.state.meeting;
-        meeting['meeting_date'] = date;
-        this.setState({meeting});
-        console.log(meeting)
-    };
-
 
   //list User
   addEmployes=(data)=>{
@@ -89,33 +75,49 @@ class MeetingsPage extends Component{
      let newPerson= this.state.user;
      newPerson['id'] =parseInt(taskId)
      newPerson['user']=parseInt(userId)
-    // console.log(newPerson)
-    console.log(newPerson);
-     this.props.tasksActions.editTask(newPerson);
+
+    this.props.tasksActions.editTask(newPerson);
+  }
+  addPriority=(taskId,value)=>{
+    let priority= this.state.priority;
+    priority['id'] =parseInt(taskId)
+    priority['priority']=value
+
+    this.props.tasksActions.editTask(priority);
   }
   onDelete=(i)=>{
    console.log("Voy a eliminar",i)
    this.props.tasksActions.deleteTask(i);
   };
+  changeDateStart = (e,date) => {
+      let dateS= this.state.date;
+      dateS['starts'] = date;
+      this.props.tasksActions.editTask(dateS)
+      console.log(dateS)
+  };
+  changeDateFinish = (e,date) => {
+      let dateS= this.state.date;
+      dateS['expiry'] = date;
+      this.props.tasksActions.editTask(dateS)
+      console.log(dateS)
+  };
 
-  handleChangePerson = (event, index, value) => this.setState({value});
+  onDate=(taskId)=>{
+    let dateS= this.state.date;
+    dateS['id'] =parseInt(taskId)
+    console.log("Voy a cambiar fecha",taskId)
+  }
+
 
 
 ////////////////////////////////////////////
     render(){
-          let {selectedRowKeys} = this.state;
           const {employees, meeting,fetched,tasks,id,} = this.props;
           console.log(tasks)
         if(!fetched)return<Loader/>
         return(
                 <div>
-                  <NewMeetingContainer
-                    open={this.state.openNewMeeting}
-                    openClose={this.closeNewMeeting}
-                    handleChange={this.handleChange}
-                    handleChangeDate={this.handleChangeDate}
-                    onSubmit={this.onSubmit}
-                  />
+
                  <NewProject
                     openProject={this.state.openProject}
                      openNewProject={this.openNewProject}
@@ -136,8 +138,10 @@ class MeetingsPage extends Component{
                      onChange={this.handleChange}
                      onDelete={this.onDelete}
                      addPerson={this.addPerson}
-                     onChangePerson={this.handleChangePerson}
-                     valuePerson={this.state.value}
+                     addPriority={this.addPriority}
+                     changeDateStart={this.changeDateStart}
+                     changeDateFinish={this.changeDateFinish}
+                     onDate={this.onDate}
                   />
                 </div>
         )

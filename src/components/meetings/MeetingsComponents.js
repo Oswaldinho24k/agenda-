@@ -3,8 +3,8 @@ import './meetings.css';
 import MeetingsListUser from './MeetingsListUser';
 import TabsComponents from './TabsComponents';
 
-const MeetingsComponents = ({valuePerson,onChangePerson,addPerson,onDelete, onChange,employees,onSubmit,addEmployes,employessListAdd,meeting,openListAdd,listAddEmp, addParticipants,openNewTask,openNewProject,tasks} ) => (
-  <div>
+const MeetingsComponents = ({onDate,changeDateStart,changeDateFinish,addPriority,addPerson,onDelete, onChange,employees,onSubmit,addEmployes,employessListAdd,meeting,openListAdd,listAddEmp, addParticipants,openNewTask,openNewProject,tasks} ) => (
+  <div className="meeting_box">
     <div className="meetings-container">
         <MeetingsListUser
           employessListAdd={employessListAdd}
@@ -24,8 +24,10 @@ const MeetingsComponents = ({valuePerson,onChangePerson,addPerson,onDelete, onCh
           onChange={onChange}
           onDelete={onDelete}
           addPerson={addPerson}
-          onChangePerson={onChangePerson}
-          valuePerson={valuePerson}
+          addPriority={addPriority}
+          changeDateStart={changeDateStart}
+          onDate={onDate}
+          changeDateFinish={changeDateFinish}
           />
     </div>
   </div>

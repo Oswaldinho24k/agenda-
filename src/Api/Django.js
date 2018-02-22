@@ -26,9 +26,7 @@ if(!debug){
     urlProject='https://backend-arnulfo.herokuapp.com/project/'
     urlMeeting='https://backend-arnulfo.herokuapp.com/meeting/'
     urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
-
 }
-
 
 const api={
 
@@ -90,7 +88,7 @@ const api={
           });
           instance.post('',register)
               .then(function (response) {
-                  resolve(response.register);
+                  resolve(response.data);
               })
               .catch(function (error) {
                   console.log('el error: ', error.response);
@@ -366,6 +364,56 @@ getAllUser:()=>{
               }
           });
           instance.patch(task.id+'/',task)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete User
+  deleteUser:(userId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlUsersAll,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(userId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Edit User
+  editUser:(user)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlUsersAll,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(user.id+'/',user)
               .then(function (response) {
                   resolve(response.data);
               })

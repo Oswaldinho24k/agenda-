@@ -33,10 +33,6 @@ const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants
                       />
                     <div class="search">
                        <input type="text" class="searchTerm" placeholder="What are you looking for?"/>
-                         <RaisedButton
-                           primary={true}
-                          icon={<ActionSearch />}
-                        />
                     </div>
                <Divider/>
                <List style={style.listEmployess}>

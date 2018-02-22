@@ -76,23 +76,3 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getTasks());
     }
 };
-
-//User Registeruser
-export const USER_REGISTER_SUCCESS='USER_REGISTER_SUCCESS';
-
-export function userRegisterSuccess(register){
-    return{
-        type:USER_REGISTER_SUCCESS, register
-    }
-}
-
-export const newUser =(register)=>(dispatch, getState)=>{
-    return api.newUser(register)
-      .then(r=>{
-          console.log('is done');
-          dispatch(userRegisterSuccess(r))
-          dispatch(getAllUser())
-      }).catch(e=>{
-      console.log(e)
-  })
-};

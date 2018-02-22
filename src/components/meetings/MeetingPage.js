@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as employeesActions from '../../redux/actions/employeesActions';
 import * as meetingActions from '../../redux/actions/meetingActions';
 import * as tasksActions from '../../redux/actions/tasksActions';
+import * as userActions from '../../redux/actions/userActions';
 import Loader from '../common/Loading'
 import MeetingsComponents from './MeetingsComponents';
 import NewProject from './NewProject';
@@ -112,8 +113,8 @@ class MeetingsPage extends Component{
 
 ////////////////////////////////////////////
     render(){
-          const {employees, meeting,fetched,tasks,id,} = this.props;
-          console.log(tasks)
+          const {employees, meeting,fetched,tasks,user,} = this.props;
+          console.log(user)
         if(!fetched)return<Loader/>
         return(
                 <div>
@@ -129,6 +130,7 @@ class MeetingsPage extends Component{
                      employees={employees}
                      meeting={meeting}
                      tasks={tasks}
+                     {...user}
                      addEmployes={this.addEmployes}
                      openListAdd={this.openListAdd}
                      addParticipants={this.addParticipants}
@@ -156,12 +158,11 @@ function mapStateToProps(state, ownProps) {
   let tasks = state.tasks.list.filter(b=>{
     return id == b.meeting.id;
   })
-
-  console.log(id)
   meeting=meeting[0]
   tasks=tasks
     return {
       employees: state.employees.list,
+      user: state.user.object,
       tasks,
       meeting,
       fetched:  meeting!==undefined && state.meeting.list!==undefined,
@@ -170,6 +171,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return{
+        userActions:bindActionCreators(userActions,dispatch),
         employeesActions:bindActionCreators(employeesActions,dispatch),
         meetingActions:bindActionCreators(meetingActions,dispatch),
         tasksActions:bindActionCreators(tasksActions,dispatch),

@@ -30,7 +30,7 @@ const styles = {
 
 
 
-const TabsComponents = ({changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,openNewTask,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,openNewTask,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
@@ -44,9 +44,10 @@ const TabsComponents = ({changeDateFinish,changeDateStart,onDate,addPriority,onC
                           changeDateStart={changeDateStart}
                           changeDateFinish={changeDateFinish}
                           onDate={onDate}
+                          isStaff={isStaff}
                         />
                        <Divider/>
-                       <form
+                       {isStaff ?<form
                          onSubmit={onSubmit}
                          >
                          <div class="search">
@@ -57,7 +58,7 @@ const TabsComponents = ({changeDateFinish,changeDateStart,onDate,addPriority,onC
                                type='submit'
                              />
                          </div>
-                       </form>
+                       </form>:null}
                     </div>
                   </Tab>
                   <Tab

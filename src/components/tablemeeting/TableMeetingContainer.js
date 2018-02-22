@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import * as meetingActions from '../../redux/actions/meetingActions';
 import * as userActions from '../../redux/actions/userActions';
 import NewMeetingContainer from './NewMeetingContainer';
+import Loader from '../common/Loading'
 import './tablemeeting.css'
 
 
@@ -47,8 +48,8 @@ class TableMeetingContainer extends Component{
     };
 
   render(){
-    const {meeting,user}=this.props;
-
+    const {meeting,user,fetched}=this.props;
+    if(!fetched)return<Loader/>
     return(
         <div className="Tablemeeting-container">
             <TableMeetingComponents
@@ -77,10 +78,13 @@ class TableMeetingContainer extends Component{
 
 
 function mapStateToProps(state, ownProps) {
-
+  let user =state.user.object;
+    let meeting= state.meeting.list
+  console.log(user.id)
     return {
-       user: state.user.object,
-       meeting: state.meeting.list
+      user,
+       meeting,
+       fetched:  meeting!==undefined && state.meeting.list!==undefined,
     }
 
 }

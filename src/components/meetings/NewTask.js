@@ -26,6 +26,8 @@ export default class NewTask extends React.Component {
       {id:3,
       value:'Baja'}
     ],
+    disabled:true,
+    active:false,
   }
 }
 
@@ -49,7 +51,7 @@ export default class NewTask extends React.Component {
               <TableHeaderColumn>Date Start</TableHeaderColumn>
               <TableHeaderColumn>Date Finsh</TableHeaderColumn>
               <TableHeaderColumn> priority</TableHeaderColumn>
-              <TableHeaderColumn></TableHeaderColumn>
+              {this.props.isStaff?<TableHeaderColumn></TableHeaderColumn>:null}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
@@ -57,7 +59,7 @@ export default class NewTask extends React.Component {
               <TableRow key={row.id} data-my-row-identifier={row.id}>
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>
-                  <SelectField
+                  {this.props.isStaff?<SelectField
                     underlineStyle={{display:'none'}}
                     autoWidth={true}
                     labelStyle={{paddingLeft:'none',paddingRigth:'none'}}
@@ -65,15 +67,16 @@ export default class NewTask extends React.Component {
                     style={{fontSize:'13px',top:'7px'}}
                     maxHeight={200}
                     hintStyle={{color:'rgba(0, 0, 0, 0.87)'}}
+                     disabled={this.props.isStaff ? this.state.active:this.state.disabled}
                     hintText={row.user === null? 'Select':row.user.username}
                     >
                     { this.props.employees.map(data =>
                       <MenuItem key={data.id}  value={data.user.id}  primaryText={data.user.username} onClick={()=>this.props.addPerson(row.id, data.user.id)}/>
               )}
-                  </SelectField>
+            </SelectField>:<p>{row.user === null? 'N/A':row.user.username}</p>}
               </TableRowColumn>
               <TableRowColumn>
-                  <DatePicker
+                  {this.props.isStaff?<DatePicker
                       name='starts'
                      hintText={row.starts=== null?'Date':moment(row.start).format('YYYY-MM-DD')}
                      underlineStyle={{display :' none '}}
@@ -81,11 +84,12 @@ export default class NewTask extends React.Component {
                      hintStyle={{color:'rgba(0, 0, 0, 0.87)'}}
                      textFieldStyle={{fontSize:'13px'}}
                      onChange={this.props.changeDateStart}
+                     disabled={this.props.isStaff ? this.state.active:this.state.disabled}
                      onClick={()=>this.props.onDate(row.id)}
-                     />
+                     />:moment(row.start).format('YYYY-MM-DD')}
               </TableRowColumn>
               <TableRowColumn>
-                <DatePicker
+                {this.props.isStaff?<DatePicker
                   name='expiry'
                    hintText={row.expiry=== null?'Date': moment(row.expiry).format('YYYY-MM-DD')}
                    underlineStyle={{display :  ' none '}}
@@ -94,10 +98,10 @@ export default class NewTask extends React.Component {
                    textFieldStyle={{fontSize:'13px'}}
                    onClick={()=>this.props.onDate(row.id)}
                     onChange={this.props.changeDateFinish}
-                   />
+                   />:moment(row.expiry).format('YYYY-MM-DD')}
               </TableRowColumn>
               <TableRowColumn>
-                <SelectField
+                {this.props.isStaff?<SelectField
                   underlineStyle={{display:'none'}}
                   autoWidth={true}
                   labelStyle={{paddingLeft:'none',paddingRigth:'none'}}
@@ -110,13 +114,13 @@ export default class NewTask extends React.Component {
                   { this.state.menu.map(data =>
                     <MenuItem key={data.id}  value={data.id}  primaryText={data.value} onClick={()=>this.props.addPriority(row.id, data.value)} />
                   )}
-                </SelectField>
+                </SelectField>:<p>{row.priority}</p>}
               </TableRowColumn>
-              <TableRowColumn>
+              {this.props.isStaff ?<TableRowColumn>
                 <IconButton onClick={()=>this.props.onDelete(row.id)}>
                   <Delete />
                 </IconButton>
-              </TableRowColumn>
+              </TableRowColumn>:null}
             </TableRow>)}
           </TableBody>
           </Table>

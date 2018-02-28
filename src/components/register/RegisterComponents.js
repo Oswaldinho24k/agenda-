@@ -25,16 +25,16 @@ const RegisterComponents =({onChange,onSubmit,cancel})=>{
                 type="email"
               />
              <div className="btnMod">
-               <FlatButton
-                 label="Cancel"
-                 primary={true}
-                 onClick={cancel}
-               />
-               <FlatButton
-                 label="Signup"
-                 primary={true}
-                 type='submit'
-               />
+                 <FlatButton
+                   label="Cancel"
+                   primary={true}
+                   onClick={cancel}
+                 />
+                 <FlatButton
+                   label="Signup"
+                   primary={true}
+                   type='submit'
+                 />
              </div>
          </form>
   );

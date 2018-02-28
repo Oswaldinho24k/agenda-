@@ -5,14 +5,19 @@ import NoteAdd from 'material-ui/svg-icons/action/note-add';
 import Accesibility from 'material-ui/svg-icons/action/accessibility';
 import Desempeno from 'material-ui/svg-icons/editor/insert-chart';
 import Calendar from 'material-ui/svg-icons/action/date-range';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+//Registermolda
 
 
 class Calendario extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+        open: false,
+      };
     }
+
 
     handleToggle = () => this.setState({open: !this.state.open});
 
@@ -25,6 +30,7 @@ class Calendario extends Component{
                 docked={true}
                 width='20%'>
                 <NavLink
+                style={{ textDecoration: 'none',textAlign:'start' }}
                 onClick={this.props.toogleDrawer}
                 activeClassName="selected"
                 activeStyle={{fontWeight: 'bold',}}
@@ -36,31 +42,49 @@ class Calendario extends Component{
                     leftIcon={<NoteAdd/>}
                 />
                 </NavLink>
+                {this.props.user.is_staff === false ? null :
                 <NavLink
+                    style={{ textDecoration: 'none',textAlign:'start' }}
                     onClick={this.props.toogleDrawer}
                     activeClassName="selected"
                     activeStyle={{fontWeight: 'bold',}}
                     exact
-                    to="/">
+                    to="/agenda/employees">
                     <MenuItem
                         style={active?styles.active:null}
                         primaryText="Empleados"
                         leftIcon={<Accesibility/>}
                     />
-                </NavLink>
-                <NavLink
-                    onClick={this.props.toogleDrawer}
-                    activeClassName="selected"
-                    activeStyle={{fontWeight: 'bold',}}
-                    exact
-                    to="/">
+                </NavLink>}
+                  <NavLink
+                      style={{ textDecoration: 'none',textAlign:'start' }}
+                      onClick={this.props.toogleDrawer}
+                      activeClassName="selected"
+                      activeStyle={{fontWeight: 'bold',}}
+                      exact
+                      to="/agenda/meeting">
                     <MenuItem
                         style={active?styles.active:null}
-                        primaryText="Desempeño"
+                        primaryText="Reuniones"
+                        leftIcon={<Desempeno/>}
+                    />
+                </NavLink>
+
+                <NavLink
+                    style={{ textDecoration: 'none',textAlign:'start' }}
+                    onClick={this.props.toogleDrawer}
+                    activeClassName="selected"
+                    activeStyle={{fontWeight: 'bold'}}
+                    exact
+                    to="/agenda/project">
+                    <MenuItem
+                        style={active?styles.active:null}
+                        primaryText="Proyectos"
                         leftIcon={<Desempeno/>}
                     />
                 </NavLink>
                 <NavLink
+                    style={{ textDecoration: 'none',textAlign:'start' }}
                     onClick={this.props.toogleDrawer}
                     activeClassName="selected"
                     activeStyle={{fontWeight: 'bold',}}
@@ -73,6 +97,7 @@ class Calendario extends Component{
                         leftIcon={<Calendar/>}
                     />
                 </NavLink>
+
             </Drawer>
         );
     }
@@ -80,10 +105,12 @@ class Calendario extends Component{
 
 const styles = {
     draw:{
-        top:'64px'
+      top:'64px',
+
     },
     active:{
-        backgroundColor:'red'
+        backgroundColor:'red',
+        textAlign:'start'
     }
 };
 

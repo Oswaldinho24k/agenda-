@@ -5,42 +5,83 @@ import Pages from './Pages';
 import * as userActions from '../../redux/actions/userActions';
 import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
+import RegisterContainer from '../register/RegisterContainer';
+import ProfileContainer from '../profile/ProfilePage';
+import ToastrContainer, {Toast} from 'react-toastr-basic'
+import * as profileActions from '../../redux/actions/profileActions';
+
+
 
 class PrincipalContainer extends Component{
   state = {
-      showDrawer: false
+      showDrawer: false,
+      openAlertR:false,
+      openProfile:false,
+      openNewMeeting:false,
   };
 
   openDrawer = () => {
       let {showDrawer} = this.state;
       showDrawer = !showDrawer;
-      this.setState({showDrawer})
+      this.setState({showDrawer});
   };
 
   componentWillMount(){
   const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
   console.log(userToken)
   if(!userToken){
-    this.props.history.push('/login')
-  }
-};
+        this.props.history.push('/login')
+      }
+    };
+    logOut=()=>{
+      console.log("Cerre papu");
+      this.props.userActions.logOut();
+      this.props.history.push('/login');
+    };
 
-logOut=()=>{
-   console.log("Cerre papu");
-    this.props.userActions.logOut();
-    this.props.history.push('/login');
-};
+    closeAll=()=>{
+      this.setState({openRegister:false, openAlertR:false})
+    };
+
+    AlertOpenCloseR =()=>{
+      let {openAlertR}=this.state;
+      openAlertR = !openAlertR
+      this.setState({openAlertR});
+    };
+    openProfile = ()=>{
+      let {openProfile}=this.state;
+      openProfile = !openProfile
+      this.setState({openProfile})
+    };
+    showToast=(message)=>{
+      Toast(message);
+    };
+
 
   render(){
+    const {profile} = this.props;
     return(
-      <div>
+      <div className="todo">
+        <ToastrContainer />
         <Navbar
             openDrawer={this.openDrawer}
-            user={this.props.user}
             logOut={this.logOut}
+            openProfile={this.openProfile}
+            {...profile}
           />
-        <Calendario open={this.state.showDrawer} toogleDrawer={this.openDrawer}/>
-          <div className="padre">
+          <Calendario
+            user={this.props.user}
+            open={this.state.showDrawer}
+            handleOpenCloseRegister={this.handleOpenCloseRegister}
+            toogleDrawer={this.openDrawer}
+            openCloseNewMeeting={this.openCloseNewMeeting}
+          />
+            <ProfileContainer
+             open={this.state.openProfile}
+             openProfile={this.openProfile}
+             showToast={this.showToast}
+            />
+          <div  style={{ minHeight: '90vh' }}>
             <Pages/>
           </div>
       </div>
@@ -50,15 +91,18 @@ logOut=()=>{
 }
 
 function mapStateToProps(state, ownProps) {
-  //console.log(state)
+
     return {
-       user: state.user.object
+       user: state.user.object,
+       profile: state.profile.object
     }
+
 }
 
 function mapDispatchToProps(dispatch){
   return{
-    userActions:bindActionCreators(userActions,dispatch)
+    userActions:bindActionCreators(userActions,dispatch),
+    profileActions:bindActionCreators(profileActions,dispatch)
   }
 }
 

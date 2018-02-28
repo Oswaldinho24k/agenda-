@@ -6,9 +6,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from './redux/store/configureStore';
 import {Provider} from 'react-redux';
-import './index.css';
 import {checkIfUser} from "./redux/actions/userActions";
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import './index.css';
+
 
 export const store = configureStore();
 store.dispatch(checkIfUser());

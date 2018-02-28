@@ -22,7 +22,7 @@ class PrincipalContainer extends Component{
   openDrawer = () => {
       let {showDrawer} = this.state;
       showDrawer = !showDrawer;
-      this.setState({showDrawer})
+      this.setState({showDrawer});
   };
 
   componentWillMount(){
@@ -40,21 +40,21 @@ class PrincipalContainer extends Component{
 
     closeAll=()=>{
       this.setState({openRegister:false, openAlertR:false})
-    }
+    };
 
     AlertOpenCloseR =()=>{
       let {openAlertR}=this.state;
       openAlertR = !openAlertR
       this.setState({openAlertR});
-    }
+    };
     openProfile = ()=>{
       let {openProfile}=this.state;
       openProfile = !openProfile
       this.setState({openProfile})
-    }
+    };
     showToast=(message)=>{
       Toast(message);
-    }
+    };
 
 
   render(){

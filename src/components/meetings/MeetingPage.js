@@ -188,7 +188,7 @@ class MeetingsPage extends Component{
                             openNewProject={this.openNewProject}
                             onSubmit={this.onSubmit}
                             onSubmitFile={this.onSubmitFile}
-                            onChange={this.onChange}
+                            onChange={this.handleChange}
                             onDelete={this.onDelete}
                             addPerson={this.addPerson}
                             addPriority={this.addPriority}
@@ -196,7 +196,7 @@ class MeetingsPage extends Component{
                             onDate={this.onDate}
                             changeDateFinish={this.changeDateFinish}
                             uploadFile={this.uploadFile}
-                            onChangeFile={this.onChangeFile}
+                            onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
                             />
                     </div>

@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import LoginContainer from './components/login/LoginContainer';
 import PrincipalContainer from './components/principal/PrincipalContainer';
 
-import Calendar from './components/calendar/Calendar';
+import Calendar from './components/calendar/CalendarContainer';
 
 const Routes = () => (
     <Switch>

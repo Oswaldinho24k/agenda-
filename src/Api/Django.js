@@ -14,6 +14,8 @@ let urlPassChan="http://localhost:8000/rest-auth/password/change/";
 let urlProject='http://localhost:8000/project/'
 let urlMeeting='http://localhost:8000/meeting/'
 let urlUsersAll='http://127.0.0.1:8000/usersall/'
+let urlFile='http://localhost:8000/file/'
+let urlAction='http://localhost:8000/action/'
 
 if(!debug){
     urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
@@ -26,6 +28,8 @@ if(!debug){
     urlProject='https://backend-arnulfo.herokuapp.com/project/'
     urlMeeting='https://backend-arnulfo.herokuapp.com/meeting/'
     urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
+    urlFile='https://backend-arnulfo.herokuapp.com/file/'
+    urlAction='https://backend-arnulfo.herokuapp.com/action/'
 }
 
 const api={
@@ -164,7 +168,7 @@ const api={
                 baseURL: urlPassChan,
                 // timeout: 2000,
                 headers: {
-                    'Content-Type': undefined,
+                    'Content-Type': 'application/json',
                     'Authorization': 'Token ' + userToken
                 }
             });
@@ -414,6 +418,156 @@ getAllUser:()=>{
               }
           });
           instance.patch(user.id+'/',user)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+
+  ///File
+
+  getFile:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlFile,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new File
+  newFile:(file)=>{
+    let data = new FormData()
+    for(let key in file){
+      data.append(key, file[key])
+    }
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFile,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': undefined,
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',data)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete File
+  deleteFile:(fileId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFile,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(fileId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  ///Actions
+
+  getAction:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlAction,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new Action ImmediateActions
+  newAction:(immediateA)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlAction,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',immediateA)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Action
+  deleteAction:(actionId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlAction,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(actionId+'/')
               .then(function (response) {
                   resolve(response.data);
               })

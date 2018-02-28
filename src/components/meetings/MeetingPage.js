@@ -5,9 +5,12 @@ import * as employeesActions from '../../redux/actions/employeesActions';
 import * as meetingActions from '../../redux/actions/meetingActions';
 import * as tasksActions from '../../redux/actions/tasksActions';
 import * as userActions from '../../redux/actions/userActions';
-import Loader from '../common/Loading'
-import MeetingsComponents from './MeetingsComponents';
-import NewProject from './NewProject';
+import * as fileActions from '../../redux/actions/fileActions';
+import * as immediateActions from '../../redux/actions/immediateActions';
+import Loader from '../common/Loading';
+import AddParticipants from './AddParticipants';
+import TabsComponents from './TabsComponents';
+import Accordion from './Accordion'
 import './meetings.css';
 
 class MeetingsPage extends Component{
@@ -15,10 +18,12 @@ class MeetingsPage extends Component{
       super(props);
       this.state = {
           task: {},
+          files:{},
           emploList:[],
           employSelec:{},
           listAddEmp:true,
           openProject:false,
+          openParticipant:false,
           user:{},
           priority:{},
           date:{},
@@ -34,6 +39,11 @@ class MeetingsPage extends Component{
   }
 
   //list User
+  openParticipant=()=>{
+    let {openParticipant} = this.state;
+    openParticipant = !openParticipant;
+    this.setState({openParticipant})
+  }
   addEmployes=(data)=>{
     let employSelec=this.state.employSelec;
     employSelec=data
@@ -48,7 +58,7 @@ class MeetingsPage extends Component{
   };
   addParticipants=()=>{
     let meeting=this.state.meeting;
-    let data=this.props.emploList;
+    let data=this.state.emploList;
     meeting['participants']= data;
     console.log(this.state.meeting)
     this.openListAdd()
@@ -107,43 +117,90 @@ class MeetingsPage extends Component{
     dateS['id'] =parseInt(taskId)
     console.log("Voy a cambiar fecha",taskId)
   }
+///////////////////////////////////////////////
+//new File
+  onSubmitFile=(e)=>{
+      e.preventDefault();
+      let newFile= this.state.files;
+      newFile['meeting']=parseInt(this.props.match.params.id)
+      this.props.fileActions.newFile(newFile);
+      console.log(newFile)
+      e.target.name_file.value="";
+  };
+  handleChangeFile = (e) => {
+      let files = this.state.files;
+      files[e.target.name] = e.target.value;
+      this.setState({files});
+      console.log(files)
+  };
+  uploadFile=(e)=>{
+    let files = this.state.files;
+    files["files"]=e.target.files[0];
+    this.setState({files})
+    let reader = new FileReader();
+    let file = e.target.files[0];
 
-
+      reader.onloadend = () => {
+        this.setState({
+          file: file,
+          filePreviewUrl: reader.result
+        });
+      }
+      reader.readAsDataURL(file)
+  }
+  //delete file
+  onDeleteFile=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.fileActions.deleteFile(i);
+  };
 
 ////////////////////////////////////////////
     render(){
-          const {employees, meeting,fetched,tasks,user,} = this.props;
-          console.log(user)
-        if(!fetched)return<Loader/>
+
+          let {employees, meeting,fetched,tasks,user,files,immediate} = this.props;
+          if(!fetched)return<Loader/>
+          console.log(immediate)
+
         return(
                 <div>
-
-                 <NewProject
-                    openProject={this.state.openProject}
-                     openNewProject={this.openNewProject}
-                    />
-                   <MeetingsComponents
-                     employessListAdd={this.state.emploList}
-
-                     listAddEmp={this.state.listAddEmp}
-                     employees={employees}
-                     meeting={meeting}
-                     tasks={tasks}
-                     {...user}
-                     addEmployes={this.addEmployes}
-                     openListAdd={this.openListAdd}
-                     addParticipants={this.addParticipants}
-                     openNewProject={this.openNewProject}
-                     openNewTask={this.openNewTask}
-                     onSubmit={this.onSubmit}
-                     onChange={this.handleChange}
-                     onDelete={this.onDelete}
-                     addPerson={this.addPerson}
-                     addPriority={this.addPriority}
-                     changeDateStart={this.changeDateStart}
-                     changeDateFinish={this.changeDateFinish}
-                     onDate={this.onDate}
-                  />
+                  <AddParticipants
+                    open={this.state.openParticipant}
+                    employessListAdd={this.state.emploList}
+                    employees={employees}
+                    addEmployes={this.addEmployes}
+                    addParticipants={this.addParticipants}
+                    openParticipant={this.openParticipant}
+                     />
+                  <div className="meeting_box">
+                    <div className="meetings-container">
+                          <Accordion
+                            employees={employees}
+                            meeting={meeting}
+                            actions={immediate}
+                            openListAdd={this.openParticipant}
+                            isStaff={this.props.user.is_staff}
+                            />
+                          <TabsComponents
+                            isStaff={this.props.user.is_staff}
+                            employees={employees}
+                            tasks={tasks}
+                            files={files}
+                            openNewProject={this.openNewProject}
+                            onSubmit={this.onSubmit}
+                            onSubmitFile={this.onSubmitFile}
+                            onChange={this.onChange}
+                            onDelete={this.onDelete}
+                            addPerson={this.addPerson}
+                            addPriority={this.addPriority}
+                            changeDateStart={this.changeDateStart}
+                            onDate={this.onDate}
+                            changeDateFinish={this.changeDateFinish}
+                            uploadFile={this.uploadFile}
+                            onChangeFile={this.onChangeFile}
+                            onDeleteFile={this.onDeleteFile}
+                            />
+                    </div>
+                  </div>
                 </div>
         )
     }
@@ -157,14 +214,19 @@ function mapStateToProps(state, ownProps) {
   let tasks = state.tasks.list.filter(b=>{
     return id == b.meeting.id;
   })
+  let files = state.files.list.filter(c=>{
+    return id == c.meeting.id;
+  })
   meeting=meeting[0]
-  tasks=tasks
+
     return {
       employees: state.employees.list,
       user: state.user.object,
       tasks,
+      files,
       meeting,
-      fetched:  meeting!==undefined && state.meeting.list!==undefined,
+      immediate: state.immediate.list,
+      fetched:  meeting!==undefined && tasks!==undefined,
     }
 }
 
@@ -174,6 +236,8 @@ function mapDispatchToProps(dispatch) {
         employeesActions:bindActionCreators(employeesActions,dispatch),
         meetingActions:bindActionCreators(meetingActions,dispatch),
         tasksActions:bindActionCreators(tasksActions,dispatch),
+        fileActions:bindActionCreators(fileActions,dispatch),
+        immediateActions:bindActionCreators(immediateActions,dispatch),
     }
 }
 

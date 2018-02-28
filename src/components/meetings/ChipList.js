@@ -1,11 +1,6 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-/**
- * An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array.
- * Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth
- * while clicked or touched.
- */
 export default class ChipList extends React.Component {
 
   constructor(props) {
@@ -18,7 +13,7 @@ export default class ChipList extends React.Component {
         display: 'flex',
         flexWrap: 'wrap',
         overflow:'auto',
-        maxHeight:'76px'
+        maxHeight:'70px'
       },
     };
   }

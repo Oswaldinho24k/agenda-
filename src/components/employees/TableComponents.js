@@ -20,12 +20,12 @@ import IconButton from 'material-ui/IconButton';
            <TableRowColumn><Link style={{color:'black',textDecoration:'none',fontWeight:'bold'}} to={`/agenda/employees/${data.id}`}>Detalle</Link></TableRowColumn>
            <TableRowColumn className="column-Edit">
                <IconButton onClick={()=>openEdit(data)}>
-                 <Edit />
+                 <Edit color="#c7c7c7"/>
                </IconButton>
            </TableRowColumn>
-           <TableRowColumn className="column-Delete">
-               <IconButton onClick={()=>openDelete(data)}>
-                 <Delete />
+           <TableRowColumn className="column-Delete" >
+               <IconButton onClick={()=>openDelete(data)} >
+                 <Delete color="#c7c7c7"/>
                </IconButton>
            </TableRowColumn>
          </TableRow>

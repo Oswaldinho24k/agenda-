@@ -1,0 +1,16 @@
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.notas{
+    width:300px;
+    flex-grow: 1;
+    height:500px;
+    margin: 0 20px 0 0;
+}
+.calendar{
+    width:600px;
+    flex-grow: 2;
+    height:500px;
+    margin: 0 0 0 10px
+}

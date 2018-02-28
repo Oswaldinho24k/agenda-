@@ -57,7 +57,7 @@ class TableMeetingContainer extends Component{
             />
             {!user.is_staff ? null :
             <div style={{display:'flex', justifyContent:'flex-end',marginRight:'20px'}}>
-              <FloatingActionButton onClick={this.openNewMeeting} style={{bottom:'30px', position:'fixed'}}>
+              <FloatingActionButton primary={false} onClick={this.openNewMeeting} style={{bottom:'50px', position:'fixed'}}  backgroundColor="rgb(244, 134, 135)">
                   <ContentAdd />
               </FloatingActionButton>
             </div>

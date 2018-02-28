@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-let debug = true;
+let debug = false;
 
 let urlLogin="http://localhost:8000/rest-auth/login/"
 let urlRegister="http://localhost:8000/users/register/"

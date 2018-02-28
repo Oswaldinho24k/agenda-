@@ -24,7 +24,7 @@ const EmployeesComponents = ({userAll,openDelete,openEdit})=>{
               enableSelectAll={true}
                >
                <TableRow>
-                 <TableHeaderColumn>User</TableHeaderColumn>
+                 <TableHeaderColumn>Nombre</TableHeaderColumn>
                  <TableHeaderColumn>Email</TableHeaderColumn>
                  <TableHeaderColumn>Puesto</TableHeaderColumn>
                  <TableHeaderColumn>Detalle </TableHeaderColumn>

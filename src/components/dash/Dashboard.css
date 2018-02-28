@@ -1,16 +1,140 @@
+.dash{
+    background-color:  #f2f6fa;
+    width:100%;
+    height:auto;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    font-family: 'avenir-light', sans-serif;
+
+}
+.dash h2{
+    padding: 0 10px 0 0px;
+    color: #676668;
+    text-transform: none;
+    white-space: nowrap;
+
+}
 .flex{
+    width:80%;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+
+}
+.circle{
+    width:15px;
+    height:15px;
+    border-radius: 50%;
+    background-color: rgb(244, 134, 135);
+    margin: 8px 6px;
 }
 .notas{
     width:300px;
     flex-grow: 1;
-    height:500px;
+    height:400px;
+    overflow: hidden;
     margin: 0 20px 0 0;
+    text-align: left;
+}
+.notas h3{
+    padding: 0 10px 0 0px;
+    font-size: 24px;
+    color: #676668;
+    font-family: 'avenir-light', sans-serif;
+    text-align: left;
+    text-transform: none;
+    white-space: nowrap;
+    margin-bottom: 0;
+    margin-top: 0;
+
+}
+.notas h4{
+    padding: 0 10px 0 0px;
+    color: #676668;
+    font-family: 'avenir-light', sans-serif;
+    text-align: left;
+    text-transform: none;
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-size: 17px;
+}
+.rev{
+    margin: 0 3px;
+}
+
+.boton{
+    background-color: transparent;
+    border: none;
+    color:green;
+    cursor: pointer;
+}
+.notas span{
+    font-size: 16px;
+    font-family: 'avenir-light';
+    color: #808080;
+}
+
+.noti{
+    align-items: center;
+    padding: 5px 15px;
+    height: 35px;
+    background: #fff;
+    border-bottom: 1px solid #e6e8eb;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: 0.3s linear background, 0.3s linear border-color;
 }
 .calendar{
+    align-items: center;
+    padding: 5px 15px;
+    height: 400px;
     width:600px;
     flex-grow: 2;
-    height:500px;
-    margin: 0 0 0 10px
+    margin: 0 0 0 10px;
+    background: #fff;
+    border-bottom: 1px solid #e6e8eb;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: 0.3s linear background, 0.3s linear border-color;
+}
+.fl{
+    display: flex;
+    justify-content: space-around;
+    color:#bababa;
+}
+.noti h4{
+    margin: 0;
+}
+.noti span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.noti p{
+    color:#bababa;
+}
+.proyectos, .tareas{
+    width:400px;
+    flex-grow: 1;
+    border-bottom: 1px solid #eee;
+    background: #ffffff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 8px 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin: 10px;
+    min-height: 200px;
+}
+.proyectos h4{
+    color:#40bca5;
+    margin: 0;
+    margin-left: 5px;
+}
+.tareas h4{
+    color:#63a2f1;
+    margin: 0;
+    margin-left: 5px;
+
 }

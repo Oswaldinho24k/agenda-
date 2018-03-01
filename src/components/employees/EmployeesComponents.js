@@ -24,12 +24,12 @@ const EmployeesComponents = ({userAll,openDelete,openEdit})=>{
               enableSelectAll={true}
                >
                <TableRow>
-                 <TableHeaderColumn>User</TableHeaderColumn>
+                 <TableHeaderColumn>Nombre</TableHeaderColumn>
                  <TableHeaderColumn>Email</TableHeaderColumn>
                  <TableHeaderColumn>Puesto</TableHeaderColumn>
-                 <TableHeaderColumn> </TableHeaderColumn>
-                 <TableHeaderColumn className="column-Edit"> </TableHeaderColumn>
-                 <TableHeaderColumn className="column-Delete"></TableHeaderColumn>
+                 <TableHeaderColumn>Detalle </TableHeaderColumn>
+                 <TableHeaderColumn className="column-Edit">Editar</TableHeaderColumn>
+                 <TableHeaderColumn className="column-Delete">Eliminar</TableHeaderColumn>
                </TableRow>
              </TableHeader>
              <TableBody >

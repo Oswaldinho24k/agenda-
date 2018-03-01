@@ -15,22 +15,24 @@ const NewMeetingComponents =({cancel,onChange,onSubmit,onChangeDate})=>{
             name='name'
             onChange={onChange}
             required
-            floatingLabelText="Nombre de la Reunion"
+            floatingLabelText="Nombre de la Reunión"
           />
           <DatePicker
             name='meeting_date'
             onChange={onChangeDate}
             required
-            floatingLabelText="Fecha de la Reunion"/>
+            floatingLabelText="Fecha de la Reunión"/>
              <div className="btnMod">
                <FlatButton
                  label="Cancelar"
-                 primary={true}
+                 primary={false}
+                 style={{color:"rgb(244, 134, 135)"}}
                  onClick={cancel}
                />
                <FlatButton
                  label="Aceptar"
-                 primary={true}
+                 primary={false}
+                 style={{color:"rgb(244, 134, 135)"}}
                  type='submit'
                />
              </div>

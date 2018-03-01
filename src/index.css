@@ -2,6 +2,8 @@
 @import './components/tasks/tasks.css';
 @import './components/nav/Nav.css';
 @import './components/register/register.css';
+@import './components/calendar/Calendar.css';
+
 body {
   margin: 0;
   padding: 0;

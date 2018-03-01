@@ -8,11 +8,13 @@ import MeetingPage from '../meetings/MeetingPage';
 import TableMeetingContainer from '../tablemeeting/TableMeetingContainer'
 import ProjectContainer from '../project/ProjectContainer';
 import ProjectsDetailPage from '../projectdetail/ProjectsDetailPage'
+import DashboardContainer from '../dash/DashboardContainer';
 
 const Pages = ({props}) => (
     <Switch>
         <Route exact path="/agenda" component={PrincipalComponents}/>
         <Route path="/agenda/tasks" component={TasksContainer}/>
+            <Route path="/agenda/dashboard" component={DashboardContainer} />
         <Route path="/agenda/project" component={ProjectContainer}/>
         <Route path="/agenda/meeting/:id" component={MeetingPage}/>
         <Route path="/agenda/meeting" component={TableMeetingContainer}/>

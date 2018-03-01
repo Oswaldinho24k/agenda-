@@ -25,6 +25,18 @@ const RegisterComponents =({onChange,onSubmit,cancel})=>{
                 type="email"
               />
              <div className="btnMod">
+<<<<<<< HEAD
+               <FlatButton
+                 label="Cancelar"
+                 primary={true}
+                 onClick={cancel}
+               />
+               <FlatButton
+                 label="Crear"
+                 primary={true}
+                 type='submit'
+               />
+=======
                  <FlatButton
                    label="Cancel"
                    primary={true}
@@ -35,6 +47,7 @@ const RegisterComponents =({onChange,onSubmit,cancel})=>{
                    primary={true}
                    type='submit'
                  />
+>>>>>>> 95129fa8f956511c1ca162a0243fe6d52a385451
              </div>
          </form>
   );

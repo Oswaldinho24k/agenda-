@@ -6,11 +6,11 @@ import * as meetingActions from '../../redux/actions/meetingActions';
 import * as tasksActions from '../../redux/actions/tasksActions';
 import * as userActions from '../../redux/actions/userActions';
 import * as fileActions from '../../redux/actions/fileActions';
-import * as immediateActions from '../../redux/actions/immediateActions';
+import * as orderActions from '../../redux/actions/orderActions';
 import Loader from '../common/Loading';
 import AddParticipants from './AddParticipants';
 import TabsComponents from './TabsComponents';
-import Accordion from './Accordion'
+import Accordion from './Accordion';
 import './meetings.css';
 
 class MeetingsPage extends Component{
@@ -157,9 +157,9 @@ class MeetingsPage extends Component{
 ////////////////////////////////////////////
     render(){
 
-          let {employees, meeting,fetched,tasks,user,files,immediate} = this.props;
+          let {employees, meeting,fetched,tasks,user,files,order,id} = this.props;
           if(!fetched)return<Loader/>
-          console.log(immediate)
+          console.log(order)
 
         return(
                 <div>
@@ -167,16 +167,19 @@ class MeetingsPage extends Component{
                     open={this.state.openParticipant}
                     employessListAdd={this.state.emploList}
                     employees={employees}
+
                     addEmployes={this.addEmployes}
                     addParticipants={this.addParticipants}
                     openParticipant={this.openParticipant}
                      />
+
                   <div className="meeting_box">
                     <div className="meetings-container">
                           <Accordion
                             employees={employees}
                             meeting={meeting}
-                            actions={immediate}
+                            order={order}
+                            id={id}
                             openListAdd={this.openParticipant}
                             isStaff={this.props.user.is_staff}
                             />
@@ -217,6 +220,9 @@ function mapStateToProps(state, ownProps) {
   let files = state.files.list.filter(c=>{
     return id == c.meeting.id;
   })
+  let order = state.order.list.filter(d=>{
+    return id == d.meeting.id
+  })
   meeting=meeting[0]
 
     return {
@@ -225,7 +231,8 @@ function mapStateToProps(state, ownProps) {
       tasks,
       files,
       meeting,
-      immediate: state.immediate.list,
+      order,
+      id,
       fetched:  meeting!==undefined && tasks!==undefined,
     }
 }
@@ -237,7 +244,7 @@ function mapDispatchToProps(dispatch) {
         meetingActions:bindActionCreators(meetingActions,dispatch),
         tasksActions:bindActionCreators(tasksActions,dispatch),
         fileActions:bindActionCreators(fileActions,dispatch),
-        immediateActions:bindActionCreators(immediateActions,dispatch),
+        orderActions:bindActionCreators(orderActions,dispatch),
     }
 }
 

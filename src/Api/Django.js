@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-let debug = false;
+let debug = true;
 
 let urlLogin="http://localhost:8000/rest-auth/login/"
 let urlRegister="http://localhost:8000/users/register/"
@@ -530,7 +530,7 @@ getAllUser:()=>{
     });
   },
   //new Action ImmediateActions
-  newAction:(immediateA)=>{
+  newAction:(order)=>{
 
       return new Promise(function (resolve, reject) {
           const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
@@ -542,7 +542,7 @@ getAllUser:()=>{
                   'Authorization': 'Token ' + userToken
               }
           });
-          instance.post('',immediateA)
+          instance.post('',order)
               .then(function(response) {
                   resolve(response.data);
               })
@@ -555,7 +555,7 @@ getAllUser:()=>{
       });
   },
   //Delete Action
-  deleteAction:(actionId)=>{
+  deleteAction:(orderId)=>{
 
       return new Promise(function (resolve, reject) {
           const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
@@ -567,7 +567,32 @@ getAllUser:()=>{
                   'Authorization': 'Token ' + userToken
               }
           });
-          instance.delete(actionId+'/')
+          instance.delete(orderId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //edit Action
+  editAction:(order)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlAction,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(order.id+'/',order)
               .then(function (response) {
                   resolve(response.data);
               })

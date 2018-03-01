@@ -5,7 +5,7 @@ import {getAllUser} from './userAllActions'
 import {getMeeting} from './meetingActions'
 import {getTasks} from './tasksActions';
 import {getFile} from './fileActions';
-import {getAction} from './immediateActions';
+import {getAction} from './orderActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){

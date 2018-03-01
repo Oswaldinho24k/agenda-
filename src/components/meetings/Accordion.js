@@ -5,7 +5,12 @@ import MeetingsListUser from './MeetingsListUser';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import NoteMeeting from './NoteMeeting'
-import ImmediateActions from './ImmediateActions'
+import OrderOfDay from './OrderOfDay'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as orderActions from '../../redux/actions/orderActions';
+import NewOrderOfDay from './NewOrderOfDay'
+import NewNote from './NewNote'
 
 /*momentanea*/
 import Menu from 'material-ui/Menu';
@@ -18,6 +23,9 @@ class Acordion extends React.Component{
           expandable1:true,
           expandable2:false,
           expandable3:false,
+          order:{},
+          editOrder:{},
+          newOrder:false
       };
   }
 
@@ -36,22 +44,52 @@ class Acordion extends React.Component{
     expandable3 =!expandable3;
     this.setState({expandable3,expandable2:false,expandable1:false})
   }
+  ////Ordern del Dia
+  openOrder=()=>{
+    let {newOrder}=this.state
+    newOrder =! newOrder
+    this.setState({newOrder})
+  }
+  changeDone =(id,status)=>{
+       let {editOrder} = this.state;
+       editOrder['id']=id
+       editOrder['status']= !status
+      this.props.orderActions.editAction(editOrder);
+      console.log(editOrder)
+  }
+  onSubmitNewOrder =(e)=>{
+    e.preventDefault();
+    let newOrder= this.state.order;
+    newOrder['meeting']=parseInt(this.props.id)
+    this.props.orderActions.newAction(newOrder);
+    this.setState({newOrder:false})
+    console.log(newOrder)
+  }
+  handleChangeOrder = (e) => {
+      let order = this.state.order;
+      order[e.target.name] = e.target.value;
+      this.setState({order});
+      console.log(order)
+  };
+
 
 
   render(){
     return(
       <div style={{width:'25%',margin:'0px auto'}}>
+        <NewOrderOfDay open={this.state.newOrder} close={this.openOrder} onChange={this.handleChangeOrder} onSubmit={this.onSubmitNewOrder}/>
+      
         <Card style={{marginBottom:'5px'}}  expanded={this.state.expandable1}  onExpandChange={this.expandable1}>
           <CardHeader
-
             title="ORDEN DEL DIA"
             actAsExpander={true}
             showExpandableButton={true}
             titleStyle={{color:'white'}}
-            style={{backgroundColor:'orange',textAlign:'start'}}
+            style={{backgroundColor:"#63a2f1",textAlign:'start'}}
           />
           <CardText expandable={true} >
-            <ImmediateActions actions={this.props.actions}/>
+          {this.props.order.length <= 0 ? <RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/> :
+           <OrderOfDay order={this.props.order} changeDone={this.changeDone} open={this.openOrder}/>}
           </CardText>
         </Card>
         <Card style={{marginTop:'5px',marginBottom:'5px'}} expanded={this.state.expandable2} onExpandChange={this.expandable2}>
@@ -60,7 +98,7 @@ class Acordion extends React.Component{
             actAsExpander={true}
             showExpandableButton={true}
             titleStyle={{color:'white'}}
-            style={{backgroundColor:'orange',textAlign:'start',color:'white'}}
+            style={{backgroundColor:"#63a2f1",textAlign:'start',color:'white'}}
           />
           <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
             <RaisedButton
@@ -77,7 +115,7 @@ class Acordion extends React.Component{
             showExpandableButton={true}
             titleStyle={{textAlign:'start'}}
             titleStyle={{color:'white'}}
-            style={{backgroundColor:'orange',textAlign:'start',}}
+            style={{backgroundColor:"#63a2f1",textAlign:'start',}}
           />
         <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
             <MeetingsListUser
@@ -98,4 +136,19 @@ const style = {
   }
 };
 
+
+function mapStateToProps(state, ownProps) {
+
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        orderActions:bindActionCreators(orderActions,dispatch),
+    }
+}
+
+Acordion = connect(mapStateToProps, mapDispatchToProps)(Acordion);
 export default Acordion;

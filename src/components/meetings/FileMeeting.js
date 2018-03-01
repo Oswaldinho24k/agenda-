@@ -28,7 +28,7 @@ const FileMeeting = ({files,isStaff,onDeleteFile}) => (
             <TableRow>
               <TableHeaderColumn>Nombre</TableHeaderColumn>
               <TableHeaderColumn className="column-LinkFile">Link</TableHeaderColumn>
-              <TableHeaderColumn className="column-DeleteFile"></TableHeaderColumn>
+              <TableHeaderColumn className="column-DeleteFile">Eliminar</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
@@ -40,7 +40,7 @@ const FileMeeting = ({files,isStaff,onDeleteFile}) => (
               </TableRowColumn>
               {isStaff ?<TableRowColumn className="column-DeleteFile">
                 <IconButton onClick={()=>onDeleteFile(row.id)}>
-                  <Delete />
+                  <Delete color="#c7c7c7" />
                 </IconButton>
               </TableRowColumn>:null}
             </TableRow>)}

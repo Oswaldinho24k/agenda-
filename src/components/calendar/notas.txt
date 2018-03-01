@@ -1,0 +1,34 @@
+<div id="navigator">
+                    <header id="head">AGENDA</header>
+                    <RaisedButton onClick={(function () {
+                        $('#calendar').fullCalendar('changeView', 'agendaDay');
+                    })} label="Ant" style={{margin: "15px"}} backgroundColor="#425566"/>
+                    <RaisedButton onClick={(function () {
+                        $('#calendar').fullCalendar('changeView', 'agendaDay');
+                    })} label="Ant"/>
+                    <RaisedButton onClick={(function () {
+                        $('#calendar').fullCalendar('changeView', 'agendaDay');
+                    })} label="Ant"/>
+                    <RaisedButton onClick={(function () {
+                        $('#calendar').fullCalendar('changeView', 'agendaDay');
+                    })} label="Ant"/>
+                </div>
+
+<div id="navigator">
+                    <header id="head">AGENDA</header>
+                    <List>
+                        <ListItem primaryText="Día" leftIcon={<ContentInbox color="#FFFFFF"/>} style={style}
+                                  onClick={(function () {
+                                      $('#calendar').fullCalendar('changeView', 'agendaDay');
+                                  })}/>
+                        <ListItem primaryText="Semana" leftIcon={<ContentInbox color="#FFFFFF"/>} style={style}
+                                  onClick={(function () {
+                                      $('#calendar').fullCalendar('changeView', 'agendaWeek');
+                                  })}/>
+                        <ListItem primaryText="Mes" leftIcon={<ContentInbox color="#FFFFFF"/>} style={style}
+                                  onClick={(function () {
+                                      $('#calendar').fullCalendar('changeView', 'month');
+                                  })}/>
+
+                    </List>
+                </div>

@@ -11,13 +11,13 @@ import NewMeetingComponents from './NewMeetingComponents';
   render() {
     return (
           <Dialog
-            title="New Meeting"
+            title="Nueva Reunión"
             modal={false}
             open={this.props.open}
             contentStyle={modStyle}
             onRequestClose={this.props.openClose}
           >
-          You want to register a new meeting?
+              ¿Quieres programar una reunión?
             <NewMeetingComponents
               onChange={this.props.handleChange}
               onChangeDate={this.props.handleChangeDate}

@@ -5,7 +5,8 @@ import {getAllUser} from './userAllActions'
 import {getMeeting} from './meetingActions'
 import {getTasks} from './tasksActions';
 import {getFile} from './fileActions';
-import {getAction} from './orderActions';
+import {getOrder} from './orderActions';
+import {getNotes} from './notesActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -77,6 +78,7 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getMeeting());
       dispatch(getTasks());
       dispatch(getFile());
-      dispatch(getAction());
+      dispatch(getOrder());
+      dispatch(getNotes());
     }
 };

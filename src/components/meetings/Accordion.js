@@ -25,7 +25,8 @@ class Acordion extends React.Component{
           expandable3:false,
           order:{},
           editOrder:{},
-          newOrder:false
+          newOrder:false,
+          newNotes:false,
       };
   }
 
@@ -54,31 +55,24 @@ class Acordion extends React.Component{
        let {editOrder} = this.state;
        editOrder['id']=id
        editOrder['status']= !status
-      this.props.orderActions.editAction(editOrder);
+      this.props.orderActions.editOrder(editOrder);
       console.log(editOrder)
   }
-  onSubmitNewOrder =(e)=>{
-    e.preventDefault();
-    let newOrder= this.state.order;
-    newOrder['meeting']=parseInt(this.props.id)
-    this.props.orderActions.newAction(newOrder);
-    this.setState({newOrder:false})
-    console.log(newOrder)
-  }
-  handleChangeOrder = (e) => {
-      let order = this.state.order;
-      order[e.target.name] = e.target.value;
-      this.setState({order});
-      console.log(order)
-  };
+  //Note
 
+  openNote=()=>{
+     let {newNotes} = this.state
+    newNotes =! newNotes
+    this.setState({newNotes})
+  }
+//new note
 
 
   render(){
     return(
       <div style={{width:'25%',margin:'0px auto'}}>
-        <NewOrderOfDay open={this.state.newOrder} close={this.openOrder} onChange={this.handleChangeOrder} onSubmit={this.onSubmitNewOrder}/>
-      
+        <NewOrderOfDay open={this.state.newOrder} close={this.openOrder} id={this.props.id}/>
+        <NewNote open={this.state.newNotes} close={this.openNote} employees={this.props.employees} id={this.props.id}/>
         <Card style={{marginBottom:'5px'}}  expanded={this.state.expandable1}  onExpandChange={this.expandable1}>
           <CardHeader
             title="ORDEN DEL DIA"
@@ -89,7 +83,7 @@ class Acordion extends React.Component{
           />
           <CardText expandable={true} >
           {this.props.order.length <= 0 ? <RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/> :
-           <OrderOfDay order={this.props.order} changeDone={this.changeDone} open={this.openOrder}/>}
+           <OrderOfDay order={this.props.order} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff}/>}
           </CardText>
         </Card>
         <Card style={{marginTop:'5px',marginBottom:'5px'}} expanded={this.state.expandable2} onExpandChange={this.expandable2}>
@@ -101,11 +95,8 @@ class Acordion extends React.Component{
             style={{backgroundColor:"#63a2f1",textAlign:'start',color:'white'}}
           />
           <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
-            <RaisedButton
-              primary={true}
-              label="Agregar nueva nota"
-              style={style.btnNew}
-              />
+            {this.props.notes.length<= 0 ?<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/> :
+            <NoteMeeting noteMe={this.props.notes} open={this.openNote} isStaff={this.props.isStaff}/>}
           </CardText>
         </Card>
         <Card style={{marginTop:'5px',marginBottom:'5px'}} containerStyle={{paddingBottom:'none'}} expanded={this.state.expandable3} onExpandChange={this.expandable3}>

@@ -16,6 +16,8 @@ let urlMeeting='http://localhost:8000/meeting/'
 let urlUsersAll='http://127.0.0.1:8000/usersall/'
 let urlFile='http://localhost:8000/file/'
 let urlAction='http://localhost:8000/action/'
+let urlNotes='http://localhost:8000/notes/'
+let urlOrder='http://localhost:8000/order/'
 
 if(!debug){
     urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
@@ -30,6 +32,8 @@ if(!debug){
     urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
     urlFile='https://backend-arnulfo.herokuapp.com/file/'
     urlAction='https://backend-arnulfo.herokuapp.com/action/'
+    urlNotes='https://backend-arnulfo.herokuapp.com/notes/'
+    urlOrder='https://backend-arnulfo.herokuapp.com/order/'
 }
 
 const api={
@@ -506,13 +510,13 @@ getAllUser:()=>{
 
       });
   },
-  ///Actions
+  ///OrderOfDay
 
-  getAction:()=>{
+  getOrder:()=>{
     const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
     return new Promise(function (resolve, reject) {
         const instance = axios.create({
-            baseURL: urlAction,
+            baseURL: urlOrder,
             // timeout: 2000,
             headers: {
                 'Content-Type': 'application/json',
@@ -529,13 +533,13 @@ getAllUser:()=>{
             });
     });
   },
-  //new Action ImmediateActions
-  newAction:(order)=>{
+  //new OrderOfDay
+  newOrder:(order)=>{
 
       return new Promise(function (resolve, reject) {
           const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
           const instance = axios.create({
-              baseURL: urlAction,
+              baseURL: urlOrder,
               // timeout: 2000,
               headers: {
                   'Content-Type': 'application/json',
@@ -554,13 +558,13 @@ getAllUser:()=>{
 
       });
   },
-  //Delete Action
-  deleteAction:(orderId)=>{
+  //Delete OrderOfDay
+  deleteOrder:(orderId)=>{
 
       return new Promise(function (resolve, reject) {
           const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
           const instance = axios.create({
-              baseURL: urlAction,
+              baseURL: urlOrder,
               // timeout: 2000,
               headers: {
                   'Content-Type': 'application/json',
@@ -579,13 +583,13 @@ getAllUser:()=>{
 
       });
   },
-  //edit Action
-  editAction:(order)=>{
+  //edit Order
+  editOrder:(order)=>{
 
       return new Promise(function (resolve, reject) {
           const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
           const instance = axios.create({
-              baseURL: urlAction,
+              baseURL: urlOrder,
               // timeout: 2000,
               headers: {
                   'Content-Type': 'application/json',
@@ -593,6 +597,104 @@ getAllUser:()=>{
               }
           });
           instance.patch(order.id+'/',order)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  ///Notes
+
+  getNotes:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlNotes,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new Note
+  newNotes:(notes)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',notes)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Note
+  deleteNotes:(notesId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(notesId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //edit Note
+  editNotes:(notes)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(notes.id+'/',notes)
               .then(function (response) {
                   resolve(response.data);
               })

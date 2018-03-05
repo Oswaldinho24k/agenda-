@@ -7,6 +7,7 @@ import * as tasksActions from '../../redux/actions/tasksActions';
 import * as userActions from '../../redux/actions/userActions';
 import * as fileActions from '../../redux/actions/fileActions';
 import * as orderActions from '../../redux/actions/orderActions';
+import * as notesActions from '../../redux/actions/notesActions';
 import Loader from '../common/Loading';
 import AddParticipants from './AddParticipants';
 import TabsComponents from './TabsComponents';
@@ -157,9 +158,9 @@ class MeetingsPage extends Component{
 ////////////////////////////////////////////
     render(){
 
-          let {employees, meeting,fetched,tasks,user,files,order,id} = this.props;
+          let {employees, meeting,fetched,tasks,user,files,order,id,notes} = this.props;
           if(!fetched)return<Loader/>
-          console.log(order)
+          console.log(notes)
 
         return(
                 <div>
@@ -167,18 +168,17 @@ class MeetingsPage extends Component{
                     open={this.state.openParticipant}
                     employessListAdd={this.state.emploList}
                     employees={employees}
-
                     addEmployes={this.addEmployes}
                     addParticipants={this.addParticipants}
                     openParticipant={this.openParticipant}
                      />
-
                   <div className="meeting_box">
                     <div className="meetings-container">
                           <Accordion
                             employees={employees}
                             meeting={meeting}
                             order={order}
+                            notes={notes}
                             id={id}
                             openListAdd={this.openParticipant}
                             isStaff={this.props.user.is_staff}
@@ -223,6 +223,9 @@ function mapStateToProps(state, ownProps) {
   let order = state.order.list.filter(d=>{
     return id == d.meeting.id
   })
+  let notes = state.notes.list.filter(e=>{
+    return id == e.meeting.id
+  })
   meeting=meeting[0]
 
     return {
@@ -233,7 +236,8 @@ function mapStateToProps(state, ownProps) {
       meeting,
       order,
       id,
-      fetched:  meeting!==undefined && tasks!==undefined,
+      notes,
+      fetched:  meeting!==undefined && tasks!==undefined && notes!==undefined,
     }
 }
 
@@ -245,6 +249,7 @@ function mapDispatchToProps(dispatch) {
         tasksActions:bindActionCreators(tasksActions,dispatch),
         fileActions:bindActionCreators(fileActions,dispatch),
         orderActions:bindActionCreators(orderActions,dispatch),
+        notesActions:bindActionCreators(notesActions,dispatch),
     }
 }
 

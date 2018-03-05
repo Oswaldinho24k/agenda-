@@ -27,7 +27,7 @@ class OrderOfDay extends React.Component {
         <Stepper linear={false} activeStep={"5"} orientation="vertical" style={{overflow:'auto',maxHeight:'235px'}}>
             {this.props.order.map ((data , i)=>  <Step key={i} completed={data.status} active={false} style={{boxSizing: 'border-box'}}>
               <StepButton style={{height:'0px'}} onClick={()=>this.props.changeDone(data.id,data.status)}>
-                {data.name_action}
+                {data.name_order}
               </StepButton>
             </Step>)}
           </Stepper>

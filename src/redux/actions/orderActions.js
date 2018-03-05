@@ -10,8 +10,8 @@ export function getOrderSuccess(order){
     }
 }
 
-export const getAction=()=>(dispatch, getState)=>{
-    return api.getAction()
+export const getOrder=()=>(dispatch, getState)=>{
+    return api.getOrder()
         .then(r=>{
             dispatch(getOrderSuccess(r))
             console.log(r)
@@ -30,8 +30,8 @@ export function newOrderSuccess(order){
   }
 }
 
-export const newAction=(order)=>(dispatch,getState)=>{
-  return  api.newAction(order)
+export const newOrder=(order)=>(dispatch,getState)=>{
+  return  api.newOrder(order)
     .then(r=>{
       console.log(r);
       let meeting = getState().meeting.list.find(a=>{
@@ -55,8 +55,8 @@ export function deleteOrderSuccess(orderId){
     }
 }
 
-export const deleteAction=(orderId)=>(dispatch, getState)=>{
-    return api.deleteTask(orderId)
+export const deleteOrder=(orderId)=>(dispatch, getState)=>{
+    return api.deleteOrder(orderId)
         .then(r=>{
             dispatch(deleteOrderSuccess(orderId))
         }).catch(e=>{
@@ -73,9 +73,9 @@ export function editOrderSuccess(order){
     }
 }
 
-export const editAction=(order)=>(dispatch, getState)=>{
+export const editOrder=(order)=>(dispatch, getState)=>{
 
-    return api.editAction(order)
+    return api.editOrder(order)
         .then(r=>{
 
             let meeting = getState().meeting.list.find(a=>{

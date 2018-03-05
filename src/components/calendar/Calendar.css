@@ -36,13 +36,14 @@ h4{
 
 #external-events {
     position: absolute;
-    width: 27.7em;
+    width: 27.5em;
     padding: 0 10px;
     background: #F5F7FA;
     text-align: center;
     height: 51.7em;
     display: flex;
     flex-direction: column;
+    font-family: 'AvenirLight', sans-serif;
 }
 
 #external-events h4 {
@@ -90,7 +91,9 @@ h4{
 
  .fc{
      font-family: "AvenirLight", sans-serif;
+     text-transform: capitalize;
  }
+
 
 .fc-state-highlight {
     opacity: 0;
@@ -110,11 +113,14 @@ h4{
 /* Bolds the name of the event and inherits the font size */
 .fc-event {
     font-size: inherit !important;
-    font-weight: bold !important;
+    font-family: 'AvenirLight', sans-serif;
+
+
 }
 
 /* Remove the header border from Schedule */
 .fc td, .fc th {
+    border-color: rgba(201, 201, 201, 0.18);;
     border-width: 1px !important;
     padding: 0 !important;
     vertical-align: top !important;
@@ -125,6 +131,8 @@ h4{
     z-index: 1 !important;
     background: inherit !important;
     opacity: .25 !important;
+    background-color: #222222;
+
 }
 
 /* Normal font weight for the time in each event */

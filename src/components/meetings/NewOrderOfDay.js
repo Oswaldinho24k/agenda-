@@ -52,7 +52,7 @@ import * as orderActions from '../../redux/actions/orderActions';
             onSubmit={this.onSubmit}
             >
               <TextField
-                name='name_action'
+                name='name_order'
                 required
                 floatingLabelText="Orden del dia"
                 onChange={this.onChange}

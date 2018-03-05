@@ -31,6 +31,7 @@ class Calendar extends React.Component {
             header: {
                 center: 'agendaWeek, month, agendaDay'
             },
+            allDaySlot: false,
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             drop: function () {

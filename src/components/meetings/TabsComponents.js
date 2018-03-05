@@ -7,6 +7,7 @@ import NewTask from './NewTask';
 import FileMeeting from './FileMeeting'
 import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
+import TextField from 'material-ui/TextField';
 
 const styles = {
   headline: {
@@ -43,6 +44,14 @@ const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,chan
                       style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
                   >
                     <div className="muro">
+                      <TextField
+                        hintText="MultiLine with rows: 2 and rowsMax: 4"
+                        floatingLabelText="Frequency"
+                        multiLine={true}
+                        rows={2}
+                        rowsMax={4}
+                        />
+
                       <div className="Btns">
                         <RaisedButton
                           primary={true}

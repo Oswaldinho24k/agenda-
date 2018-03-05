@@ -51,7 +51,7 @@ export default class NewTask extends React.Component {
               <TableHeaderColumn>Fecha de Inicio</TableHeaderColumn>
               <TableHeaderColumn>Fecha de Fin</TableHeaderColumn>
               <TableHeaderColumn>Prioridad</TableHeaderColumn>
-              {this.props.isStaff?<TableHeaderColumn></TableHeaderColumn>:null}
+              {this.props.isStaff?<TableHeaderColumn>Eliminar</TableHeaderColumn>:null}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
@@ -118,7 +118,7 @@ export default class NewTask extends React.Component {
               </TableRowColumn>
               {this.props.isStaff ?<TableRowColumn>
                 <IconButton onClick={()=>this.props.onDelete(row.id)}>
-                  <Delete />
+                  <Delete color="#c7c7c7" />
                 </IconButton>
               </TableRowColumn>:null}
             </TableRow>)}

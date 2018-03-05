@@ -2,11 +2,12 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
+
+
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import AddParticipants from './AddParticipants';
+
+
 import RaisedButton from 'material-ui/RaisedButton';
 
 

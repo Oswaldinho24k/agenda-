@@ -9,6 +9,7 @@ import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 
+
 export default class NewProject extends React.Component {
 
 
@@ -22,7 +23,6 @@ export default class NewProject extends React.Component {
           open={this.props.open}
           contentStyle={{width:'26%'}}
         >
-
           <List style={{ heigt:'300px',maxHeight:'450px'}}>
                   <ChipList
                     employessListAdd={this.props.employessListAdd}

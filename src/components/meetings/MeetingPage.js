@@ -154,15 +154,15 @@ function mapStateToProps(state, ownProps) {
   let meeting= state.meeting.list.filter(a=>{
       return id == a.id;
   });
-  let tasks = state.tasks.list.filter(b=>{
-    return id == b.meeting.id;
-  })
+  //let tasks = state.tasks.list.filter(b=>{
+      // return id == b.meeting.id;
+  //})
   meeting=meeting[0]
-  tasks=tasks
+  //tasks=tasks
     return {
       employees: state.employees.list,
       user: state.user.object,
-      tasks,
+      tasks: state.tasks.list,
       meeting,
       fetched:  meeting!==undefined && state.meeting.list!==undefined,
     }

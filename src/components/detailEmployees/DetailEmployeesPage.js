@@ -32,17 +32,17 @@ function mapStateToProps(state, ownProps) {
         return id == a.user.id;
     });
 
-    let tasks = state.tasks.list.filter(b=>{
-      return id == b.user.id;
-    })
-    console.log(tasks)
+    //let tasks = state.tasks.list.filter(b=>{
+      //return id == b.user.id;
+   // })
+    //console.log(tasks)
 
     employee = employee[0];
-    tasks=tasks;
+    //tasks=tasks;
 
     return {
         employee,
-        tasks,
+        tasks:state.tasks.list,
         fetched: employee!==undefined && state.employees.list!==undefined,
     }
 }

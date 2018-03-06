@@ -3,6 +3,7 @@ import {Route, Switch,Redirect} from 'react-router-dom';
 import LoginContainer from './components/login/LoginContainer';
 import PrincipalContainer from './components/principal/PrincipalContainer';
 
+
 const Routes = () => (
     <Switch>
         <Route exact path="/login" component={LoginContainer}/>

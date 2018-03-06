@@ -3,7 +3,7 @@ import LoginComponent from "./LoginComponent";
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as userActions from '../../redux/actions/userActions'
-
+import ToastrContainer, {Toast,ToastDanger} from 'react-toastr-basic'
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -36,18 +36,23 @@ class LoginContainer extends Component {
       e.preventDefault();
       this.props.userActions.logIn(this.state.usuario)
       .then(r=>{
-        console.log('welcome')
+        Toast('welcome')
         this.props.history.push('/agenda')
         //window.location.reload();
 
       }).catch(e=>{
         console.log(e)
+
+        for (let i in e.response.data){
+          ToastDanger(e.response.data[i])
+        }
       })
     };
 
     render() {
         return (
             <div id="todo" >
+              <ToastrContainer />
                 <LoginComponent
                     onChange={this.handleChange}
                     onSubmit={this.logIn}

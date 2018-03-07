@@ -30,10 +30,8 @@ class Calendar extends React.Component {
                 center: 'agendaWeek, month, agendaDay'
             },
             displayEventTime: true,
-            minTime: '07:30:00',
-            maxTime: '22:00:00',
             handleWindowResize: true,
-            allDaySlot: false,
+            allDaySlot: true,
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             eventColor: '#ffcbcb',

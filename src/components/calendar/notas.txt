@@ -34,3 +34,8 @@
                 </div>
 
                 color: rgba(178,170,170,0.36);
+
+                <p>
+                                <input type='checkbox' id='drop-remove'/>
+                                <label for='drop-remove'>remove after drop</label>
+                            </p>

@@ -36,10 +36,7 @@ class Events extends React.Component {
                           style={{backgroundColor: "white", marginBottom: "1%"}}
                           leftAvatar={<Avatar icon={<CheckCircle hoverColor={greenA200}/>}/>}/>
             </List>
-            <p>
-                <input type='checkbox' id='drop-remove'/>
-                <label for='drop-remove'>remove after drop</label>
-            </p>
+
         </div>;
     }
 

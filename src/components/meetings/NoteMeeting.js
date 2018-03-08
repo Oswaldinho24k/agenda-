@@ -11,8 +11,7 @@ const NoteMeeting = ({noteMe,open,onDelete,isStaff}) => (
       {noteMe.map(data =>
       <Card key={data.id}>
         <CardHeader
-          title="Nota"
-          subtitle={data.autor.user.username}
+          title={data.autor.user.username}
           actAsExpander={true}
           avatar={data.autor.avatar}
           showExpandableButton={true}

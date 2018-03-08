@@ -88,7 +88,6 @@ class MeetingsPage extends Component{
      let newPerson= this.state.user;
      newPerson['id'] =parseInt(taskId)
      newPerson['user']=parseInt(userId)
-
     this.props.tasksActions.editTask(newPerson);
   }
   addPriority=(taskId,value)=>{
@@ -177,11 +176,12 @@ class MeetingsPage extends Component{
      console.log("Voy a eliminar",i)
      this.props.immediateActions.deleteAction(i);
     };
-    addPersonAction=(actionId, userId)=>{
-       let newAction= this.state;
+    addPersonAction=(actionId, Id)=>{
+       let {newAction}= this.state;
        newAction['id'] =parseInt(actionId)
-       newAction['user']=parseInt(userId)
+       newAction['user']=parseInt(Id)
        this.props.immediateActions.editAction(newAction);
+       console.log(newAction)
     }
     render(){
 

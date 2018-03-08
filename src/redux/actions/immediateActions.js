@@ -79,10 +79,10 @@ export const editAction=(immediateA)=>(dispatch, getState)=>{
     return api.editAction(immediateA)
         .then(r=>{
 
-            let meeting = getState().meeting.list.find(a=>{
-              return a.id=r.meeting
-            })
-            r["meeting"]=meeting
+            // let meeting = getState().meeting.list.find(a=>{
+            //   return a.id=r.meeting
+            // })
+            // r["meeting"]=meeting
             dispatch(editActionSuccess(r))
             dispatch(getAction())
             console.log(r);

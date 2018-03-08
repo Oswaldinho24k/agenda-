@@ -14,8 +14,11 @@ import RegisterComponents from './RegisterComponents';
               email: '',
               password:'Agenda182',
               password2:'Agenda182',
+              is_staff:null,
+              is_superuser:null,
           },
-          message:'Register Success!!!'
+          message:'Register Success!!!',
+          value:null,
       };
   }
 
@@ -35,11 +38,25 @@ import RegisterComponents from './RegisterComponents';
       this.props.openRegister()
       this.props.showToast(message)
   };
-
-
-
-
-
+  selectChange = (event, index, value) => {
+  let {usuario} = this.state;
+    if(value ===1){
+      usuario['is_staff']= false;
+      usuario['is_superuser']=false;
+      this.setState({value:value})
+      console.log(usuario)
+    }else if(value===2){
+      usuario['is_staff'] = true;
+      usuario['is_superuser']=false;
+      this.setState({value:value})
+      console.log(usuario)
+    }else if(value===3){
+      usuario['is_staff'] = true;
+      usuario['is_superuser']=true;
+      this.setState({value:value})
+      console.log(usuario)
+    }
+  };
 
   render() {
     return (
@@ -55,6 +72,8 @@ import RegisterComponents from './RegisterComponents';
               usuario={this.state.usuario}
               cancel={this.props.openRegister}
               onSubmit={this.onSubmit}
+              value={this.state.value}
+              selectChange={this.selectChange}
             />
           </Dialog>
     );

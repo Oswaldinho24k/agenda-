@@ -15,7 +15,7 @@ import IconButton from 'material-ui/IconButton';
             {others.children[0] /* checkbox passed down from Table-Body*/}
            <TableRowColumn>{data.username}</TableRowColumn>
            <TableRowColumn>{data.email}</TableRowColumn>
-           <TableRowColumn>{data.is_superuser ? "Admin":[(!data.is_staff ?"empleado":"ProductManager")]}</TableRowColumn>
+           <TableRowColumn>{data.is_superuser ? "Admin":[(!data.is_staff ?"Usuario":"Project-Manager")]}</TableRowColumn>
 
            <TableRowColumn><Link style={{color:'black',textDecoration:'none',fontWeight:'bold'}} to={`/agenda/employees/${data.id}`}>Detalle</Link></TableRowColumn>
            <TableRowColumn className="column-Edit">

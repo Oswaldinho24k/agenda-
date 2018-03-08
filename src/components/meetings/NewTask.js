@@ -114,7 +114,7 @@ export default class NewTask extends React.Component {
                   { this.state.menu.map(data =>
                     <MenuItem key={data.id}  value={data.id}  primaryText={data.value} onClick={()=>this.props.addPriority(row.id, data.value)} />
                   )}
-                </SelectField>:<p>{row.priority}</p>}
+                </SelectField>:<p>{row.priority === ""? 'N/A':row.priority}</p>}
               </TableRowColumn>
               {this.props.isStaff ?<TableRowColumn>
                 <IconButton onClick={()=>this.props.onDelete(row.id)}>

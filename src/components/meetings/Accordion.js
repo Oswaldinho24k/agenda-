@@ -89,7 +89,7 @@ onDeleteNote=(i)=>{
             style={{backgroundColor:"#63a2f1",textAlign:'start'}}
           />
         <CardText expandable={true} style={{padding:'none'}}>
-          {this.props.order.length <= 0 ? <RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/> :
+          {this.props.order.length <= 0 ? [(this.props.isStaff !== true ?<p>No hay ordenes del dia</p>:<RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/>)] :
            <OrderOfDay order={this.props.order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
           </CardText>
         </Card>
@@ -102,7 +102,7 @@ onDeleteNote=(i)=>{
             style={{backgroundColor:"#63a2f1",textAlign:'start',color:'white'}}
           />
           <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
-            {this.props.notes.length<= 0 ?<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/> :
+            {this.props.notes.length<= 0 ?[(this.props.isStaff !== true ?<p>No hay notas</p>:<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/>)] :
             <NoteMeeting noteMe={this.props.notes} open={this.openNote} isStaff={this.props.isStaff} onDelete={this.onDeleteNote}/>}
           </CardText>
         </Card>

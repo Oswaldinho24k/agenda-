@@ -72,7 +72,7 @@ class EmployeesContainer extends Component{
     if(value ===1){
       usuario['is_staff']= false;
       usuario['is_superuser']=false;
-      this.setState({uvalue:value})
+      this.setState({value:value})
       console.log(usuario)
     }else if(value===2){
       usuario['is_staff'] = true;

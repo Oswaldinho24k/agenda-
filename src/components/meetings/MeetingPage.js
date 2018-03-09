@@ -8,6 +8,7 @@ import * as userActions from '../../redux/actions/userActions';
 import * as fileActions from '../../redux/actions/fileActions';
 import * as orderActions from '../../redux/actions/orderActions';
 import * as notesActions from '../../redux/actions/notesActions';
+import * as immediateActions from '../../redux/actions/immediateActions';
 import Loader from '../common/Loading';
 import AddParticipants from './AddParticipants';
 import TabsComponents from './TabsComponents';
@@ -20,6 +21,7 @@ class MeetingsPage extends Component{
       this.state = {
           task: {},
           files:{},
+          newAction:{},
           emploList:[],
           employSelec:{},
           listAddEmp:true,
@@ -86,7 +88,6 @@ class MeetingsPage extends Component{
      let newPerson= this.state.user;
      newPerson['id'] =parseInt(taskId)
      newPerson['user']=parseInt(userId)
-
     this.props.tasksActions.editTask(newPerson);
   }
   addPriority=(taskId,value)=>{
@@ -156,11 +157,37 @@ class MeetingsPage extends Component{
   };
 
 ////////////////////////////////////////////
+//add new Action
+    onSubmitAction=(e)=>{
+        e.preventDefault();
+        let {newAction}= this.state;
+        newAction['meeting']=parseInt(this.props.match.params.id)
+        this.props.immediateActions.newAction(newAction);
+        console.log(newAction)
+        e.target.text.value="";
+    };
+    onChangeAction = (e) => {
+        let {newAction} = this.state;
+        newAction[e.target.name] = e.target.value;
+        this.setState({newAction});
+        console.log(newAction)
+    };
+    onDeleteAction=(i)=>{
+     console.log("Voy a eliminar",i)
+     this.props.immediateActions.deleteAction(i);
+    };
+    addPersonAction=(actionId, Id)=>{
+       let {newAction}= this.state;
+       newAction['id'] =parseInt(actionId)
+       newAction['user']=parseInt(Id)
+       this.props.immediateActions.editAction(newAction);
+       console.log(newAction)
+    }
     render(){
 
-          let {employees, meeting,fetched,tasks,user,files,order,id,notes} = this.props;
+          let {employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
           if(!fetched)return<Loader/>
-          console.log(notes)
+          console.log(immediate)
 
         return(
                 <div>
@@ -188,12 +215,16 @@ class MeetingsPage extends Component{
                             employees={employees}
                             tasks={tasks}
                             files={files}
+                            immediate={immediate}
                             openNewProject={this.openNewProject}
                             onSubmit={this.onSubmit}
                             onSubmitFile={this.onSubmitFile}
+                            onSubmitAction={this.onSubmitAction}
                             onChange={this.handleChange}
+                            onChangeAction={this.onChangeAction}
                             onDelete={this.onDelete}
                             addPerson={this.addPerson}
+                            addPersonAction={this.addPersonAction}
                             addPriority={this.addPriority}
                             changeDateStart={this.changeDateStart}
                             onDate={this.onDate}
@@ -201,6 +232,7 @@ class MeetingsPage extends Component{
                             uploadFile={this.uploadFile}
                             onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
+                            onDeleteAction={this.onDeleteAction}
                             />
                     </div>
                   </div>
@@ -237,6 +269,9 @@ function mapStateToProps(state, ownProps) {
   let notes = state.notes.list.filter(e=>{
     return id == e.meeting.id
   })
+  let immediate = state.immediate.list.filter(f=>{
+    return id == f.meeting.id
+  })
   meeting=meeting[0]
 
     return {
@@ -249,6 +284,7 @@ function mapStateToProps(state, ownProps) {
       order,
       id,
       notes,
+      immediate,
       fetched:  meeting!==undefined && tasks!==undefined && notes!==undefined,
     }
 }
@@ -262,6 +298,7 @@ function mapDispatchToProps(dispatch) {
         fileActions:bindActionCreators(fileActions,dispatch),
         orderActions:bindActionCreators(orderActions,dispatch),
         notesActions:bindActionCreators(notesActions,dispatch),
+        immediateActions:bindActionCreators(immediateActions,dispatch),
     }
 }
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 
-const RegisterComponents =({onChange,onSubmit,cancel})=>{
+const RegisterComponents =({onChange,onSubmit,cancel,value,selectChange})=>{
 
   return (
 
@@ -24,6 +26,16 @@ const RegisterComponents =({onChange,onSubmit,cancel})=>{
                 onChange={onChange}
                 type="email"
               />
+              <SelectField
+                floatingLabelText="Categoria"
+                value={value}
+                onChange={selectChange}
+                floatingLabelFixed={true}
+              >
+                <MenuItem value={1} primaryText="Usuario" />
+                <MenuItem value={2} primaryText="Project-Manager" />
+                <MenuItem value={3} primaryText="Administrador" />
+              </SelectField>
              <div className="btnMod">
                <FlatButton
                  label="Cancelar"

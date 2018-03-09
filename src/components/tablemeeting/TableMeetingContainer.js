@@ -6,6 +6,7 @@ import {bindActionCreators}from 'redux';
 import {connect} from 'react-redux';
 import * as meetingActions from '../../redux/actions/meetingActions';
 import * as userActions from '../../redux/actions/userActions';
+import * as profileActions from '../../redux/actions/profileActions';
 import NewMeetingContainer from './NewMeetingContainer';
 import Loader from '../common/Loading'
 import './tablemeeting.css'
@@ -79,10 +80,30 @@ class TableMeetingContainer extends Component{
 
 function mapStateToProps(state, ownProps) {
   let user =state.user.object;
-    let meeting= state.meeting.list
-  console.log(user.id)
+  let profile = state.profile.object
+  let meeting = state.meeting.list;
+  if(user.is_superuser!== true){
+    let userMeetings = meeting.filter(m=>{
+
+      let participant = m.participants.find(p=>{
+        return p.id == profile.id
+      })
+      if(participant!==undefined){
+        console.log(m)
+        return m
+      }
+
+    })
+    meeting = userMeetings
+  }else{
+    meeting=meeting
+  }
+
+
+  console.log(meeting)
     return {
       user,
+      profile,
        meeting,
        fetched:  meeting!==undefined && state.meeting.list!==undefined,
     }
@@ -92,7 +113,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch){
   return{
     meetingActions:bindActionCreators(meetingActions,dispatch),
-    userActions:bindActionCreators(userActions,dispatch)
+    userActions:bindActionCreators(userActions,dispatch),
+    profileActions:bindActionCreators(profileActions,dispatch)
   }
 }
 

@@ -30,7 +30,7 @@ import * as orderActions from '../../redux/actions/orderActions';
      let newOrder= this.state.order;
      newOrder['meeting']=parseInt(this.props.id)
      this.props.orderActions.newOrder(newOrder);
-     this.setState({newOrder:false})
+     this.props.close()
      console.log(newOrder)
    }
    onChange = (e) => {
@@ -40,6 +40,18 @@ import * as orderActions from '../../redux/actions/orderActions';
        console.log(order)
    };
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.props.close}
+      />,
+      <FlatButton
+        label="Aceptar"
+        primary={true}
+        onClick={this.onSubmit}
+      />
+    ];
     return (
           <Dialog
             title="Orden del Dia"
@@ -47,33 +59,14 @@ import * as orderActions from '../../redux/actions/orderActions';
             open={this.props.open}
             contentStyle={modStyle}
             onRequestClose={this.props.close}
+            actions={actions}
           >
-          <form
-            onSubmit={this.onSubmit}
-            >
               <TextField
-                name='name_action'
+                name='name_order'
                 required
                 floatingLabelText="Orden del dia"
                 onChange={this.onChange}
               />
-
-
-               <div>
-                   <FlatButton
-                     label="Cancelar"
-                     primary={false}
-                     style={{color:"rgb(244, 134, 135)"}}
-                     onClick={this.props.close}
-                   />
-                   <FlatButton
-                     label="Aceptar"
-                     primary={false}
-                     style={{color:"rgb(244, 134, 135)"}}
-                     type='submit'
-                   />
-               </div>
-           </form>
           </Dialog>
     );
   }

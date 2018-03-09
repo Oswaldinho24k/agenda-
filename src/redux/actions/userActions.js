@@ -7,6 +7,7 @@ import {getTasks} from './tasksActions';
 import {getFile} from './fileActions';
 import {getOrder} from './orderActions';
 import {getNotes} from './notesActions';
+import {getAction} from './immediateActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -25,7 +26,7 @@ export const logIn =(data)=>(dispatch,getState)=>{
       console.log(r)
       dispatch(checkIfUser());
     }).catch(e=>{
-      console.log(e)
+      throw e
     })
 };
 
@@ -80,5 +81,6 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getFile());
       dispatch(getOrder());
       dispatch(getNotes());
+      dispatch(getAction());
     }
 };

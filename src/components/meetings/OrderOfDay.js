@@ -2,44 +2,36 @@ import React from 'react';
 import {
   Step,
   Stepper,
-  StepLabel,
-  StepContent,
   StepButton
 } from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import Grade from 'material-ui/svg-icons/action/grade';
-import {red500} from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import Delete from 'material-ui/svg-icons/action/delete';
+import IconButton from 'material-ui/IconButton';
 
-class OrderOfDay extends React.Component {
-    state = {
-      stepIndex: null,
-      visited: [],
-    };
 
-  render() {
-    const {stepIndex, visited} = this.state;
-
-    return (
-      <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
-        <Stepper linear={false} activeStep={"5"} orientation="vertical" style={{overflow:'auto',maxHeight:'235px'}}>
-            {this.props.order.map ((data , i)=>  <Step key={i} completed={data.status} active={false} style={{boxSizing: 'border-box'}}>
-              <StepButton style={{height:'0px'}} onClick={()=>this.props.changeDone(data.id,data.status)}>
+const OrderOfDay = ({order,open,onDelete,changeDone,isStaff,disabled,active}) => (
+      <div style={{maxWidth: 390, maxHeight: 400, margin: 'auto'}}>
+        <Stepper linear={false} activeStep={"5"} orientation="vertical" style={{overflow:'auto',maxHeight:'235px',overflowX:'hidden'}}>
+            {order.map ((data , i)=>  <Step key={i} completed={data.status} active={false} style={{boxSizing: 'border-box',display:'flex', padding:'none'}}>
+              <StepButton style={{height:'0px',paddingRight:'none'}} onClick={()=>changeDone(data.id,data.status)}  disabled={!isStaff? disabled:active}>
                 {data.name_order}
               </StepButton>
-            </Step>)}
-          </Stepper>
-          <div style={style.btn}>
-            <FloatingActionButton mini={true} onClick={this.props.open}>
+              {isStaff?<IconButton tooltip="Eliminar orden" onClick={()=>onDelete(data.id)}>
+                <Delete color="#c7c7c7" />
+              </IconButton>:<p> ...</p>}
+            </Step>
+
+          )}
+        </Stepper>
+          {isStaff? <div style={style.btn}>
+            <FloatingActionButton mini={true} onClick={open}>
               <ContentAdd />
             </FloatingActionButton>
-          </div>
+          </div>:null}
       </div>
     );
-  }
-}
+
 const style = {
   btn:{
     bottom:'1px',

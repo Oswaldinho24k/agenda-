@@ -1,20 +1,16 @@
 import React from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import MeetingsListUser from './MeetingsListUser';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import NoteMeeting from './NoteMeeting'
 import OrderOfDay from './OrderOfDay'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as orderActions from '../../redux/actions/orderActions';
+import * as notesActions from '../../redux/actions/notesActions';
 import NewOrderOfDay from './NewOrderOfDay'
 import NewNote from './NewNote'
 
-/*momentanea*/
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
 
 class Acordion extends React.Component{
   constructor(props) {
@@ -27,6 +23,8 @@ class Acordion extends React.Component{
           editOrder:{},
           newOrder:false,
           newNotes:false,
+          disabled:true,
+          active:false
       };
   }
 
@@ -58,6 +56,11 @@ class Acordion extends React.Component{
       this.props.orderActions.editOrder(editOrder);
       console.log(editOrder)
   }
+  //delete Order
+  onDeleteOrder=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.orderActions.deleteOrder(i);
+  };
   //Note
 
   openNote=()=>{
@@ -65,7 +68,11 @@ class Acordion extends React.Component{
     newNotes =! newNotes
     this.setState({newNotes})
   }
-//new note
+//delete note
+onDeleteNote=(i)=>{
+ console.log("Voy a eliminar",i)
+ this.props.notesActions.deleteNotes(i);
+};
 
 
   render(){
@@ -81,9 +88,9 @@ class Acordion extends React.Component{
             titleStyle={{color:'white'}}
             style={{backgroundColor:"#63a2f1",textAlign:'start'}}
           />
-          <CardText expandable={true} >
-          {this.props.order.length <= 0 ? <RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/> :
-           <OrderOfDay order={this.props.order} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff}/>}
+        <CardText expandable={true} style={{padding:'none'}}>
+          {this.props.order.length <= 0 ? [(this.props.isStaff !== true ?<p>No hay ordenes del dia</p>:<RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/>)] :
+           <OrderOfDay order={this.props.order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
           </CardText>
         </Card>
         <Card style={{marginTop:'5px',marginBottom:'5px'}} expanded={this.state.expandable2} onExpandChange={this.expandable2}>
@@ -95,8 +102,8 @@ class Acordion extends React.Component{
             style={{backgroundColor:"#63a2f1",textAlign:'start',color:'white'}}
           />
           <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
-            {this.props.notes.length<= 0 ?<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/> :
-            <NoteMeeting noteMe={this.props.notes} open={this.openNote} isStaff={this.props.isStaff}/>}
+            {this.props.notes.length<= 0 ?[(this.props.isStaff !== true ?<p>No hay notas</p>:<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/>)] :
+            <NoteMeeting noteMe={this.props.notes} open={this.openNote} isStaff={this.props.isStaff} onDelete={this.onDeleteNote}/>}
           </CardText>
         </Card>
         <Card style={{marginTop:'5px',marginBottom:'5px'}} containerStyle={{paddingBottom:'none'}} expanded={this.state.expandable3} onExpandChange={this.expandable3}>
@@ -104,9 +111,8 @@ class Acordion extends React.Component{
             title="USUARIOS"
             actAsExpander={true}
             showExpandableButton={true}
-            titleStyle={{textAlign:'start'}}
-            titleStyle={{color:'white'}}
-            style={{backgroundColor:"#63a2f1",textAlign:'start',}}
+            titleStyle={{textAlign:'start',color:'white'}}
+            style={{backgroundColor:"#63a2f1",textAlign:'start'}}
           />
         <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
             <MeetingsListUser
@@ -138,6 +144,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return{
         orderActions:bindActionCreators(orderActions,dispatch),
+        notesActions:bindActionCreators(notesActions,dispatch)
     }
 }
 

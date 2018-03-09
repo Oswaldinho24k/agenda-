@@ -115,8 +115,7 @@ h4{
 .fc-event {
     font-size: inherit !important;
     font-family: 'AvenirLight', sans-serif;
-
-
+    border-left: 1px solid red;
 }
 
 /* Remove the header border from Schedule */
@@ -210,4 +209,10 @@ h4{
 /* Not raised button */
 .fc-state-default {
     box-shadow: None;
+}
+
+.fc-today {
+    background: #EEF4FF !important;
+    border: none !important;
+    font-weight: bold;
 }

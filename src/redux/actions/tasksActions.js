@@ -34,8 +34,11 @@ export const saveTask=(task)=>(dispatch,getState)=>{
   return  api.newTask(task)
     .then(r=>{
       console.log(r);
+      let meeting = getState().meeting.list.find(a=>{
+        return a.id=r.meeting
+      })
+      r["meeting"]=meeting
       dispatch(saveTaskSuccess(r))
-      dispatch(getTasks());
     }).catch(e=>{
       console.log(e)
     })
@@ -74,10 +77,10 @@ export const editTask=(etask)=>(dispatch, getState)=>{
     return api.editTask(etask)
         .then(r=>{
 
-            let meeting = getState().meeting.list.find(a=>{
-              return a.id=r.meeting
-            })
-            r["meeting"]=meeting
+            // let meeting = getState().meeting.list.find(a=>{
+            //   return a.id=r.meeting
+            // })
+            // r["meeting"]=meeting
             dispatch(editTaskSuccess(r))
             dispatch(getTasks())
             console.log(r);

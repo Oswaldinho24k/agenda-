@@ -46,12 +46,12 @@ export default class NewTask extends React.Component {
             adjustForCheckbox={false}
             >
             <TableRow>
-              <TableHeaderColumn>Name Task</TableHeaderColumn>
-              <TableHeaderColumn>Person</TableHeaderColumn>
-              <TableHeaderColumn>Date Start</TableHeaderColumn>
-              <TableHeaderColumn>Date Finsh</TableHeaderColumn>
-              <TableHeaderColumn> priority</TableHeaderColumn>
-              {this.props.isStaff?<TableHeaderColumn></TableHeaderColumn>:null}
+              <TableHeaderColumn>Nombre</TableHeaderColumn>
+              <TableHeaderColumn>Usuario</TableHeaderColumn>
+              <TableHeaderColumn>Fecha de Inicio</TableHeaderColumn>
+              <TableHeaderColumn>Fecha de Fin</TableHeaderColumn>
+              <TableHeaderColumn>Prioridad</TableHeaderColumn>
+              {this.props.isStaff?<TableHeaderColumn>Eliminar</TableHeaderColumn>:null}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
@@ -118,7 +118,7 @@ export default class NewTask extends React.Component {
               </TableRowColumn>
               {this.props.isStaff ?<TableRowColumn>
                 <IconButton onClick={()=>this.props.onDelete(row.id)}>
-                  <Delete />
+                  <Delete color="#c7c7c7" />
                 </IconButton>
               </TableRowColumn>:null}
             </TableRow>)}

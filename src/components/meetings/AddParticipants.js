@@ -1,64 +1,74 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
+import ChipList from './ChipList';
 import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import RaisedButton from 'material-ui/RaisedButton';
-import ChipList from './ChipList';
 
-import './meetings.css'
+
+
+export default class NewProject extends React.Component {
+
+
+
+  render() {
+
+    return (
+      <div>
+        <Dialog
+          modal={false}
+          open={this.props.open}
+          contentStyle={{width:'26%'}}
+        >
+          <List style={{ heigt:'300px',maxHeight:'450px'}}>
+                  <ChipList
+                    employessListAdd={this.props.employessListAdd}
+                    />
+                  <div class="search">
+                     <input type="text" class="searchTerm" placeholder="¿Encuentra?"/>
+                  </div>
+             <Divider/>
+             <List style={style.listEmployess}>
+               {this.props.employees.map(data =>
+                <ListItem
+               key={data.id}
+               value={data}
+               style={{textAlign:'start'}}
+               primaryText={data.user.username}
+               secondaryText={data.user.email}
+               leftAvatar={<Avatar src={data.avatar} />}
+               rightIcon={<ContentAdd/>}
+               onClick={()=>this.props.addEmployes(data)}
+               />)}
+           </List>
+          </List>
+        <div className="btnMod">
+            <FlatButton
+              label="Cancelar"
+              primary={true}
+              onClick={this.props.openParticipant}
+            />
+            <FlatButton
+              label="Agregar"
+              primary={true}
+            />
+        </div>
+        </Dialog>
+      </div>
+    );
+  }
+}
 
 const style = {
-  titile:{
-    height:'60px'
-  },
+
   btnAddAsis:{
     marginTop:'5px',
   },
   listEmployess:{
     overflow:'auto',
-    maxHeight:'260px'
+    maxHeight:'315px'
   }
 };
-
-
-const AddParticipants = ({employees,addEmployes,employessListAdd,addParticipants}) => (
-            <List  desktop={true}>
-               <Subheader style={style.titile}>Agregar Participante</Subheader>
-              <Divider/>
-                    <ChipList
-                      employessListAdd={employessListAdd}
-                      />
-                    <div class="search">
-                       <input type="text" class="searchTerm" placeholder="What are you looking for?"/>
-                    </div>
-               <Divider/>
-               <List style={style.listEmployess}>
-                 { employees.map(data =>
-                  <ListItem
-                 key={data.id}
-                 value={data}
-                 style={{textAlign:'start'}}
-                 primaryText={data.user.username}
-                 secondaryText={data.user.email}
-                 leftAvatar={<Avatar src={data.avatar} />}
-                 rightIcon={<ContentAdd/>}
-                 onClick={()=>addEmployes(data)}
-                 />)}
-             </List>
-              <Divider/>
-              {employessListAdd.length<= 0 ? null :
-
-              <RaisedButton
-                  primary={true}
-                  label="Agregar Asistentes"
-                  style={style.btnAddAsis}
-                  onClick={addParticipants}
-                  />}
-            </List>
-
-    );
-
-
-export default AddParticipants;

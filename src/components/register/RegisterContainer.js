@@ -44,7 +44,7 @@ import RegisterComponents from './RegisterComponents';
   render() {
     return (
           <Dialog
-            title="User Register"
+            title="Registro de Usuario"
             modal={false}
             open={this.props.open}
             contentStyle={modStyle}

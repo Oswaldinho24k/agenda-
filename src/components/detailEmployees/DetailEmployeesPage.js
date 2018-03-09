@@ -32,10 +32,22 @@ function mapStateToProps(state, ownProps) {
         return id == a.user.id;
     });
 
+<<<<<<< HEAD
     //let tasks = state.tasks.list.filter(b=>{
       //return id == b.user.id;
    // })
     //console.log(tasks)
+=======
+    let tasks = state.tasks.list.filter(b=>{
+      if ( !isNaN(b.user)) {
+        return false;
+
+      } else {
+        return id == b.user.id
+      }
+    })
+    console.log(tasks)
+>>>>>>> 99cf83d0689071e4a1ba00fde6c8bf05b584f595
 
     employee = employee[0];
     //tasks=tasks;

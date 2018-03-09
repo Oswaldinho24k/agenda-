@@ -14,6 +14,10 @@ let urlPassChan="http://localhost:8000/rest-auth/password/change/";
 let urlProject='http://localhost:8000/project/'
 let urlMeeting='http://localhost:8000/meeting/'
 let urlUsersAll='http://127.0.0.1:8000/usersall/'
+let urlFile='http://localhost:8000/file/'
+let urlAction='http://localhost:8000/action/'
+let urlNotes='http://localhost:8000/notes/'
+let urlOrder='http://localhost:8000/order/'
 
 if(!debug){
     urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
@@ -26,6 +30,10 @@ if(!debug){
     urlProject='https://backend-arnulfo.herokuapp.com/project/'
     urlMeeting='https://backend-arnulfo.herokuapp.com/meeting/'
     urlUsersAll='https://backend-arnulfo.herokuapp.com/usersall/'
+    urlFile='https://backend-arnulfo.herokuapp.com/file/'
+    urlAction='https://backend-arnulfo.herokuapp.com/action/'
+    urlNotes='https://backend-arnulfo.herokuapp.com/notes/'
+    urlOrder='https://backend-arnulfo.herokuapp.com/order/'
 }
 
 const api={
@@ -164,7 +172,7 @@ const api={
                 baseURL: urlPassChan,
                 // timeout: 2000,
                 headers: {
-                    'Content-Type': undefined,
+                    'Content-Type': 'application/json',
                     'Authorization': 'Token ' + userToken
                 }
             });
@@ -414,6 +422,279 @@ getAllUser:()=>{
               }
           });
           instance.patch(user.id+'/',user)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+
+  ///File
+
+  getFile:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlFile,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new File
+  newFile:(file)=>{
+    let data = new FormData()
+    for(let key in file){
+      data.append(key, file[key])
+    }
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFile,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': undefined,
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',data)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete File
+  deleteFile:(fileId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFile,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(fileId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  ///OrderOfDay
+
+  getOrder:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlOrder,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new OrderOfDay
+  newOrder:(order)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlOrder,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',order)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete OrderOfDay
+  deleteOrder:(orderId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlOrder,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(orderId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //edit Order
+  editOrder:(order)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlOrder,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(order.id+'/',order)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  ///Notes
+
+  getNotes:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlNotes,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new Note
+  newNotes:(notes)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',notes)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Note
+  deleteNotes:(notesId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(notesId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //edit Note
+  editNotes:(notes)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlNotes,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(notes.id+'/',notes)
               .then(function (response) {
                   resolve(response.data);
               })

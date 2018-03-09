@@ -31,13 +31,19 @@ export function newNotesSuccess(notes){
 }
 
 export const newNotes=(notes)=>(dispatch,getState)=>{
+  console.log(notes)
   return  api.newNotes(notes)
     .then(r=>{
-      console.log(r);
+      console.log("encuentra esto",r);
       let meeting = getState().meeting.list.find(a=>{
         return a.id=r.meeting
       })
       r["meeting"]=meeting
+
+      let autor = getState().employees.list.find(b=>{
+        return b.id ==r.autor
+      })
+      r["autor"]=autor
       dispatch(newNotesSuccess(r))
     }).catch(e=>{
       console.log(e)
@@ -56,7 +62,7 @@ export function deleteNotesSuccess(notesId){
 }
 
 export const deleteNotes=(notesId)=>(dispatch, getState)=>{
-    return api.deleteTask(notesId)
+    return api.deleteNotes(notesId)
         .then(r=>{
             dispatch(deleteNotesSuccess(notesId))
         }).catch(e=>{
@@ -64,7 +70,7 @@ export const deleteNotes=(notesId)=>(dispatch, getState)=>{
         })
 };
 
-//Edit OrderOfDay
+//Edit Note
 
 export const EDIT_NOTES_SUCCESS = 'EDIT_NOTES_SUCCESS';
 export function editNotesSuccess(notes){

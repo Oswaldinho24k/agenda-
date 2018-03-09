@@ -8,9 +8,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import Delete from 'material-ui/svg-icons/action/delete';
-import View from 'material-ui/svg-icons/image/remove-red-eye';
 import IconButton from 'material-ui/IconButton';
-import moment from 'moment'
 
 
 const FileMeeting = ({files,isStaff,onDeleteFile}) => (
@@ -28,7 +26,7 @@ const FileMeeting = ({files,isStaff,onDeleteFile}) => (
             <TableRow>
               <TableHeaderColumn>Nombre</TableHeaderColumn>
               <TableHeaderColumn className="column-LinkFile">Link</TableHeaderColumn>
-              <TableHeaderColumn className="column-DeleteFile">Eliminar</TableHeaderColumn>
+              {isStaff?<TableHeaderColumn className="column-DeleteFile">Eliminar</TableHeaderColumn>:null}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >

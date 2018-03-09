@@ -9,6 +9,7 @@ import tasksReducer from './tasksReducer';
 import fileReducer from './fileReducer';
 import orderReducer from './orderReducer';
 import notesReducer from './notesReducer';
+import immediateReducer from './immediateReducer';
 const rootReducer = combineReducers({
 user:userReducer,
 profile:profileReducer,
@@ -20,6 +21,7 @@ tasks:tasksReducer,
 files:fileReducer,
 order:orderReducer,
 notes:notesReducer,
+immediate:immediateReducer,
 });
 
 export default rootReducer;

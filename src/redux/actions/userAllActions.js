@@ -1,4 +1,5 @@
 import api from '../../Api/Django';
+import {getAllProfiles} from './employeesActions';
 
 //user Get USER
 export const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
@@ -54,6 +55,8 @@ export const newUser =(register)=>(dispatch, getState)=>{
       .then(r=>{
           console.log('is done',r);
           dispatch(userRegisterSuccess(r))
+          dispatch(getAllProfiles())
+          dispatch(getAllUser())
       }).catch(e=>{
       console.log(e)
   })

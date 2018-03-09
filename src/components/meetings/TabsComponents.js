@@ -7,7 +7,7 @@ import NewTask from './NewTask';
 import FileMeeting from './FileMeeting'
 import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
-import TextField from 'material-ui/TextField';
+import ImmediateAction from './ImmediateAction';
 
 const styles = {
   headline: {
@@ -35,7 +35,7 @@ function clickin(){
   elinput.click();
   console.log(elinput)
 }
-const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab
@@ -44,20 +44,19 @@ const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,chan
                       style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
                   >
                     <div className="muro">
-                      <TextField
-                        hintText="MultiLine with rows: 2 and rowsMax: 4"
-                        floatingLabelText="Frequency"
-                        multiLine={true}
-                        rows={2}
-                        rowsMax={4}
-                        />
-
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nuevo Archivo"
-                          />
-                     </div>
+                      <ImmediateAction isStaff={isStaff} employees={employees} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
+                        {isStaff ?<form
+                          onSubmit={onSubmitAction}
+                          >
+                          <div className="search">
+                             <input required  name="text" type="text" onChange={onChangeAction} className="taskTerm" placeholder="Nueva accion"/>
+                               <RaisedButton
+                                 primary={true}
+                                icon={<ContentAdd />}
+                                type='submit'
+                              />
+                          </div>
+                        </form>:null}
                     </div>
                   </Tab>
                   <Tab label="Compromisos" style={{backgroundColor:"white",borderLeft:"1px dotted #6bb8c1", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
@@ -78,7 +77,7 @@ const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,chan
                          onSubmit={onSubmit}
                          >
                          <div className="search">
-                            <input required onChange={onChange} name="name" type="text" className="taskTerm" placeholder="New Tasks"/>
+                            <input required onChange={onChange} name="name" type="text" className="taskTerm" placeholder="Nueva tarea"/>
                               <RaisedButton
                                 primary={true}
                                icon={<ContentAdd />}
@@ -95,16 +94,15 @@ const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,chan
                   >
                     <div className="muro">
                       <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile}/>
-                        <form onSubmit={onSubmitFile}>
+                        {isStaff?<form onSubmit={onSubmitFile}>
                           <div className="search">
-                             <input required onChange={onChangeFile} name="name_file" type="text" className="fileTerm" placeholder="Nombr del Archivo"/>
+                             <input required onChange={onChangeFile} name="name_file" type="text" className="fileTerm" placeholder="Nombre del Archivo"/>
                              <input required type="file"   onChange={uploadFile}   ref={input=>elinput=input}   name="file" hidden id="upload"/>
                                <RaisedButton
                                  labelPosition="before"
                                  primary={true}
                                  icon={<Files />}
                                  onClick={clickin}
-
                                />
                                <RaisedButton
                                  primary={true}
@@ -112,7 +110,7 @@ const TabsComponents = ({onDeleteFile,onChangeFile,files,uploadFile,isStaff,chan
                                 type='submit'
                               />
                           </div>
-                        </form>
+                        </form>:null}
                     </div>
                   </Tab>
                 </Tabs>

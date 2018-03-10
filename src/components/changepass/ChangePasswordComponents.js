@@ -1,7 +1,6 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import ErrorIcon from 'material-ui/svg-icons/alert/error-outline';
-
+import TextField from 'material-ui/TextField';
 const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
 
   return (
@@ -14,26 +13,20 @@ const ChangePassword =({cancel,onChange,onSubmit,passNo,error})=>{
         className="form"
         onSubmit={onSubmit}
         >
-
-           <label htmlFor="">
-               <input
-                 name="new_password1"
-                 required
-                 placeholder="Password"
-                 type="password"
-                 onChange={onChange}
-                 />
-           </label>
-           <label htmlFor="">
-               <input
-                 onChange={onChange}
-                 name="new_password2"
-                 required
-                 placeholder="Confirm password"
-                 type="password"
-                 />
-                {passNo===true ?<ErrorIcon style={{color:'red', marginLeft:'-29px',marginTop:'10px'}} />:null}
-           </label>
+        <TextField
+            floatingLabelText="Password"
+            name="new_password1"
+            required
+            type="password"
+            onChange={onChange}
+          />
+          <TextField
+              floatingLabelText="Confirm password"
+              onChange={onChange}
+              name="new_password2"
+              required
+              type="password"
+            /><br/>
 
            <div className="btnMod">
              <FlatButton

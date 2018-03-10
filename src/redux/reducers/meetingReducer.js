@@ -6,7 +6,7 @@ import {SAVE_MEETING_SUCCESS,GET_MEETING_SUCCESS} from "../actions/meetingAction
 function list(state=[], action){
     switch(action.type){
         case SAVE_MEETING_SUCCESS:
-            return action.meeting;
+            return [...state,action.meeting];
         case GET_MEETING_SUCCESS:
             return action.meeting;
         default:

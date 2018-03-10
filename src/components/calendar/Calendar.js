@@ -14,7 +14,7 @@ class Calendar extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'cal-container'}>
                 <div id="calendar"></div>
 
             </div>
@@ -36,7 +36,7 @@ class Calendar extends React.Component {
             droppable: true, // this allows things to be dropped onto the calendar
             eventColor: '#ffcbcb',
             eventTextColor: '#000000',
-            eventClick: function(event){
+            eventClick: function (event) {
                 alert("Hola perro")
             },
             drop: function () {

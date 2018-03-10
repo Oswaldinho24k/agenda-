@@ -5,7 +5,6 @@ import Pages from './Pages';
 import * as userActions from '../../redux/actions/userActions';
 import Navbar from '../nav/Navbar';
 import Calendario from '../nav/Calendario';
-import RegisterContainer from '../register/RegisterContainer';
 import ProfileContainer from '../profile/ProfilePage';
 import ToastrContainer, {Toast} from 'react-toastr-basic'
 import * as profileActions from '../../redux/actions/profileActions';
@@ -34,7 +33,7 @@ class PrincipalContainer extends Component{
       }
     };
     logOut=()=>{
-      console.log("Cerre papu");
+      console.log("Cerré papu");
       this.props.userActions.logOut();
       this.props.history.push('/login');
     };
@@ -81,7 +80,7 @@ class PrincipalContainer extends Component{
              openProfile={this.openProfile}
              showToast={this.showToast}
             />
-          <div  style={{ minHeight: '90vh' }}>
+          <div  style={{ paddingTop:'50px',minHeight: '90vh' }}>
             <Pages/>
           </div>
       </div>

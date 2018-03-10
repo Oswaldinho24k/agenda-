@@ -1,9 +1,13 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
+import NewTask from './NewTask';
+import FileMeeting from './FileMeeting'
+import Divider from 'material-ui/Divider';
+import Files from 'material-ui/svg-icons/file/attachment';
+import ImmediateAction from './ImmediateAction';
 
 const styles = {
   headline: {
@@ -13,7 +17,7 @@ const styles = {
     fontWeight: 400,
   },
     paper: {
-      width:'50%',
+      width:'70%',
       margin: '3px auto',
       maxHeight:'500px'
 
@@ -24,37 +28,63 @@ const styles = {
     },
 };
 
-// <div style={styles.btn}>
-//   <FloatingActionButton mini={true}>
-//     <ContentAdd />
-//   </FloatingActionButton>
-// </div>
 
 
-const TabsComponents = ({openNewTask,openNewProject}) => (
+let elinput;
+function clickin(){
+  elinput.click();
+  console.log(elinput)
+}
+const TabsComponents = ({addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
-                  <Tab label="Tareas" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
+                  <Tab
+                      label="Acciones Inmediatas"
+                      data-route="/home"
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
+                  >
                     <div className="muro">
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nueva Tareas"
-                          onClick={openNewTask}
-                          />
-                      </div>
-
+                      <ImmediateAction isStaff={isStaff} employees={employees} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
+                        {isStaff ?<form
+                          onSubmit={onSubmitAction}
+                          >
+                          <div className="search">
+                             <input required  name="text" type="text" onChange={onChangeAction} className="taskTerm" placeholder="Nueva accion"/>
+                               <RaisedButton
+                                 primary={true}
+                                icon={<ContentAdd />}
+                                type='submit'
+                              />
+                          </div>
+                        </form>:null}
                     </div>
                   </Tab>
-                  <Tab label="Proyecto" style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1", borderRight:"1px dotted #6bb8c1"}}>
+                  <Tab label="Compromisos" style={{backgroundColor:"white",borderLeft:"1px dotted #6bb8c1", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
                     <div className="muro">
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nuevo Proyecto"
-                          onClick={openNewProject}
-                          />
-                     </div>
+                      <NewTask
+                          employees={employees}
+                          tasks={tasks}
+                          onDelete={onDelete}
+                          addPerson={addPerson}
+                          addPriority={addPriority}
+                          changeDateStart={changeDateStart}
+                          changeDateFinish={changeDateFinish}
+                          onDate={onDate}
+                          isStaff={isStaff}
+                        />
+                       <Divider/>
+                       {isStaff ?<form
+                         onSubmit={onSubmit}
+                         >
+                         <div className="search">
+                            <input required onChange={onChange} name="name" type="text" className="taskTerm" placeholder="Nueva tarea"/>
+                              <RaisedButton
+                                primary={true}
+                               icon={<ContentAdd />}
+                               type='submit'
+                             />
+                         </div>
+                       </form>:null}
                     </div>
                   </Tab>
                   <Tab
@@ -63,12 +93,24 @@ const TabsComponents = ({openNewTask,openNewProject}) => (
                       style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1"}}
                   >
                     <div className="muro">
-                      <div className="Btns">
-                        <RaisedButton
-                          primary={true}
-                          label="Nuevo Archivo"
-                          />
-                     </div>
+                      <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile}/>
+                        {isStaff?<form onSubmit={onSubmitFile}>
+                          <div className="search">
+                             <input required onChange={onChangeFile} name="name_file" type="text" className="fileTerm" placeholder="Nombre del Archivo"/>
+                             <input required type="file"   onChange={uploadFile}   ref={input=>elinput=input}   name="file" hidden id="upload"/>
+                               <RaisedButton
+                                 labelPosition="before"
+                                 primary={true}
+                                 icon={<Files />}
+                                 onClick={clickin}
+                               />
+                               <RaisedButton
+                                 primary={true}
+                                 label="subir"
+                                type='submit'
+                              />
+                          </div>
+                        </form>:null}
                     </div>
                   </Tab>
                 </Tabs>

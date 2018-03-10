@@ -9,29 +9,35 @@ import {
 } from 'material-ui/Table';
 import TableComponents from './TableComponents'
 
-const EmployeesComponents = ({employees})=>{
+const EmployeesComponents = ({userAll,openDelete,openEdit})=>{
   return(
-    <Card className="cardConte">
-     <CardTitle title="Employees" />
-     <Table
-       multiSelectable={true}
-       >
-         <TableHeader
-
-          enableSelectAll={true}
+      <div className="box_card">
+        <Card className="cardContenido">
+         <CardTitle title="Usuarios" />
+         <Table
+           fixedHeader={true}
+           height={'300px'}
+           multiSelectable={true}
            >
-           <TableRow>
-             <TableHeaderColumn>Username</TableHeaderColumn>
-             <TableHeaderColumn>Name</TableHeaderColumn>
-             <TableHeaderColumn>Email</TableHeaderColumn>
-             <TableHeaderColumn> </TableHeaderColumn>
-           </TableRow>
-         </TableHeader>
-         <TableBody >
-           {employees.map(row=> <TableComponents key={row.id} data={row}/>)}
-         </TableBody>
-        </Table>
-     </Card>
+             <TableHeader
+
+              enableSelectAll={true}
+               >
+               <TableRow>
+                 <TableHeaderColumn>Nombre</TableHeaderColumn>
+                 <TableHeaderColumn>Email</TableHeaderColumn>
+                 <TableHeaderColumn>Puesto</TableHeaderColumn>
+                 <TableHeaderColumn>Detalle </TableHeaderColumn>
+                 <TableHeaderColumn className="column-Edit">Editar</TableHeaderColumn>
+                 <TableHeaderColumn className="column-Delete">Eliminar</TableHeaderColumn>
+               </TableRow>
+             </TableHeader>
+             <TableBody >
+               {userAll.map(row=> <TableComponents openEdit={openEdit} openDelete={openDelete} key={row.id} data={row}/>)}
+             </TableBody>
+            </Table>
+         </Card>
+      </div>
   );
 
 };

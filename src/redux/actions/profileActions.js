@@ -28,8 +28,8 @@ export function saveProfileSuccess(profile){
 export const saveProfile=(profile)=>(dispatch, getState)=>{
     return api.saveProfile(profile)
         .then(r=>{
-            console.log(r);
             dispatch(saveProfileSuccess(r))
+            console.log(r);
         }).catch(e=>{
         console.log(e)
     })

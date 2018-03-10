@@ -7,7 +7,6 @@ export function getAllProfilesSuccess(employees){
         type:GET_ALL_PROFILES_SUCCESS, employees
     }
 }
-
 export const getAllProfiles=()=>(dispatch, getState)=>{
     return api.getAllProfiles()
         .then(r=>{

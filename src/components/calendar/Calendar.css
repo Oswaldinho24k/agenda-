@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-
 @font-face {
     font-family: "AveneirUltraLight";
     src: url('./AvenirNext-UltraLight.otf');
@@ -16,16 +15,15 @@ body {
     margin-top: 40px;
     text-align: center;
     font-size: 14px;
-    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 }
-
 
 h1 {
     font-size: 35px;
     margin-bottom: 30px;
 }
 
-h4{
+h4 {
     font-family: 'AvenirLight', sans-serif;
 }
 
@@ -35,8 +33,10 @@ h4{
 }
 
 #external-events {
-    position: absolute;
-    width: 27.5em;
+
+    /*position: absolute;*/
+    width: 40%;
+
     padding: 0 10px;
     background: #F5F7FA;
     text-align: center;
@@ -53,7 +53,6 @@ h4{
     font-family: 'AvenirLight', sans-serif;
 }
 
-
 #external-events p {
     margin: 1.5em 0;
     font-size: 11px;
@@ -69,11 +68,11 @@ h4{
     margin-top: 12px;
     margin-right: 6px;
     float: right;
-    width: 900px;
-    height: 5px;
+    width: 100%;
+    height: auto;
 }
 
-#navigator{
+#navigator {
     display: flex;
     flex-direction: column;
     float: left;
@@ -82,18 +81,18 @@ h4{
     height: 51.7em;
 
 }
- #head{
-     color: #819FB5;
-     text-align: left;
-     margin-top: 1em;
-     margin-left: 1em;
- }
 
- .fc{
-     font-family: "AvenirLight", sans-serif;
-     text-transform: capitalize;
- }
+#head {
+    color: #819FB5;
+    text-align: left;
+    margin-top: 1em;
+    margin-left: 1em;
+}
 
+.fc {
+    font-family: "AvenirLight", sans-serif;
+    text-transform: capitalize;
+}
 
 .fc-state-highlight {
     opacity: 0;
@@ -189,12 +188,12 @@ h4{
     font-family: inherit;
     text-decoration: none;
     overflow: hidden;
-    -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
-    transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+    -webkit-transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1), background-color .4s cubic-bezier(.25, .8, .25, 1);
+    transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1), background-color .4s cubic-bezier(.25, .8, .25, 1);
 }
 
 .fc-button:hover {
-    background-color: rgba(158,158,158,0.2);
+    background-color: rgba(158, 158, 158, 0.2);
 }
 
 .fc-button:focus, .fc-button:hover {
@@ -203,7 +202,7 @@ h4{
 
 /* The active button box is ugly so the active button will have the same appearance of the hover */
 .fc-state-active {
-    background-color: rgba(158,158,158,0.2);
+    background-color: rgba(158, 158, 158, 0.2);
 }
 
 /* Not raised button */
@@ -215,4 +214,18 @@ h4{
     background: #EEF4FF !important;
     border: none !important;
     font-weight: bold;
+}
+
+.conenedor-cal-task {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 94vh;
+}
+
+.cal-container {
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+
 }

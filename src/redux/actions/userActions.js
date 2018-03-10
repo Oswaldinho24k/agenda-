@@ -1,7 +1,13 @@
 import api from '../../Api/Django';
 import {getProfile}from './profileActions'
 import {getAllProfiles} from './employeesActions'
+import {getAllUser} from './userAllActions'
 import {getMeeting} from './meetingActions'
+import {getTasks} from './tasksActions';
+import {getFile} from './fileActions';
+import {getOrder} from './orderActions';
+import {getNotes} from './notesActions';
+import {getAction} from './immediateActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -18,10 +24,9 @@ export const logIn =(data)=>(dispatch,getState)=>{
 
       localStorage.setItem('userAgendaToken',JSON.stringify(r.key));
       console.log(r)
-      dispatch(getUser());
-      dispatch(getProfile());
+      dispatch(checkIfUser());
     }).catch(e=>{
-      console.log(e)
+      throw e
     })
 };
 
@@ -70,25 +75,12 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getUser());
       dispatch(getProfile());
       dispatch(getAllProfiles());
+      dispatch(getAllUser());
       dispatch(getMeeting());
+      dispatch(getTasks());
+      dispatch(getFile());
+      dispatch(getOrder());
+      dispatch(getNotes());
+      dispatch(getAction());
     }
-};
-
-//User Registeruser
-export const USER_REGISTER_SUCCESS='USER_REGISTER_SUCCESS';
-
-export function userRegisterSuccess(register){
-    return{
-        type:USER_REGISTER_SUCCESS, register
-    }
-}
-
-export const newUser =(register)=>(dispatch, getState)=>{
-    return api.newUser(register)
-      .then(r=>{
-          console.log('is done');
-          dispatch(userRegisterSuccess(r))
-      }).catch(e=>{
-      console.log(e)
-  })
 };

@@ -12,9 +12,9 @@ import Calendar from '../calendar/CalendarContainer';
 
 const Pages = ({props}) => (
     <Switch>
-        <Route exact path="/agenda" component={Calendar}/>
+        <Route exact path="/agenda" component={DashboardContainer}/>
         <Route path="/agenda/tasks" component={Calendar}/>
-            <Route path="/agenda/dashboard" component={DashboardContainer} />
+        <Route path="/agenda/dashboard" component={DashboardContainer} />
         <Route path="/agenda/project" component={ProjectContainer}/>
         <Route path="/agenda/meeting/:id" component={MeetingPage}/>
         <Route path="/agenda/meeting" component={TableMeetingContainer}/>

@@ -9,7 +9,7 @@ import MenuNav from './MenuNav'
 
 const Navbar = ({logOut,avatar,openDrawer,openProfile}) => (
     <div>
-        <AppBar style={{backgroundColor:"#63a2f1"}}
+        <AppBar style={{backgroundColor:"#63a2f1", position:'fixed'}}
           title={<span className="titleNav">Bienvenido
           <Avatar
           src={avatar}

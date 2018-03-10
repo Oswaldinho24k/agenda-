@@ -80,7 +80,7 @@ class PrincipalContainer extends Component{
              openProfile={this.openProfile}
              showToast={this.showToast}
             />
-          <div  style={{ minHeight: '90vh' }}>
+          <div  style={{ paddingTop:'50px',minHeight: '90vh' }}>
             <Pages/>
           </div>
       </div>

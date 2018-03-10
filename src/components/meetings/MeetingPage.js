@@ -246,17 +246,8 @@ function mapStateToProps(state, ownProps) {
   let meeting= state.meeting.list.filter(a=>{
       return id == a.id;
   });
-<<<<<<< HEAD
-  //let tasks = state.tasks.list.filter(b=>{
-      // return id == b.meeting.id;
-  //})
-  meeting=meeting[0]
-  //tasks=tasks
-    return {
-      employees: state.employees.list,
-      user: state.user.object,
-      tasks: state.tasks.list,
-=======
+
+
   let tasks = state.tasks.list.filter(b=>{
     return id == b.meeting.id;
   })
@@ -279,7 +270,6 @@ function mapStateToProps(state, ownProps) {
       user: state.user.object,
       tasks,
       files,
->>>>>>> 99cf83d0689071e4a1ba00fde6c8bf05b584f595
       meeting,
       order,
       id,

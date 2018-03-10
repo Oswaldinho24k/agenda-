@@ -246,6 +246,8 @@ function mapStateToProps(state, ownProps) {
   let meeting= state.meeting.list.filter(a=>{
       return id == a.id;
   });
+
+
   let tasks = state.tasks.list.filter(b=>{
     return id == b.meeting.id;
   })

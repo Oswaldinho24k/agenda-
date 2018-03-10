@@ -3,7 +3,7 @@
     width:100%;
     height:auto;
     padding-bottom: 50px;
-    padding-top: 50px;
+
     font-family: 'avenir-light', sans-serif;
 
 }
@@ -87,8 +87,8 @@
 .calendar{
     align-items: center;
     padding: 5px 15px;
-    height: 400px;
-    width:600px;
+    height: auto;
+    width:400px;
     flex-grow: 2;
     margin: 0 0 0 10px;
     background: #fff;

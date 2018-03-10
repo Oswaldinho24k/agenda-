@@ -4,7 +4,7 @@ import {Card, CardTitle} from 'material-ui/Card';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Done from 'material-ui/svg-icons/content/add';
-import Calendar from 'material-ui/svg-icons/action/date-range';
+import Calendar from '../calendar/Calendar';
 
 export const DashboardDisplay = ()=>{
     return(
@@ -34,7 +34,7 @@ export const DashboardDisplay = ()=>{
                     </div>
                 </div>
                 <div className="calendar">
-
+                    <Calendar/>
                 </div>
             </div>
             <div className="flex">

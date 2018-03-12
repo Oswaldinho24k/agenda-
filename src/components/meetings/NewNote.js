@@ -22,7 +22,7 @@ import * as notesActions from '../../redux/actions/notesActions';
    onSubmit =(e)=>{
      e.preventDefault();
      let {newNote}= this.state;
-     newNote['meeting']=parseInt(this.props.id)
+     newNote['meeting']=parseInt(this.props.id);
      this.props.notesActions.newNotes(newNote);
      this.props.close();
      this.setState({value:null})

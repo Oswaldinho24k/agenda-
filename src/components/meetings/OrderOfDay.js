@@ -12,12 +12,12 @@ import IconButton from 'material-ui/IconButton';
 
 const OrderOfDay = ({order,open,onDelete,changeDone,isStaff,disabled,active}) => (
       <div style={{maxWidth: 390, maxHeight: 400, margin: 'auto'}}>
-        <Stepper linear={false} activeStep={"5"} orientation="vertical" style={{overflow:'auto',maxHeight:'235px',overflowX:'hidden'}}>
+        <Stepper linear={false}  orientation="vertical" style={{overflow:'auto',maxHeight:'235px',overflowX:'hidden'}}>
             {order.map ((data , i)=>  <Step key={i} completed={data.status} active={false} style={{boxSizing: 'border-box',display:'flex', padding:'none'}}>
               <StepButton style={{height:'0px',paddingRight:'none'}} onClick={()=>changeDone(data.id,data.status)}  disabled={!isStaff? disabled:active}>
                 {data.name_order}
               </StepButton>
-              {isStaff?<IconButton tooltip="Eliminar orden" onClick={()=>onDelete(data.id)}>
+              {isStaff?<IconButton tooltip="Eliminar orden"  onClick={()=>onDelete(data.id)}>
                 <Delete color="#c7c7c7" />
               </IconButton>:<p> ...</p>}
             </Step>
@@ -34,8 +34,10 @@ const OrderOfDay = ({order,open,onDelete,changeDone,isStaff,disabled,active}) =>
 
 const style = {
   btn:{
-    bottom:'1px',
-    textAlign:'end'
+    display:'flex',
+    justifyContent: 'flex-end',
+    marginTop: '-28px',
+    marginRight: '15px',
   },
 };
 export default OrderOfDay;

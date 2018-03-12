@@ -24,10 +24,11 @@ export default class NewProject extends React.Component {
         >
           <List style={{ heigt:'300px',maxHeight:'450px'}}>
                   <ChipList
+                    deleteEmployees={this.props.deleteEmployees}
                     employessListAdd={this.props.employessListAdd}
                     />
-                  <div class="search">
-                     <input type="text" class="searchTerm" placeholder="¿Encuentra?"/>
+                  <div className="search">
+                     <input type="text" className="searchTerm" placeholder="¿Encuentra?"/>
                   </div>
              <Divider/>
              <List style={style.listEmployess}>
@@ -53,6 +54,7 @@ export default class NewProject extends React.Component {
             <FlatButton
               label="Agregar"
               primary={true}
+              onClick={this.props.addParticipants}
             />
         </div>
         </Dialog>

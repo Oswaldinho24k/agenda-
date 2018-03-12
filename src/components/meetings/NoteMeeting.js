@@ -37,8 +37,10 @@ const NoteMeeting = ({noteMe,open,onDelete,isStaff}) => (
 );
 const style = {
   btn:{
-    bottom:'1px',
-    textAlign:'end'
+    display:'flex',
+    justifyContent: 'flex-end',
+    marginTop: '-28px',
+    marginRight: '15px',
   },
 };
 

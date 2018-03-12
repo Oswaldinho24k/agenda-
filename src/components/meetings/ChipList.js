@@ -18,19 +18,14 @@ export default class ChipList extends React.Component {
     };
   }
 
-  handleRequestDelete = (id) => {
-    this.chipData = this.props.employessListAdd;
-    const chipToDelete = this.chipData.map((chip) => chip.id).indexOf(id);
-    this.chipData.splice(chipToDelete, 1);
-    this.setState({chipData: this.chipData});
-  };
+
 
   renderChip(data) {
 
     return (
       <Chip
         key={data.id}
-        onRequestDelete={() => this.handleRequestDelete(data.id)}
+        onRequestDelete={() => this.props.deleteEmployees(data)}
         style={this.styles.chip}
         labelStyle={{fontSize:'10px '}}
       >

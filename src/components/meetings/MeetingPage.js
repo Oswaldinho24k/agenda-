@@ -23,6 +23,7 @@ class MeetingsPage extends Component{
           files:{},
           newAction:{},
           emploList:[],
+          usersList:props.employees,
           employSelec:{},
           listAddEmp:true,
           openProject:false,
@@ -33,6 +34,45 @@ class MeetingsPage extends Component{
       };
   }
 
+  componentWillReceiveProps(){
+    //falta filtrar los que ya son parte
+    // this.filterUserslistDisplay()
+    this.usersList()
+  }
+  usersList=()=>{
+    let usersList = this.props.employees;
+    this.setState({
+      usersList
+    })
+  }
+
+  filterUserslistDisplay=()=>{
+     let {usersList} = this.state;
+    let meeting = this.props.meeting;
+    if(meeting){
+      let participants = meeting.participants;
+      let filtered = usersList.filter(u=>{
+
+        let participant = participants.find(p=>{
+          return p.id === u.id
+        })
+        if(participant!==undefined){
+            console.log(participant)
+            console.log(u)
+            //return u
+        }else{
+          return u
+        }
+      })
+      usersList = filtered
+      console.log(usersList)
+    }else{
+      usersList = this.props.employees
+    }
+     this.setState({
+       usersList
+     })
+  }
 
 
   openNewProject=()=>{
@@ -45,28 +85,59 @@ class MeetingsPage extends Component{
   openParticipant=()=>{
     let {openParticipant} = this.state;
     openParticipant = !openParticipant;
-    this.setState({openParticipant})
+    this.setState({openParticipant,emploList:this.props.meeting.participants})
+        this.filterUserslistDisplay()
+
   }
   addEmployes=(data)=>{
-    let employSelec=this.state.employSelec;
-    employSelec=data
-    this.state.emploList.push(employSelec)
-    this.setState(this.state)
-    console.log(this.state.emploList)
+
+    let emploList = this.state.emploList;
+    let {usersList} = this.state;
+
+    emploList.push(data);
+    let filtered = usersList.filter(user=>{
+      return user.id!==data.id
+    })
+    this.setState({
+      emploList,
+      usersList:filtered
+    })
+
   }
+  deleteEmployees = (data) => {
+    let emploList = this.state.emploList;
+    let {usersList} = this.state;
+
+    usersList.push(data);
+    let filtered = emploList.filter(user=>{
+      return user.id!==data.id
+    })
+    this.setState({
+      emploList:filtered,
+      usersList
+    })
+
+  };
+
   openListAdd = () => {
       let {listAddEmp} = this.state;
       listAddEmp = !listAddEmp;
       this.setState({listAddEmp})
   };
   addParticipants=()=>{
-    let meeting=this.state.meeting;
+    let meeting=this.props.meeting;
     let data=this.state.emploList;
-    meeting['participants']= data;
-    console.log(this.state.meeting)
-    this.openListAdd()
+    let users=[];
+    for(let i in data){
+      users.push(data[i].id)
+    }
+
+    meeting['participants_id']= users;
+    this.props.meetingActions.editMeeting(meeting);
+    this.setState({openParticipant:false})
+    console.log(meeting)
   }
-//////////////////////////////////777
+//////////////////////////////////
 
   //add new Task
   onSubmit=(e)=>{
@@ -128,6 +199,7 @@ class MeetingsPage extends Component{
       this.props.fileActions.newFile(newFile);
       console.log(newFile)
       e.target.name_file.value="";
+      this.setState({files:{}})
   };
   handleChangeFile = (e) => {
       let files = this.state.files;
@@ -186,18 +258,22 @@ class MeetingsPage extends Component{
     render(){
 
           let {employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
+          let {usersList} = this.state;
           if(!fetched)return<Loader/>
-          console.log(immediate)
+          console.log(meeting)
 
         return(
                 <div>
                   <AddParticipants
                     open={this.state.openParticipant}
                     employessListAdd={this.state.emploList}
-                    employees={employees}
+                    employees={usersList}
+                    meeting={meeting}
+                    deleteEmployees={this.deleteEmployees}
                     addEmployes={this.addEmployes}
                     addParticipants={this.addParticipants}
                     openParticipant={this.openParticipant}
+
                      />
                   <div className="meeting_box">
                     <div className="meetings-container">
@@ -207,6 +283,7 @@ class MeetingsPage extends Component{
                             order={order}
                             notes={notes}
                             id={id}
+                            usersList={this.usersList}
                             openListAdd={this.openParticipant}
                             isStaff={this.props.user.is_staff}
                             />
@@ -233,6 +310,7 @@ class MeetingsPage extends Component{
                             onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
                             onDeleteAction={this.onDeleteAction}
+                            archivo={this.state.files}
                             />
                     </div>
                   </div>
@@ -243,7 +321,7 @@ class MeetingsPage extends Component{
 
 function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
-  let meeting= state.meeting.list.filter(a=>{
+  let meeting= state.meeting.list.find(a=>{
       return id == a.id;
   });
 
@@ -263,7 +341,7 @@ function mapStateToProps(state, ownProps) {
   let immediate = state.immediate.list.filter(f=>{
     return id == f.meeting.id
   })
-  meeting=meeting[0]
+
 
     return {
       employees: state.employees.list,
@@ -275,7 +353,7 @@ function mapStateToProps(state, ownProps) {
       id,
       notes,
       immediate,
-      fetched:  meeting!==undefined && tasks!==undefined && notes!==undefined,
+      fetched:  meeting!==undefined && tasks!==undefined && notes!==undefined && state.employees.list !== undefined && tasks!==undefined,
     }
 }
 

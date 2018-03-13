@@ -260,6 +260,31 @@ const api={
       });
 
     },
+    //edit Meeting
+    editMeeting:(meeting)=>{
+
+        return new Promise(function (resolve, reject) {
+            const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+            const instance = axios.create({
+                baseURL: urlMeeting,
+                // timeout: 2000,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + userToken
+                }
+            });
+            instance.patch(meeting.id+'/',meeting)
+                .then(function (response) {
+                    resolve(response.data);
+                })
+                .catch(function (error) {
+                    console.log('el error: ', error.response);
+                    reject(error);
+                });
+
+
+        });
+    },
 //get users ALL
 getAllUser:()=>{
   const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));

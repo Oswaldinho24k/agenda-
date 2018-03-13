@@ -42,3 +42,24 @@ export const getMeeting=()=>(dispatch, getState)=>{
             console.log(e)
         )
 };
+
+//Edit Meeting
+
+export const EDIT_MEETING_SUCCESS = 'EDIT_MEETING_SUCCESS';
+export function editMeetingSuccess(meeting){
+    return{
+        type:EDIT_MEETING_SUCCESS, meeting
+    }
+}
+
+export const editMeeting=(meeting)=>(dispatch, getState)=>{
+
+    return api.editMeeting(meeting)
+        .then(r=>{
+
+            dispatch(editMeetingSuccess(r))
+            console.log(r);
+        }).catch(e=>{
+        console.log(e)
+    })
+};

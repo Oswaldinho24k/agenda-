@@ -10,11 +10,31 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 
 export default class NewProject extends React.Component {
+constructor(props){
+  super(props);
+  this.state ={
+    searchText:'',
+  };
+}
+search=(event)=>{
+  this.setState({searchText:event.target.value.substr(0,20)});
+}
+
+onDemo = (data) =>{
+  this.props.addEmployes(data);
+  this.setState({searchText:""})
 
 
+}
 
   render() {
-
+    let searchFilter =this.props.employees.filter(
+      (name)=>{
+        return name.user.username.toLowerCase().indexOf(
+          this.state.searchText.toLowerCase()
+        ) !==-1;
+      }
+    );
     return (
       <div>
         <Dialog
@@ -24,14 +44,15 @@ export default class NewProject extends React.Component {
         >
           <List style={{ heigt:'300px',maxHeight:'450px'}}>
                   <ChipList
+                    deleteEmployees={this.props.deleteEmployees}
                     employessListAdd={this.props.employessListAdd}
                     />
-                  <div class="search">
-                     <input type="text" class="searchTerm" placeholder="¿Encuentra?"/>
+                  <div className="search">
+                     <input type="text" className="searchTerm" name="search" value={this.state.searchText} placeholder="¿Encuentra?" onChange={this.search}/>
                   </div>
              <Divider/>
              <List style={style.listEmployess}>
-               {this.props.employees.map(data =>
+               {searchFilter.map(data =>
                 <ListItem
                key={data.id}
                value={data}
@@ -40,7 +61,7 @@ export default class NewProject extends React.Component {
                secondaryText={data.user.email}
                leftAvatar={<Avatar src={data.avatar} />}
                rightIcon={<ContentAdd/>}
-               onClick={()=>this.props.addEmployes(data)}
+               onClick={()=>this.onDemo(data)}
                />)}
            </List>
           </List>
@@ -53,6 +74,7 @@ export default class NewProject extends React.Component {
             <FlatButton
               label="Agregar"
               primary={true}
+              onClick={this.props.addParticipants}
             />
         </div>
         </Dialog>

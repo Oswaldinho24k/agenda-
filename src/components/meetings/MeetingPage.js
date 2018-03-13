@@ -75,7 +75,6 @@ class MeetingsPage extends Component{
   }
 
 
-
   openNewProject=()=>{
     let {openProject} = this.state;
     openProject = !openProject;
@@ -138,7 +137,7 @@ class MeetingsPage extends Component{
     this.setState({openParticipant:false})
     console.log(meeting)
   }
-//////////////////////////////////777
+//////////////////////////////////
 
   //add new Task
   onSubmit=(e)=>{
@@ -200,6 +199,7 @@ class MeetingsPage extends Component{
       this.props.fileActions.newFile(newFile);
       console.log(newFile)
       e.target.name_file.value="";
+      this.setState({files:{}})
   };
   handleChangeFile = (e) => {
       let files = this.state.files;
@@ -273,6 +273,7 @@ class MeetingsPage extends Component{
                     addEmployes={this.addEmployes}
                     addParticipants={this.addParticipants}
                     openParticipant={this.openParticipant}
+
                      />
                   <div className="meeting_box">
                     <div className="meetings-container">
@@ -309,6 +310,7 @@ class MeetingsPage extends Component{
                             onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
                             onDeleteAction={this.onDeleteAction}
+                            archivo={this.state.files}
                             />
                     </div>
                   </div>

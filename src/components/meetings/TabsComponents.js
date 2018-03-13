@@ -7,6 +7,7 @@ import NewTask from './NewTask';
 import FileMeeting from './FileMeeting'
 import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
+import Done from 'material-ui/svg-icons/action/done';
 import ImmediateAction from './ImmediateAction';
 
 const styles = {
@@ -35,7 +36,7 @@ function clickin(){
   elinput.click();
   console.log(elinput)
 }
-const TabsComponents = ({addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab
@@ -101,7 +102,7 @@ const TabsComponents = ({addPersonAction,onDeleteAction,onChangeAction,onSubmitA
                                <RaisedButton
                                  labelPosition="before"
                                  primary={true}
-                                 icon={<Files />}
+                                 icon={archivo.files == undefined? <Files />:<Done/>}
                                  onClick={clickin}
                                />
                                <RaisedButton

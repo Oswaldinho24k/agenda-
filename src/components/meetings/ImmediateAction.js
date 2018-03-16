@@ -55,10 +55,10 @@ export default class NewTask extends React.Component {
                           disabled={this.props.isStaff ? this.state.active:this.state.disabled}
                           hintText={row.user === null? 'Select':row.user.username}
                           >
-                          { this.props.employees.map(data =>
-                            <MenuItem key={data.id}  value={data.user.id}  primaryText={data.user.username} onClick={()=>this.props.addPersonAction(row.id, data.user.id)}/>
+                          { this.props.userAll.map(data =>
+                            <MenuItem key={data.id}  value={data.id}  primaryText={data.username} onClick={()=>this.props.addPersonAction(row.id, data.id)}/>
                     )}
-                  </SelectField>:<p>{row.user === null? 'N/A':row.user.username}</p>}
+                  </SelectField>:<p>{row.user === null? 'N/A':row.username}</p>}
                     </TableRowColumn>
                  {this.props.isStaff?<TableRowColumn>
                     <IconButton onClick={()=>this.props.onDeleteAction(row.id)}>

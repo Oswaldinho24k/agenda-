@@ -27,6 +27,7 @@ const RegisterComponents =({onChange,onSubmit,cancel,value,selectChange})=>{
                 type="email"
               />
               <SelectField
+                style={{textAlign:'start'}}
                 floatingLabelText="Categoria"
                 value={value}
                 onChange={selectChange}

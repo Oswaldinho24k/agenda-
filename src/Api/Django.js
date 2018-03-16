@@ -18,6 +18,7 @@ let urlFile='http://localhost:8000/file/'
 let urlAction='http://localhost:8000/action/'
 let urlNotes='http://localhost:8000/notes/'
 let urlOrder='http://localhost:8000/order/'
+let urlFastNote = 'http://localhost:8000/fastnote/'
 
 if(!debug){
     urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
@@ -823,6 +824,104 @@ getAllUser:()=>{
                   console.log('el error: ', error.response);
                   reject(error);
               });
+      });
+  },
+  ///FAst note
+
+  getFastNote:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlFastNote,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+  },
+  //new fastnote
+  newFastNote:(fastnote)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFastNote,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.post('',fastnote)
+              .then(function(response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //Delete Fastnote
+  deleteFastNote:(fastnoteId)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFastNote,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.delete(fastnoteId+'/')
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
+      });
+  },
+  //edit Fastnote
+  editFastNote:(fastnote)=>{
+
+      return new Promise(function (resolve, reject) {
+          const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+          const instance = axios.create({
+              baseURL: urlFastNote,
+              // timeout: 2000,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Token ' + userToken
+              }
+          });
+          instance.patch(fastnote.id+'/',fastnote)
+              .then(function (response) {
+                  resolve(response.data);
+              })
+              .catch(function (error) {
+                  console.log('el error: ', error.response);
+                  reject(error);
+              });
+
+
       });
   },
 

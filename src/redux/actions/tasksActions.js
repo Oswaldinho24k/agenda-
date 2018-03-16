@@ -34,10 +34,6 @@ export const saveTask=(task)=>(dispatch,getState)=>{
   return  api.newTask(task)
     .then(r=>{
       console.log(r);
-      let meeting = getState().meeting.list.find(a=>{
-        return a.id=r.meeting
-      })
-      r["meeting"]=meeting
       dispatch(saveTaskSuccess(r))
     }).catch(e=>{
       console.log(e)

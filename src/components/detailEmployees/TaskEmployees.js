@@ -35,7 +35,7 @@ const TaskEmployees = ({tasks}) => (
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>{row.status}</TableRowColumn>
               <TableRowColumn>{moment(row.start).format('YYYY-MM-DD')}</TableRowColumn>
-              <TableRowColumn>{moment(row.expiry).format('YYYY-MM-DD')}</TableRowColumn>
+              <TableRowColumn>{!row.expiry ? "sin asingnar" : moment(row.expiry).format('YYYY-MM-DD')}</TableRowColumn>
               <TableRowColumn><p>{row.priority}</p></TableRowColumn>
               </TableRow>
 

@@ -5,14 +5,18 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Done from 'material-ui/svg-icons/content/add';
 import Calendar from '../calendar/Calendar';
+import moment from 'moment'
+import '../../../node_modules/moment/locale/es'
+import Edit from 'material-ui/svg-icons/content/create';
+import {List, ListItem} from 'material-ui/List';
 
-export const DashboardDisplay = ()=>{
+export const DashboardDisplay = ({date,open,fastnote,viewNote})=>{
     return(
         <div className="dash">
             <h2>Resumen</h2>
             <div className="flex">
                 <div className="notas">
-                    <h3>Jueves, 1 de Marzo</h3>
+                    <h3>{moment(date).format('dddd, LL')}</h3>
                     <div style={{margin:"3px 0 20px 0"}}>
                         <span className="rev">0 Task</span>
                         <span className="rev">0 Meetings</span>
@@ -23,14 +27,25 @@ export const DashboardDisplay = ()=>{
                                 <div className="circle"></div>
                                 <h4>Notas</h4>
                             </div>
-                            <button className="boton">
+                            <button className="boton" onClick={open}>
                                 <ContentAdd />
                             </button>
 
                         </span>
                     </div>
-                    <div className="noti fl">
-                        <p>Llevar documentos a la junta</p><Done color="#bababa" />
+                    <div className="noti fl" >
+                      <List>
+                        {fastnote.map(data =>
+                         <ListItem
+                        key={data.id}
+                        style={{textAlign:'start'}}
+                        primaryText={<p className="fastnote">{data.text}</p>}
+                        secondaryText={moment(data.created).format('YYYY-MM-DD')}
+                        onClick={()=>viewNote(data)}
+                        rightIcon={<Edit color="#bababa"/>}
+
+                        />)}
+                    </List>
                     </div>
                 </div>
                 <div className="calendar">
@@ -55,5 +70,3 @@ export const DashboardDisplay = ()=>{
     );
 
 };
-
-

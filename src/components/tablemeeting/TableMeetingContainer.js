@@ -43,6 +43,7 @@ class TableMeetingContainer extends Component{
     onSubmit=(e)=>{
     e.preventDefault();
     let newMeeting= this.state.meeting;
+    newMeeting['participants_id'] =[];
     this.props.meetingActions.saveMeeting(newMeeting)
     this.setState({openNewMeeting:false})
     console.log(newMeeting)

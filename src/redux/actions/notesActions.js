@@ -35,15 +35,6 @@ export const newNotes=(notes)=>(dispatch,getState)=>{
   return  api.newNotes(notes)
     .then(r=>{
       console.log("encuentra esto",r);
-      let meeting = getState().meeting.list.find(a=>{
-        return a.id=r.meeting
-      })
-      r["meeting"]=meeting
-
-      let autor = getState().employees.list.find(b=>{
-        return b.id ==r.autor
-      })
-      r["autor"]=autor
       dispatch(newNotesSuccess(r))
     }).catch(e=>{
       console.log(e)

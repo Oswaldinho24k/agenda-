@@ -40,6 +40,7 @@ export default class DialogExampleCustomWidth extends React.Component {
           modal={true}
           contentStyle={customContentStyle}
           open={this.props.open}
+          onRequestClose={this.props.close}
         >
 
         <TextField
@@ -58,6 +59,7 @@ export default class DialogExampleCustomWidth extends React.Component {
               onChange={this.props.onChange}
             />
             <SelectField
+              style={{textAlign:'start'}}
               floatingLabelText="Categoria"
               value={this.props.value}
               onChange={this.props.selectChange}

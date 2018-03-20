@@ -14,6 +14,7 @@ import Loader from '../common/Loading';
 import AddParticipants from './AddParticipants';
 import TabsComponents from './TabsComponents';
 import Accordion from './Accordion';
+import NewNote from './NewNote'
 import './meetings.css';
 
 class MeetingsPage extends Component{
@@ -32,6 +33,7 @@ class MeetingsPage extends Component{
           user:{},
           priority:{},
           date:{},
+          newNotes:false,
       };
   }
 
@@ -258,6 +260,19 @@ class MeetingsPage extends Component{
        this.props.immediateActions.editAction(newAction);
        console.log(newAction)
     }
+    ////////////////////////////////////////////
+    //Note
+
+    openNote=()=>{
+       let {newNotes} = this.state
+      newNotes =! newNotes
+      this.setState({newNotes})
+    }
+  //delete note
+  onDeleteNote=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.notesActions.deleteNotes(i);
+  };
     render(){
 
           let {userAll,employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
@@ -278,19 +293,24 @@ class MeetingsPage extends Component{
                     openParticipant={this.openParticipant}
 
                      />
+                   <NewNote open={this.state.newNotes}
+                            close={this.openNote}
+                            employees={this.props.employees}
+                            id={id}
+                    />
                   <div className="meeting_box">
                     <div className="meetings-container">
                           <Accordion
                             employees={employees}
                             meeting={meeting}
                             order={order}
-                            notes={notes}
                             id={id}
                             usersList={this.usersList}
                             openListAdd={this.openParticipant}
                             isStaff={this.props.user.is_staff}
                             />
                           <TabsComponents
+                            notes={notes}
                             isStaff={this.props.user.is_staff}
                             userAll={userAll}
                             tasks={tasks}
@@ -313,7 +333,9 @@ class MeetingsPage extends Component{
                             onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
                             onDeleteAction={this.onDeleteAction}
+                            onDeleteNote={this.onDeleteNote}
                             archivo={this.state.files}
+                            openNote={this.openNote}
                             />
                     </div>
                   </div>

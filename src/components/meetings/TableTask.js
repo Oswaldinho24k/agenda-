@@ -56,7 +56,7 @@ export default class NewTask extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
             {this.props.tasks.map(row =>
-              <TableRow key={row.id} data-my-row-identifier={row.id}>
+              <TableRow key={row.id}>
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>
                   {this.props.isStaff?<SelectField

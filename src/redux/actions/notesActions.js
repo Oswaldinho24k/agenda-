@@ -74,11 +74,6 @@ export const editNotes=(notes)=>(dispatch, getState)=>{
 
     return api.editNotes(notes)
         .then(r=>{
-
-            let meeting = getState().meeting.list.find(a=>{
-              return a.id=r.meeting
-            })
-            r["meeting"]=meeting
             dispatch(editNotesSuccess(r))
             console.log(r);
         }).catch(e=>{

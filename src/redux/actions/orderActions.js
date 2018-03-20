@@ -73,11 +73,6 @@ export const editOrder=(order)=>(dispatch, getState)=>{
 
     return api.editOrder(order)
         .then(r=>{
-
-            let meeting = getState().meeting.list.find(a=>{
-              return a.id=r.meeting
-            })
-            r["meeting"]=meeting
             dispatch(editOrderSuccess(r))
             console.log(r);
         }).catch(e=>{

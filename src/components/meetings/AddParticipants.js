@@ -35,6 +35,7 @@ onDemo = (data) =>{
         ) !==-1;
       }
     );
+    let text=this.state.searchText;
     return (
       <div>
         <Dialog
@@ -52,7 +53,8 @@ onDemo = (data) =>{
                   </div>
              <Divider/>
              <List style={style.listEmployess}>
-               {searchFilter.map(data =>
+               {searchFilter.length<=0 ? <p>No se encontro "{text}"</p>:
+                 searchFilter.map(data =>
                 <ListItem
                key={data.id}
                value={data}

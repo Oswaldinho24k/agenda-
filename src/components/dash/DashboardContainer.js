@@ -36,7 +36,6 @@ class DashContainer extends Component{
        let d = new Date()
        let {fastnote,fetched} = this.props;
        if(!fetched)return<Loader/>
-        console.log(fastnote)
         return(
           <div>
             <NewFastNote close={this.openNote} open={this.state.openNewFastNote} />

@@ -9,6 +9,7 @@ import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
 import Done from 'material-ui/svg-icons/action/done';
 import ImmediateAction from './ImmediateAction';
+import NoteMeeting from './NoteMeeting'
 
 const styles = {
   headline: {
@@ -36,7 +37,9 @@ function clickin(){
   elinput.click();
   console.log(elinput)
 }
-const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,userAll,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,
+                         onChangeFile,files,uploadFile,isStaff,changeDateFinish,openNote,
+                         changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,userAll,tasks,onDelete,addPerson, notes, onDeleteNote}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab
@@ -112,6 +115,15 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                               />
                           </div>
                         </form>:null}
+                    </div>
+                  </Tab>
+                  <Tab
+                      label="Notas"
+                      data-route="/home"
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1"}}
+                  >
+                    <div className="muro">
+                      <NoteMeeting noteMe={notes}  isStaff={isStaff} onDeleteNote={onDeleteNote} openNote={openNote}/>
                     </div>
                   </Tab>
                 </Tabs>

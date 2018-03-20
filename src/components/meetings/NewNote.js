@@ -68,6 +68,7 @@ import * as notesActions from '../../redux/actions/notesActions';
             style={{textAlign:'start'}}
             autoWidth={true}
             maxHeight={200}
+            required
             floatingLabelText='Autor'
             onChange={this.handleChange}
             value={this.state.value}

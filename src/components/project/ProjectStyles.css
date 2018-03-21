@@ -2,11 +2,34 @@
     box-sizing: border-box;
 }
 
-.form {
+.form, .detail, .title {
     display: flex;
     flex-wrap: wrap;
+}
+
+.form, .title {
     width: 100%;
     padding: 20px 40px;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+    padding: 0;
+}
+
+.detail {
+    flex-direction: column;
+    padding: 2%;
+}
+
+#external-events {
+    /*position: absolute;*/
+    width: 30vw;
+    padding: 0 10px;
+    background: #F5F7FA;
+    text-align: center;
+    height: 51.7em;
+    display: flex;
+    flex-direction: column;
 }

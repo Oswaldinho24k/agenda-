@@ -10,7 +10,7 @@ import {
 } from 'material-ui';
 import {RowBody} from './RowBody';
 
-export const ProjectTable = ({projects = []}) => (
+export const ProjectTable = ({projects = [], selectedRows}) => (
     <div className="box_cardTable">
         <Card className="cardConteidoTable">
             <CardTitle title="Proyectos"/>
@@ -32,7 +32,15 @@ export const ProjectTable = ({projects = []}) => (
                 <TableBody>
                     {
                         projects.length > 0 ?
-                            projects.map( (project, index) => <RowBody key={index} data={project}/>):
+                            projects.map( (project, index) => (
+                                    <RowBody
+                                        key={index}
+                                        data={project}
+                                        selectedRows={selectedRows}
+                                        {...this.props}
+                                    />
+                                )
+                            ):
                             <TableRow selectable={false}>
                                 <TableRowColumn colSpan="5">No existen proyectos</TableRowColumn>
                             </TableRow>

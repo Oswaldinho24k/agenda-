@@ -13,7 +13,7 @@ const list = (state = [], action) => {
                 return project;
             });
         case DELETE:
-            return state.filter( project => project.id !== action.project.id );
+            return state.filter( project => project.id !== action.idProject );
         default:
             return state;
     }

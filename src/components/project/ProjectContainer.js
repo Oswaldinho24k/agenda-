@@ -26,7 +26,6 @@ class ProjectContainer extends Component {
 
     render() {
         const {projects, areFetched} = this.props;
-
         const NewProjectModal = (props) => (
             <NewProject
                 onSubmit={this.onSubmit}

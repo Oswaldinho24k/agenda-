@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import {newProject} from '../../redux/actions/projectActions';
+import {newProject, updateProject, deleteProject} from '../../redux/actions/projectActions';
 import {Dialog, FlatButton} from 'material-ui';
 import {AddNewProjectForm as Form} from './AddNewProjectForm';
 import moment from 'moment';
@@ -60,37 +60,81 @@ class AddNewProjectPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const {onSubmit, newProject} = this.props;
-        newProject(Object.assign({},this.state.project))
+        const {onSubmit, newProject, updateProject, project} = this.props;
+        if(project){
+            updateProject(Object.assign({},this.state.project))
+                .then(r => {
+                    console.log(r);
+                    onSubmit();
+                }).catch(e=>{
+                console.log(e);
+            })
+        }else{
+            newProject(Object.assign({},this.state.project))
+                .then(r => {
+                    console.log(r);
+                    onSubmit();
+                }).catch(e=>{
+                    console.log(e);
+            })
+        }
+    };
+
+    deleteThisProject = () => {
+        const {deleteProject, onSubmit} = this.props;
+        deleteProject(Object.assign({},this.state.project).id)
             .then(r => {
                 console.log(r);
                 onSubmit();
             }).catch(e=>{
-                console.log(e);
+            console.log(e);
         })
     };
 
     render() {
-        const {onCancel} = this.props;
+        const {onCancel, project : projectFromProp} = this.props;
         const {project, created_date, due_date} = this.state;
-        const actions = [
-            <FlatButton
-                label="Cancelar"
-                secondary
-                onClick={onCancel}
-            />,
-            <FlatButton
-                label="Guardar"
-                primary
-                keyboardFocused={true}
-                type="submit"
-                form="newProForm"
-            />
-        ];
+        let actions = [];
+        if (projectFromProp){
+            actions = [
+                <FlatButton
+                    label="Cancelar"
+                    secondary
+                    onClick={onCancel}
+                />,
+                <FlatButton
+                    label="Eliminar"
+                    secondary
+                    onClick={this.deleteThisProject}
+                />,
+                <FlatButton
+                    label="Guardar"
+                    primary
+                    keyboardFocused={true}
+                    type="submit"
+                    form="newProForm"
+                />
+            ];
+        }else {
+            actions = [
+                <FlatButton
+                    label="Cancelar"
+                    secondary
+                    onClick={onCancel}
+                />,
+                <FlatButton
+                    label="Guardar"
+                    primary
+                    keyboardFocused={true}
+                    type="submit"
+                    form="newProForm"
+                />
+            ];
+        }
         return (
             <Dialog
                 open
-                title="Añadir nuevo proyecto"
+                title={ projectFromProp ? "Editar proyecto" : "Añadir nuevo proyecto"}
                 onRequestClose={onCancel}
                 contentStyle={contentStyle}
                 actions={actions}
@@ -123,5 +167,5 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-AddNewProjectPage = connect(mapStateToProps, {newProject}) (AddNewProjectPage);
+AddNewProjectPage = connect(mapStateToProps, {newProject,updateProject, deleteProject}) (AddNewProjectPage);
 export default AddNewProjectPage;

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "dhtmlx-gantt": "^5.1.0",
     "fullcalendar": "^3.8.2",
     "jquery": "^3.3.1",
     "jquery-ui-dist": "^1.12.1",

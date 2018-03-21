@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import moment from "moment";
 import {IconButton,TableRow, TableRowColumn} from "material-ui";
 
-export const RowBody = ({data, key, ...props}) => (
-    <TableRow key={key} {...props} >
-        {props.children[0]}
+export const RowBody = ({data, selectedRows, key, ...otherProps}) => (
+    <TableRow key={key} {...otherProps} >
+        {otherProps.children[0]}
         <TableRowColumn>{data.name_project}</TableRowColumn>
         <TableRowColumn>{moment(data.created_date, "YYYY-MM-DD").format("DD MMM YYYY")}</TableRowColumn>
         <TableRowColumn>{moment(data.due_date, "YYYY-MM-DD").format("DD MMM YYYY")}</TableRowColumn>
@@ -14,7 +14,7 @@ export const RowBody = ({data, key, ...props}) => (
         <TableRowColumn>
             <Link
                 style={{color: 'black', textDecoration: 'none', fontWeight: 'bold'}}
-                to={`/agenda/meeting/${data.id}`}>
+                to={`/agenda/project/detail/${data.id}`}>
                 <IconButton>
                     <Icon/>
                 </IconButton>

@@ -10,18 +10,21 @@ import fileReducer from './fileReducer';
 import orderReducer from './orderReducer';
 import notesReducer from './notesReducer';
 import immediateReducer from './immediateReducer';
+import projects from './projectReducer';
+
 const rootReducer = combineReducers({
-user:userReducer,
-profile:profileReducer,
-password:passwordReducer,
-employees:employeesReducer,
-meeting:meetingReducer,
-userAll:userAllReducer,
-tasks:tasksReducer,
-files:fileReducer,
-order:orderReducer,
-notes:notesReducer,
-immediate:immediateReducer,
+    user:userReducer,
+    profile:profileReducer,
+    password:passwordReducer,
+    employees:employeesReducer,
+    meeting:meetingReducer,
+    userAll:userAllReducer,
+    tasks:tasksReducer,
+    files:fileReducer,
+    order:orderReducer,
+    notes:notesReducer,
+    immediate:immediateReducer,
+    projects
 });
 
 export default rootReducer;

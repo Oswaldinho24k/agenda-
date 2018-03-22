@@ -17,7 +17,7 @@ const OrderOfDay = ({order,open,onDelete,changeDone,isStaff,disabled,active}) =>
               <StepButton style={{height:'0px',paddingRight:'none'}} onClick={()=>changeDone(data.id,data.status)}  disabled={!isStaff? disabled:active}>
                 {data.name_order}
               </StepButton>
-              {isStaff?<IconButton tooltip="Eliminar orden"  onClick={()=>onDelete(data.id)}>
+              {isStaff?<IconButton  onClick={()=>onDelete(data.id)}>
                 <Delete color="#c7c7c7" />
               </IconButton>:<p> ...</p>}
             </Step>

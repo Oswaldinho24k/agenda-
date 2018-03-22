@@ -56,7 +56,7 @@ export default class NewTask extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
             {this.props.tasks.map(row =>
-              <TableRow key={row.id} data-my-row-identifier={row.id}>
+              <TableRow key={row.id}>
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>
                   {this.props.isStaff?<SelectField
@@ -70,10 +70,10 @@ export default class NewTask extends React.Component {
                      disabled={this.props.isStaff ? this.state.active:this.state.disabled}
                     hintText={row.user === null? 'Select':row.user.username}
                     >
-                    { this.props.employees.map(data =>
-                      <MenuItem key={data.id}  value={data.user.id}  primaryText={data.user.username} onClick={()=>this.props.addPerson(row.id, data.user.id)}/>
+                    { this.props.userAll.map(data =>
+                      <MenuItem key={data.id}  value={data.id}  primaryText={data.username} onClick={()=>this.props.addPerson(row.id, data.id)}/>
               )}
-            </SelectField>:<p>{row.user === null? 'N/A':row.user.username}</p>}
+            </SelectField>:<p>{row.user === null? 'N/A':row.username}</p>}
               </TableRowColumn>
               <TableRowColumn>
                   {this.props.isStaff?<DatePicker

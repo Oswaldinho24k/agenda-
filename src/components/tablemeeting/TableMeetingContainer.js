@@ -43,6 +43,7 @@ class TableMeetingContainer extends Component{
     onSubmit=(e)=>{
     e.preventDefault();
     let newMeeting= this.state.meeting;
+    newMeeting['participants_id'] =[];
     this.props.meetingActions.saveMeeting(newMeeting)
     this.setState({openNewMeeting:false})
     console.log(newMeeting)
@@ -58,7 +59,7 @@ class TableMeetingContainer extends Component{
             />
             {!user.is_staff ? null :
             <div style={{display:'flex', justifyContent:'flex-end',marginRight:'20px'}}>
-              <FloatingActionButton primary={false} onClick={this.openNewMeeting} style={{bottom:'50px', position:'fixed'}}  backgroundColor="rgb(244, 134, 135)">
+              <FloatingActionButton primary="true" onClick={this.openNewMeeting} style={{bottom:'50px', position:'fixed'}}  >
                   <ContentAdd />
               </FloatingActionButton>
             </div>

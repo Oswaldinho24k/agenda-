@@ -34,11 +34,6 @@ export const newAction=(immediateA)=>(dispatch,getState)=>{
   console.log(immediateA)
   return  api.newAction(immediateA)
     .then(r=>{
-
-      let meeting = getState().meeting.list.find(a=>{
-        return a.id=r.meeting
-      })
-      r["meeting"]=meeting
       dispatch(newActionSuccess(r))
     }).catch(e=>{
       console.log(e)

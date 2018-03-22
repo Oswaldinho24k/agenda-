@@ -45,11 +45,11 @@ function mapStateToProps(state, ownProps) {
 
 
     employee = employee[0];
-    //tasks=tasks;
+
 
     return {
         employee,
-        tasks:state.tasks.list,
+        tasks,
         fetched: employee!==undefined && state.employees.list!==undefined,
     }
 }

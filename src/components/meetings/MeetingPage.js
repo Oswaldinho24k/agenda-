@@ -8,11 +8,13 @@ import * as userActions from '../../redux/actions/userActions';
 import * as fileActions from '../../redux/actions/fileActions';
 import * as orderActions from '../../redux/actions/orderActions';
 import * as notesActions from '../../redux/actions/notesActions';
+import * as userAllActions from '../../redux/actions/userAllActions';
 import * as immediateActions from '../../redux/actions/immediateActions';
 import Loader from '../common/Loading';
 import AddParticipants from './AddParticipants';
 import TabsComponents from './TabsComponents';
 import Accordion from './Accordion';
+import NewNote from './NewNote'
 import './meetings.css';
 
 class MeetingsPage extends Component{
@@ -31,6 +33,7 @@ class MeetingsPage extends Component{
           user:{},
           priority:{},
           date:{},
+          newNotes:false,
       };
   }
 
@@ -91,8 +94,8 @@ class MeetingsPage extends Component{
   }
   addEmployes=(data)=>{
 
-    let emploList = this.state.emploList;
-    let {usersList} = this.state;
+    let emploList = this.state.emploList.slice();
+    let usersList = this.state.usersList.slice();
 
     emploList.push(data);
     let filtered = usersList.filter(user=>{
@@ -105,8 +108,8 @@ class MeetingsPage extends Component{
 
   }
   deleteEmployees = (data) => {
-    let emploList = this.state.emploList;
-    let {usersList} = this.state;
+    let emploList = this.state.emploList.slice();
+    let usersList = this.state.usersList.slice();
 
     usersList.push(data);
     let filtered = emploList.filter(user=>{
@@ -126,7 +129,7 @@ class MeetingsPage extends Component{
   };
   addParticipants=()=>{
     let meeting=this.props.meeting;
-    let data=this.state.emploList;
+    let data=Object.assign({},this.state.emploList);
     let users=[];
     for(let i in data){
       users.push(data[i].id)
@@ -142,27 +145,28 @@ class MeetingsPage extends Component{
   //add new Task
   onSubmit=(e)=>{
       e.preventDefault();
-      let newTask= this.state.task;
-      newTask['meeting']=parseInt(this.props.match.params.id)
+      let newTask= Object.assign({},this.state.task);
+      newTask['meeting_id']=parseInt(this.props.match.params.id)
+      newTask['user_id']=null;
       this.props.tasksActions.saveTask(newTask);
       console.log(newTask)
       e.target.name.value="";
   };
   handleChange = (e) => {
-      let task = this.state.task;
+      let task = Object.assign({}, this.state.task);
       task[e.target.name] = e.target.value;
       this.setState({task});
       console.log(task)
   };
   //Table TASK
   addPerson=(taskId, userId)=>{
-     let newPerson= this.state.user;
+     let newPerson= Object.assign({},this.state.user);
      newPerson['id'] =parseInt(taskId)
-     newPerson['user']=parseInt(userId)
+     newPerson['user_id']=parseInt(userId)
     this.props.tasksActions.editTask(newPerson);
   }
   addPriority=(taskId,value)=>{
-    let priority= this.state.priority;
+    let priority= Object.assign({},this.state.priority);
     priority['id'] =parseInt(taskId)
     priority['priority']=value
 
@@ -173,20 +177,20 @@ class MeetingsPage extends Component{
    this.props.tasksActions.deleteTask(i);
   };
   changeDateStart = (e,date) => {
-      let dateS= this.state.date;
+      let dateS= Object.assign({},this.state.date);
       dateS['starts'] = date;
       this.props.tasksActions.editTask(dateS)
       console.log(dateS)
   };
   changeDateFinish = (e,date) => {
-      let dateS= this.state.date;
+      let dateS= Object.assign({},this.state.date);
       dateS['expiry'] = date;
       this.props.tasksActions.editTask(dateS)
       console.log(dateS)
   };
 
   onDate=(taskId)=>{
-    let dateS= this.state.date;
+    let dateS= Object.assign({},this.state.date);
     dateS['id'] =parseInt(taskId)
     console.log("Voy a cambiar fecha",taskId)
   }
@@ -194,21 +198,21 @@ class MeetingsPage extends Component{
 //new File
   onSubmitFile=(e)=>{
       e.preventDefault();
-      let newFile= this.state.files;
-      newFile['meeting']=parseInt(this.props.match.params.id)
+      let newFile= Object.assign({},this.state.files);
+      newFile['meeting_id']=parseInt(this.props.match.params.id)
       this.props.fileActions.newFile(newFile);
       console.log(newFile)
       e.target.name_file.value="";
       this.setState({files:{}})
   };
   handleChangeFile = (e) => {
-      let files = this.state.files;
+      let files = Object.assign({},this.state.files);
       files[e.target.name] = e.target.value;
       this.setState({files});
       console.log(files)
   };
   uploadFile=(e)=>{
-    let files = this.state.files;
+    let files = Object.assign({},this.state.files);
     files["files"]=e.target.files[0];
     this.setState({files})
     let reader = new FileReader();
@@ -232,14 +236,15 @@ class MeetingsPage extends Component{
 //add new Action
     onSubmitAction=(e)=>{
         e.preventDefault();
-        let {newAction}= this.state;
-        newAction['meeting']=parseInt(this.props.match.params.id)
+        let newAction= Object.assign({},this.state.newAction);
+        newAction['meeting_id']=parseInt(this.props.match.params.id)
+        newAction['user_id']=null;
         this.props.immediateActions.newAction(newAction);
         console.log(newAction)
         e.target.text.value="";
     };
     onChangeAction = (e) => {
-        let {newAction} = this.state;
+        let newAction = Object.assign({},this.state.newAction);
         newAction[e.target.name] = e.target.value;
         this.setState({newAction});
         console.log(newAction)
@@ -249,16 +254,29 @@ class MeetingsPage extends Component{
      this.props.immediateActions.deleteAction(i);
     };
     addPersonAction=(actionId, Id)=>{
-       let {newAction}= this.state;
+       let newAction= Object.assign({},this.state.newAction);
        newAction['id'] =parseInt(actionId)
-       newAction['user']=parseInt(Id)
+       newAction['user_id']=parseInt(Id)
        this.props.immediateActions.editAction(newAction);
        console.log(newAction)
     }
+    ////////////////////////////////////////////
+    //Note
+
+    openNote=()=>{
+       let {newNotes} = this.state
+      newNotes =! newNotes
+      this.setState({newNotes})
+    }
+  //delete note
+  onDeleteNote=(i)=>{
+   console.log("Voy a eliminar",i)
+   this.props.notesActions.deleteNotes(i);
+  };
     render(){
 
-          let {employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
-          let {usersList} = this.state;
+          let {userAll,employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
+          let usersList = this.state.usersList;
           if(!fetched)return<Loader/>
           console.log(meeting)
 
@@ -275,21 +293,26 @@ class MeetingsPage extends Component{
                     openParticipant={this.openParticipant}
 
                      />
+                   <NewNote open={this.state.newNotes}
+                            close={this.openNote}
+                            employees={this.props.employees}
+                            id={id}
+                    />
                   <div className="meeting_box">
                     <div className="meetings-container">
                           <Accordion
                             employees={employees}
                             meeting={meeting}
                             order={order}
-                            notes={notes}
                             id={id}
                             usersList={this.usersList}
                             openListAdd={this.openParticipant}
                             isStaff={this.props.user.is_staff}
                             />
                           <TabsComponents
+                            notes={notes}
                             isStaff={this.props.user.is_staff}
-                            employees={employees}
+                            userAll={userAll}
                             tasks={tasks}
                             files={files}
                             immediate={immediate}
@@ -310,7 +333,9 @@ class MeetingsPage extends Component{
                             onChangeFile={this.handleChangeFile}
                             onDeleteFile={this.onDeleteFile}
                             onDeleteAction={this.onDeleteAction}
+                            onDeleteNote={this.onDeleteNote}
                             archivo={this.state.files}
+                            openNote={this.openNote}
                             />
                     </div>
                   </div>
@@ -344,6 +369,7 @@ function mapStateToProps(state, ownProps) {
 
 
     return {
+      userAll: state.userAll.list,
       employees: state.employees.list,
       user: state.user.object,
       tasks,
@@ -359,6 +385,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return{
+        userAllActions:bindActionCreators(userAllActions,dispatch),
         userActions:bindActionCreators(userActions,dispatch),
         employeesActions:bindActionCreators(employeesActions,dispatch),
         meetingActions:bindActionCreators(meetingActions,dispatch),

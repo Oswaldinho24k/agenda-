@@ -8,6 +8,7 @@ import {getFile} from './fileActions';
 import {getOrder} from './orderActions';
 import {getNotes} from './notesActions';
 import {getAction} from './immediateActions';
+import {getFastNote} from './fastNoteActions';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
 export function logInSuccess(user){
@@ -82,5 +83,6 @@ export const checkIfUser=()=>(dispatch, getState)=>{
       dispatch(getOrder());
       dispatch(getNotes());
       dispatch(getAction());
+      dispatch(getFastNote());
     }
 };

@@ -3,12 +3,13 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
-import NewTask from './NewTask';
+import TableTask from './TableTask';
 import FileMeeting from './FileMeeting'
 import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
 import Done from 'material-ui/svg-icons/action/done';
 import ImmediateAction from './ImmediateAction';
+import NoteMeeting from './NoteMeeting'
 
 const styles = {
   headline: {
@@ -36,7 +37,9 @@ function clickin(){
   elinput.click();
   console.log(elinput)
 }
-const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,
+                         onChangeFile,files,uploadFile,isStaff,changeDateFinish,openNote,
+                         changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,userAll,tasks,onDelete,addPerson, notes, onDeleteNote}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab
@@ -45,7 +48,7 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                       style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
                   >
                     <div className="muro">
-                      <ImmediateAction isStaff={isStaff} employees={employees} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
+                      <ImmediateAction isStaff={isStaff} userAll={userAll} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
                         {isStaff ?<form
                           onSubmit={onSubmitAction}
                           >
@@ -62,8 +65,8 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                   </Tab>
                   <Tab label="Compromisos" style={{backgroundColor:"white",borderLeft:"1px dotted #6bb8c1", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
                     <div className="muro">
-                      <NewTask
-                          employees={employees}
+                      <TableTask
+                          userAll={userAll}
                           tasks={tasks}
                           onDelete={onDelete}
                           addPerson={addPerson}
@@ -112,6 +115,15 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                               />
                           </div>
                         </form>:null}
+                    </div>
+                  </Tab>
+                  <Tab
+                      label="Notas"
+                      data-route="/home"
+                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1"}}
+                  >
+                    <div className="muro">
+                      <NoteMeeting noteMe={notes}  isStaff={isStaff} onDeleteNote={onDeleteNote} openNote={openNote}/>
                     </div>
                   </Tab>
                 </Tabs>

@@ -2,30 +2,25 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as notesActions from '../../redux/actions/notesActions';
+import * as fastNoteActions from '../../redux/actions/fastNoteActions';
 
 
- class NewNote extends React.Component {
+ class NewFastNote extends React.Component {
  constructor(props) {
     super(props);
       this.state = {
           newNote:{},
           editOrder:{},
-          value: null,
        };
    }
 
    onSubmit =(e)=>{
      e.preventDefault();
      let {newNote}= this.state;
-     newNote['meeting_id']=parseInt(this.props.id);
-     this.props.notesActions.newNotes(newNote);
+     this.props.fastNoteActions.newFastNote(newNote);
      this.props.close();
-     this.setState({value:null})
      console.log(newNote)
    }
    onChange = (e) => {
@@ -34,12 +29,7 @@ import * as notesActions from '../../redux/actions/notesActions';
        this.setState({newNote});
        console.log(newNote)
    };
-   handleChange = (event, index, value) => {
-     let {newNote}=this.state;
-     newNote['autor_id']=value;
-     this.setState({value,})
-     console.log(newNote)
-  };
+
 
   render() {
     const actions = [
@@ -48,6 +38,7 @@ import * as notesActions from '../../redux/actions/notesActions';
         label="Cancelar"
         primary={true}
         onClick={this.props.close}
+
       />,
       <FlatButton
         label="Aceptar"
@@ -58,31 +49,23 @@ import * as notesActions from '../../redux/actions/notesActions';
     return (
           <Dialog
             title="Notas"
-            modal={true}
+            modal={false}
             open={this.props.open}
             contentStyle={modStyle}
-            onRequestClose={this.props.close}
             actions={actions}
+            bodyStyle={{backgroundColor:'#FFFFA5'}}
+            titleStyle={{backgroundColor:'#FFFFA5',borderBottom:' 5px double black'}}
+            actionsContainerStyle={{backgroundColor:'#FFFFA5'}}
+
+            onRequestClose={this.props.close}
           >
-          <SelectField
-            style={{textAlign:'start'}}
-            autoWidth={true}
-            maxHeight={200}
-            required
-            floatingLabelText='Autor'
-            onChange={this.handleChange}
-            value={this.state.value}
-            >
-            { this.props.employees.map(data =>
-              <MenuItem key={data.id}  value={data.id}  primaryText={data.user.username}/>
-          )}
-         </SelectField>
             <TextField
+              style={{textAlign:'start'}}
               name='text'
               required
-              style={{textAlign:'start'}}
-              floatingLabelText="Nota de usuario"
+              floatingLabelText="Escribe tu idea"
               multiLine={true}
+              underlineStyle={{display :  ' none '}}
               onChange={this.onChange}
               rows={2}
             />
@@ -92,20 +75,22 @@ import * as notesActions from '../../redux/actions/notesActions';
 }
 
 var modStyle={
-  width:'30%',
+  width:'25%',
   minWidth: '250px',
 }
-
 function mapStateToProps(state, ownProps) {
-    return {
-    }
+
+     return {
+        fastnote: state.fastnote.list,
+     }
+
 }
 function mapDispatchToProps(dispatch) {
     return{
-        notesActions:bindActionCreators(notesActions,dispatch),
+        fastNoteActions:bindActionCreators(fastNoteActions,dispatch),
     }
 }
 
-NewNote = connect(mapStateToProps, mapDispatchToProps)(NewNote);
+NewFastNote = connect(mapStateToProps, mapDispatchToProps)(NewFastNote);
 
-export default NewNote;
+export default NewFastNote;

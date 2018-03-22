@@ -3,7 +3,7 @@ import {getProfile}from './profileActions'
 import {getAllProfiles} from './employeesActions'
 import {getAllUser} from './userAllActions'
 import {getMeeting} from './meetingActions'
-import {getTasks} from './tasksActions';
+import {getTasks,getMyTasks} from './tasksActions';
 import {getFile} from './fileActions';
 import {getOrder} from './orderActions';
 import {getNotes} from './notesActions';
@@ -73,12 +73,22 @@ export const checkIfUser=()=>(dispatch, getState)=>{
     console.log(userToken)
     if(userToken){
       //dispatch the functions
-      dispatch(getUser());
+      dispatch(getUser()).then(r=>{
+        console.log(getState())
+        let user = getState().user.object
+
+        if(user.is_superuser){
+          dispatch(getTasks());
+          dispatch(getMyTasks());
+        }else{
+          dispatch(getMyTasks());
+        }
+      });
+
       dispatch(getProfile());
       dispatch(getAllProfiles());
       dispatch(getAllUser());
       dispatch(getMeeting());
-      dispatch(getTasks());
       dispatch(getFile());
       dispatch(getOrder());
       dispatch(getNotes());

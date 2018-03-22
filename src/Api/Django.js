@@ -19,6 +19,7 @@ let urlAction='http://localhost:8000/action/'
 let urlNotes='http://localhost:8000/notes/'
 let urlOrder='http://localhost:8000/order/'
 let urlFastNote = 'http://localhost:8000/fastnote/'
+let urlMyTasks = 'http://localhost:8000/users/mytasks/'
 
 if(!debug){
     urlLogin='https://backend-arnulfo.herokuapp.com/rest-auth/login/'
@@ -316,6 +317,29 @@ getAllUser:()=>{
     return new Promise(function (resolve, reject) {
         const instance = axios.create({
             baseURL: urlTasks,
+            // timeout: 2000,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + userToken
+            }
+        });
+        instance.get('')
+            .then(function (response) {
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log('el error: ', error.response);
+                reject(error);
+            });
+    });
+
+  },
+  //mis tareas solo por usuario
+  getMyTasks:()=>{
+    const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+    return new Promise(function (resolve, reject) {
+        const instance = axios.create({
+            baseURL: urlMyTasks,
             // timeout: 2000,
             headers: {
                 'Content-Type': 'application/json',

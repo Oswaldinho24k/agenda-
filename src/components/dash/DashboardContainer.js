@@ -34,7 +34,7 @@ class DashContainer extends Component{
 
     render(){
        let d = new Date()
-       let {fastnote,fetched} = this.props;
+       let {fastnote,fetched,myTask} = this.props;
        if(!fetched)return<Loader/>
         return(
           <div>
@@ -55,7 +55,9 @@ function mapStateToProps(state, ownProps) {
   })
      return {
         fastnote,
+        myTask: state.tasks.myTasks,
         fetched:  fastnote!==undefined
+
      }
 
 }

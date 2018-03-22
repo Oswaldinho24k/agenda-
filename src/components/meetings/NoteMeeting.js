@@ -42,14 +42,14 @@ const style = {
   cardEncabezado:{
     display:'flex',
     justifyContent:'space-between',
-    borderBottom:' 5px double black',
     height:'66px'
   },
   gridList: {
-    height:'400px',
-    maxHeight:'400px',
+    height:'368px',
+    maxHeight:'368px',
     overflowY: 'auto',
-    overflowX:'hidden'
+    overflowX:'hidden',
+    padding:'15px'
   },
   paragraph:{
     textIndent: '50x',
@@ -60,7 +60,7 @@ const style = {
     display:'flex',
     justifyContent:'space-between',
     overflow:'auto',
-    maxHeight:'100px'
+    maxHeight:'47px'
   },
   iconDelete:{
     width:'auto',
@@ -71,7 +71,7 @@ const style = {
     display:'flex',
     backgroundColor:'transparent',
     justifyContent: 'flex-end',
-    marginTop: '-46px',
+    marginTop: '-50px',
     marginRight: '15px',
   },
 };

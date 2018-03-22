@@ -35,7 +35,6 @@ class DashContainer extends Component{
     render(){
        let d = new Date()
        let {fastnote,fetched,myTask} = this.props;
-       console.log(myTask)
        if(!fetched)return<Loader/>
         return(
           <div>

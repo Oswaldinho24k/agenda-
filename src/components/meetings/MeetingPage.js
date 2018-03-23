@@ -351,19 +351,21 @@ function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
   let user= state.user.object;
   let meeting = state.meeting.list;
-  if(user.is_superuser){
+  let tasks = state.tasks.list;
+  if(user.is_staff){
     meeting = state.meeting.list.find(a=>{
         return id == a.id;
     });
+     tasks = state.tasks.list.filter(b=>{
+      return id == b.meeting.id;
+    })
   }else{
     meeting=state.meeting.myMeetings.find(a=>{
         return id == a.id;
     });
   }
 
-  let tasks = state.tasks.list.filter(b=>{
-    return id == b.meeting.id;
-  })
+
   let files = state.files.list.filter(c=>{
     return id == c.meeting.id;
   })

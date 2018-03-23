@@ -18,6 +18,7 @@ import NewNote from './NewNote'
 import './meetings.css';
 
 class MeetingsPage extends Component{
+
   constructor(props) {
       super(props);
       this.state = {
@@ -42,6 +43,7 @@ class MeetingsPage extends Component{
     // this.filterUserslistDisplay()
     this.usersList()
   }
+
   usersList=()=>{
     let usersList = this.props.employees;
     this.setState({
@@ -190,7 +192,7 @@ class MeetingsPage extends Component{
   };
 
   onDate=(taskId)=>{
-    let dateS= Object.assign({},this.state.date);
+    let dateS= this.state.date;
     dateS['id'] =parseInt(taskId)
     console.log("Voy a cambiar fecha",taskId)
   }
@@ -316,6 +318,7 @@ class MeetingsPage extends Component{
                             tasks={tasks}
                             files={files}
                             immediate={immediate}
+                            meeting={meeting}
                             openNewProject={this.openNewProject}
                             onSubmit={this.onSubmit}
                             onSubmitFile={this.onSubmitFile}
@@ -346,10 +349,17 @@ class MeetingsPage extends Component{
 
 function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
-  let meeting= state.meeting.list.find(a=>{
-      return id == a.id;
-  });
-
+  let user= state.user.object;
+  let meeting = state.meeting.list;
+  if(user.is_superuser){
+    meeting = state.meeting.list.find(a=>{
+        return id == a.id;
+    });
+  }else{
+    meeting=state.meeting.myMeetings.find(a=>{
+        return id == a.id;
+    });
+  }
 
   let tasks = state.tasks.list.filter(b=>{
     return id == b.meeting.id;
@@ -371,7 +381,7 @@ function mapStateToProps(state, ownProps) {
     return {
       userAll: state.userAll.list,
       employees: state.employees.list,
-      user: state.user.object,
+      user,
       tasks,
       files,
       meeting,

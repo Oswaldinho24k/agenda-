@@ -21,6 +21,7 @@ const NewMeetingComponents =({cancel,onChange,onSubmit,onChangeDate})=>{
             name='meeting_date'
             onChange={onChangeDate}
             required
+            autoOk={true}
             floatingLabelText="Fecha de la Reunión"/>
              <div className="btnMod">
                <FlatButton

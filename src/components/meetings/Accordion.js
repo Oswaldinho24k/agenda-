@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import * as orderActions from '../../redux/actions/orderActions';
 import * as notesActions from '../../redux/actions/notesActions';
 import NewOrderOfDay from './NewOrderOfDay'
-import NewNote from './NewNote'
+
 
 
 class Acordion extends React.Component{
@@ -18,11 +18,9 @@ class Acordion extends React.Component{
       this.state = {
           expandable1:true,
           expandable2:false,
-          expandable3:false,
           order:{},
           editOrder:{},
           newOrder:false,
-          newNotes:false,
           disabled:true,
           active:false
       };
@@ -31,18 +29,14 @@ class Acordion extends React.Component{
   expandable1=()=>{
     let {expandable1}=this.state;
     expandable1 =!expandable1;
-    this.setState({expandable1,expandable2:false,expandable3:false})
+    this.setState({expandable1,expandable2:false})
   }
   expandable2=()=>{
     let {expandable2}=this.state;
     expandable2 =!expandable2;
-    this.setState({expandable2,expandable3:false,expandable1:false})
+    this.setState({expandable2,expandable1:false})
   }
-  expandable3=()=>{
-    let {expandable3}=this.state;
-    expandable3 =!expandable3;
-    this.setState({expandable3,expandable2:false,expandable1:false})
-  }
+
   ////Ordern del Dia
   openOrder=()=>{
     let {newOrder}=this.state
@@ -61,25 +55,21 @@ class Acordion extends React.Component{
    console.log("Voy a eliminar",i)
    this.props.orderActions.deleteOrder(i);
   };
-  //Note
 
-  openNote=()=>{
-     let {newNotes} = this.state
-    newNotes =! newNotes
-    this.setState({newNotes})
-  }
-//delete note
-onDeleteNote=(i)=>{
- console.log("Voy a eliminar",i)
- this.props.notesActions.deleteNotes(i);
-};
 
 
   render(){
+    let user=this.props.isStaff;
+    let order = {};
+    if(user){
+      order=this.props.order
+    }else{
+      order=this.props.meeting.order
+    }
     return(
       <div style={{width:'25%',margin:'0px auto'}}>
         <NewOrderOfDay open={this.state.newOrder} close={this.openOrder} id={this.props.id}/>
-        <NewNote open={this.state.newNotes} close={this.openNote} employees={this.props.employees} id={this.props.id}/>
+
         <Card style={{marginBottom:'5px'}}  expanded={this.state.expandable1}  onExpandChange={this.expandable1}>
           <CardHeader
             title="ORDEN DEL DIA"
@@ -90,23 +80,11 @@ onDeleteNote=(i)=>{
           />
         <CardText expandable={true} style={{padding:'none'}}>
           {this.props.order.length <= 0 ? [(this.props.isStaff !== true ?<p>No hay ordenes del dia</p>:<RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/>)] :
-           <OrderOfDay order={this.props.order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
+           <OrderOfDay order={order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
           </CardText>
         </Card>
-        <Card style={{marginTop:'5px',marginBottom:'5px'}} expanded={this.state.expandable2} onExpandChange={this.expandable2}>
-          <CardHeader
-            title="NOTAS"
-            actAsExpander={true}
-            showExpandableButton={true}
-            titleStyle={{color:'white'}}
-            style={{backgroundColor:"#63a2f1",textAlign:'start',color:'white'}}
-          />
-          <CardText expandable={true} style={{padding:'none',paddingBottom:'0px'}}>
-            {this.props.notes.length<= 0 ?[(this.props.isStaff !== true ?<p>No hay notas</p>:<RaisedButton primary={true} label="Agregar nueva nota" style={style.btnNew} onClick={this.openNote}/>)] :
-            <NoteMeeting noteMe={this.props.notes} open={this.openNote} isStaff={this.props.isStaff} onDelete={this.onDeleteNote}/>}
-          </CardText>
-        </Card>
-        <Card style={{marginTop:'5px',marginBottom:'5px'}} containerStyle={{paddingBottom:'none'}} expanded={this.state.expandable3} onExpandChange={this.expandable3}>
+
+        <Card style={{marginTop:'5px',marginBottom:'5px'}} containerStyle={{paddingBottom:'none'}} expanded={this.state.expandable2} onExpandChange={this.expandable2}>
           <CardHeader
             title="USUARIOS"
             actAsExpander={true}
@@ -150,3 +128,7 @@ function mapDispatchToProps(dispatch) {
 
 Acordion = connect(mapStateToProps, mapDispatchToProps)(Acordion);
 export default Acordion;
+/*
+
+
+*/

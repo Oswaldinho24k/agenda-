@@ -34,10 +34,6 @@ export const newFile=(file)=>(dispatch,getState)=>{
   return  api.newFile(file)
     .then(r=>{
       console.log(r);
-      let meeting= getState().meeting.list.find(m=>{
-        return m.id === r.meeting
-      })
-      r['meeting']= meeting
       dispatch(saveFileSuccess(r))
     }).catch(e=>{
       console.log(e)

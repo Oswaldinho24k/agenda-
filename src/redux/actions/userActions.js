@@ -2,13 +2,17 @@ import api from '../../Api/Django';
 import {getProfile}from './profileActions'
 import {getAllProfiles} from './employeesActions'
 import {getAllUser} from './userAllActions'
-import {getMeeting} from './meetingActions'
-import {getTasks} from './tasksActions';
+import {getMeeting,getMyMeetings} from './meetingActions'
+import {getTasks,getMyTasks} from './tasksActions';
 import {getFile} from './fileActions';
 import {getOrder} from './orderActions';
 import {getNotes} from './notesActions';
 import {getAction} from './immediateActions';
+
 import {getProjects} from './projectActions';
+
+
+import {getFastNote} from './fastNoteActions';
 
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 
@@ -74,16 +78,32 @@ export const checkIfUser=()=>(dispatch, getState)=>{
     console.log(userToken)
     if(userToken){
       //dispatch the functions
-      dispatch(getUser());
+      dispatch(getUser()).then(r=>{
+        console.log(getState())
+        let user = getState().user.object
+
+        if(user.is_superuser){
+          dispatch(getTasks());
+          dispatch(getMyTasks());
+          dispatch(getMeeting());
+          dispatch(getMyMeetings());
+        }else{
+          dispatch(getMyTasks());
+          dispatch(getMyMeetings());
+        }
+      });
+
       dispatch(getProfile());
       dispatch(getAllProfiles());
       dispatch(getAllUser());
-      dispatch(getMeeting());
-      dispatch(getTasks());
       dispatch(getFile());
       dispatch(getOrder());
       dispatch(getNotes());
       dispatch(getAction());
+
       dispatch(getProjects());
+
+      dispatch(getFastNote());
+
     }
 };

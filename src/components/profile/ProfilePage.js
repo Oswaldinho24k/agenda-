@@ -75,7 +75,6 @@ openClosePassword = () => {
 };
   render() {
     const {profile} = this.props;
-    console.log(profile)
 
     return (
             <Dialog

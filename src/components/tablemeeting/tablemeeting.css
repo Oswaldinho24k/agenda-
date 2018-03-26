@@ -10,6 +10,11 @@
 .box_cardTable{
     padding-top: 50px;
 }
+.textoDelete{
+  text-align: start;
+  display: flex;
+  justify-content: center;
+}
 
 .cardConteidoTable{
   width: 80%;

@@ -28,7 +28,7 @@ import * as orderActions from '../../redux/actions/orderActions';
    onSubmit =(e)=>{
      e.preventDefault();
      let newOrder= this.state.order;
-     newOrder['meeting']=parseInt(this.props.id)
+     newOrder['meeting_id']=parseInt(this.props.id)
      this.props.orderActions.newOrder(newOrder);
      this.props.close()
      console.log(newOrder)

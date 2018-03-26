@@ -3,12 +3,13 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
-import NewTask from './NewTask';
+import TableTask from './TableTask';
 import FileMeeting from './FileMeeting'
 import Divider from 'material-ui/Divider';
 import Files from 'material-ui/svg-icons/file/attachment';
 import Done from 'material-ui/svg-icons/action/done';
 import ImmediateAction from './ImmediateAction';
+import NoteMeeting from './NoteMeeting'
 
 const styles = {
   headline: {
@@ -36,16 +37,18 @@ function clickin(){
   elinput.click();
   console.log(elinput)
 }
-const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,onChangeFile,files,uploadFile,isStaff,changeDateFinish,changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,employees,tasks,onDelete,addPerson}) => (
+const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,onSubmitAction,immediate,onDeleteFile,
+                         onChangeFile,files,uploadFile,isStaff,changeDateFinish,openNote,meeting,
+                         changeDateStart,onDate,addPriority,onChange,onSubmit,onSubmitFile,openNewTask,userAll,tasks,onDelete,addPerson, notes, onDeleteNote}) => (
   <Paper style={styles.paper}  zDepth={1}>
             <Tabs inkBarStyle={{backgroundColor:'white'}}>
                   <Tab
                       label="Acciones Inmediatas"
                       data-route="/home"
-                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}
+                      style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264"}}
                   >
                     <div className="muro">
-                      <ImmediateAction isStaff={isStaff} employees={employees} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
+                      <ImmediateAction isStaff={isStaff} userAll={userAll} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction} meeting={meeting}/>
                         {isStaff ?<form
                           onSubmit={onSubmitAction}
                           >
@@ -60,10 +63,10 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                         </form>:null}
                     </div>
                   </Tab>
-                  <Tab label="Compromisos" style={{backgroundColor:"white",borderLeft:"1px dotted #6bb8c1", borderBottom:"2px solid #6bb8c1", color:"#5f6264"}}>
+                  <Tab label="Compromisos" style={{backgroundColor:"white",borderLeft:"1px dotted #63a2f1", borderBottom:"2px solid #63a2f1", color:"#5f6264"}}>
                     <div className="muro">
-                      <NewTask
-                          employees={employees}
+                      <TableTask
+                          userAll={userAll}
                           tasks={tasks}
                           onDelete={onDelete}
                           addPerson={addPerson}
@@ -71,6 +74,7 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                           changeDateStart={changeDateStart}
                           changeDateFinish={changeDateFinish}
                           onDate={onDate}
+                          meeting={meeting}
                           isStaff={isStaff}
                         />
                        <Divider/>
@@ -91,27 +95,38 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                   <Tab
                       label="Archivos"
                       data-route="/home"
-                      style={{backgroundColor:"white", borderBottom:"2px solid #6bb8c1", color:"#5f6264", borderLeft:"1px dotted #6bb8c1"}}
+                      style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264", borderLeft:"1px dotted #63a2f1"}}
                   >
                     <div className="muro">
-                      <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile}/>
+                      <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile} />
                         {isStaff?<form onSubmit={onSubmitFile}>
                           <div className="search">
                              <input required onChange={onChangeFile} name="name_file" type="text" className="fileTerm" placeholder="Nombre del Archivo"/>
                              <input required type="file"   onChange={uploadFile}   ref={input=>elinput=input}   name="file" hidden id="upload"/>
                                <RaisedButton
                                  labelPosition="before"
-                                 primary={true}
-                                 icon={archivo.files == undefined? <Files />:<Done/>}
+                                 primary={archivo.files == undefined? true:false}
+                                 backgroundColor={archivo.files? "#a4c639":false}
+                                 icon={archivo.files == undefined? <Files />:<Done color={'white'}/>}
                                  onClick={clickin}
                                />
                                <RaisedButton
                                  primary={true}
+                                 disabled={archivo.files == undefined? true:false}
                                  label="subir"
                                 type='submit'
                               />
                           </div>
                         </form>:null}
+                    </div>
+                  </Tab>
+                  <Tab
+                      label="Notas"
+                      data-route="/home"
+                      style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264", borderLeft:"1px dotted #63a2f1"}}
+                  >
+                    <div className="muro">
+                      <NoteMeeting noteMe={notes}  isStaff={isStaff} onDeleteNote={onDeleteNote} openNote={openNote} meeting={meeting}/>
                     </div>
                   </Tab>
                 </Tabs>

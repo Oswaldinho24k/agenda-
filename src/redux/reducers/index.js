@@ -10,6 +10,7 @@ import fileReducer from './fileReducer';
 import orderReducer from './orderReducer';
 import notesReducer from './notesReducer';
 import immediateReducer from './immediateReducer';
+
 import projects from './projectReducer';
 
 const rootReducer = combineReducers({
@@ -24,7 +25,9 @@ const rootReducer = combineReducers({
     order:orderReducer,
     notes:notesReducer,
     immediate:immediateReducer,
-    projects
+    projects,
+    fastnote:fastNoteReducer
+
 });
 
 export default rootReducer;

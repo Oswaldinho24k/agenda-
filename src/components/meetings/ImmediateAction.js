@@ -22,6 +22,15 @@ export default class NewTask extends React.Component {
   }
 }
   render() {
+
+    let user=this.props.isStaff;
+    let immediate = {};
+    if(user){
+      immediate=this.props.immediate
+    }else{
+      immediate=this.props.meeting.action
+    }
+
     return (
       <div>
         <Table
@@ -36,15 +45,15 @@ export default class NewTask extends React.Component {
             <TableRow>
               <TableHeaderColumn>Nombre</TableHeaderColumn>
               <TableHeaderColumn>Persona</TableHeaderColumn>
-              {this.props.isStaff?<TableHeaderColumn>Eliminar</TableHeaderColumn>:null}
+              {user?<TableHeaderColumn>Eliminar</TableHeaderColumn>:null}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
-              {this.props.immediate.map(row =>
+              {immediate.map(row =>
                 <TableRow key={row.id}>
                   <TableRowColumn>{row.text}</TableRowColumn>
                     <TableRowColumn>
-                        {this.props.isStaff?<SelectField
+                        {user?<SelectField
                           underlineStyle={{display:'none'}}
                           autoWidth={true}
                           labelStyle={{paddingLeft:'none',paddingRigth:'none'}}
@@ -52,15 +61,15 @@ export default class NewTask extends React.Component {
                           style={{fontSize:'13px',top:'7px'}}
                           maxHeight={200}
                           hintStyle={{color:'rgba(0, 0, 0, 0.87)'}}
-                          disabled={this.props.isStaff ? this.state.active:this.state.disabled}
+                          disabled={user? this.state.active:this.state.disabled}
                           hintText={row.user === null? 'Select':row.user.username}
                           >
-                          { this.props.employees.map(data =>
-                            <MenuItem key={data.id}  value={data.user.id}  primaryText={data.user.username} onClick={()=>this.props.addPersonAction(row.id, data.user.id)}/>
+                          { this.props.userAll.map(data =>
+                            <MenuItem key={data.id}  value={data.id}  primaryText={data.username} onClick={()=>this.props.addPersonAction(row.id, data.id)}/>
                     )}
                   </SelectField>:<p>{row.user === null? 'N/A':row.user.username}</p>}
                     </TableRowColumn>
-                 {this.props.isStaff?<TableRowColumn>
+                 {user?<TableRowColumn>
                     <IconButton onClick={()=>this.props.onDeleteAction(row.id)}>
                       <Delete color="#c7c7c7" />
                     </IconButton>

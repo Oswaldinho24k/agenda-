@@ -34,8 +34,8 @@ const TaskEmployees = ({tasks}) => (
             {tasks.map(row => <TableRow key={row.id} data-my-row-identifier={row.id}>
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>{row.status}</TableRowColumn>
-              <TableRowColumn>{moment(row.start).format('YYYY-MM-DD')}</TableRowColumn>
-              <TableRowColumn>{moment(row.expiry).format('YYYY-MM-DD')}</TableRowColumn>
+              <TableRowColumn>{!row.start ? "Sin asignar" : moment(row.start).format('YYYY-MM-DD')}</TableRowColumn>
+              <TableRowColumn>{!row.expiry ? "Sin asingnar" : moment(row.expiry).format('YYYY-MM-DD')}</TableRowColumn>
               <TableRowColumn><p>{row.priority}</p></TableRowColumn>
               </TableRow>
 

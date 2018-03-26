@@ -34,10 +34,6 @@ export const saveTask=(task)=>(dispatch,getState)=>{
   return  api.newTask(task)
     .then(r=>{
       console.log(r);
-      let meeting = getState().meeting.list.find(a=>{
-        return a.id=r.meeting
-      })
-      r["meeting"]=meeting
       dispatch(saveTaskSuccess(r))
     }).catch(e=>{
       console.log(e)
@@ -76,11 +72,6 @@ export const editTask=(etask)=>(dispatch, getState)=>{
 
     return api.editTask(etask)
         .then(r=>{
-
-            // let meeting = getState().meeting.list.find(a=>{
-            //   return a.id=r.meeting
-            // })
-            // r["meeting"]=meeting
             dispatch(editTaskSuccess(r))
             dispatch(getTasks())
             console.log(r);
@@ -88,3 +79,20 @@ export const editTask=(etask)=>(dispatch, getState)=>{
         console.log(e)
     })
 };
+
+export const GET_MYTASKS_SUCCESS = 'GET_MYTASKS_SUCCESS';
+export function getMyTasksSuccess(myTask){
+  return{
+    type: GET_MYTASKS_SUCCESS, myTask
+  }
+}
+
+export const getMyTasks=(myTask)=>(dispatch, getState)=>{
+  return api.getMyTasks(myTask)
+    .then(r=>{
+        dispatch(getMyTasksSuccess(r))
+        console.log(r);
+    }).catch(e=>{
+      console.log(e)
+    })
+}

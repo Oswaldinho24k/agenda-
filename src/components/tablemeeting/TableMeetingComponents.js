@@ -9,14 +9,14 @@ TableRow,
 } from 'material-ui/Table';
 import TableComponents from './TableComponents'
 
-const TableMeetingComponents = ({meeting})=>{
+const TableMeetingComponents = ({meeting,opendelete,isStaff})=>{
 return(
   <div className="box_cardTable">
     <Card className="cardConteidoTable">
      <CardTitle title="Reuniones" />
      <Table
        fixedHeader={true}
-       height={'300px'} 
+       height={'300px'}
        multiSelectable={true}
        >
          <TableHeader
@@ -26,11 +26,12 @@ return(
              <TableHeaderColumn>Nombre</TableHeaderColumn>
              <TableHeaderColumn>Día</TableHeaderColumn>
              <TableHeaderColumn>Project Manager</TableHeaderColumn>
-             <TableHeaderColumn> </TableHeaderColumn>
+             <TableHeaderColumn>Detalle</TableHeaderColumn>
+             {isStaff?<TableHeaderColumn className="column-Delete">Eliminar</TableHeaderColumn>:null}
            </TableRow>
          </TableHeader>
          <TableBody >
-           {meeting.map(row=> <TableComponents key={row.id} data={row}/>)}
+           {meeting.map(row=> <TableComponents key={row.id} data={row} opendelete={opendelete} isStaff={isStaff}/>)}
          </TableBody>
         </Table>
      </Card>

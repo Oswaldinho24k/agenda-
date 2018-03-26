@@ -59,6 +59,13 @@ class Acordion extends React.Component{
 
 
   render(){
+    let user=this.props.isStaff;
+    let order = {};
+    if(user){
+      order=this.props.order
+    }else{
+      order=this.props.meeting.order
+    }
     return(
       <div style={{width:'25%',margin:'0px auto'}}>
         <NewOrderOfDay open={this.state.newOrder} close={this.openOrder} id={this.props.id}/>
@@ -73,7 +80,7 @@ class Acordion extends React.Component{
           />
         <CardText expandable={true} style={{padding:'none'}}>
           {this.props.order.length <= 0 ? [(this.props.isStaff !== true ?<p>No hay ordenes del dia</p>:<RaisedButton primary={true} label="Agregar nueva orden del dia" style={style.btnNew} onClick={this.openOrder}/>)] :
-           <OrderOfDay order={this.props.order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
+           <OrderOfDay order={order} disabled={this.state.disabled} active={this.state.active} changeDone={this.changeDone} open={this.openOrder} isStaff={this.props.isStaff} onDelete={this.onDeleteOrder}/>}
           </CardText>
         </Card>
 

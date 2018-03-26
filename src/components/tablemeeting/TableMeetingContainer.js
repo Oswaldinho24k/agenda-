@@ -9,7 +9,9 @@ import * as userActions from '../../redux/actions/userActions';
 import * as profileActions from '../../redux/actions/profileActions';
 import NewMeetingContainer from './NewMeetingContainer';
 import Loader from '../common/Loading'
+import DeleteMeeting from './DeleteMeeting';
 import './tablemeeting.css'
+import ToastrContainer, {Toast,ToastDanger} from 'react-toastr-basic'
 
 
 class TableMeetingContainer extends Component{
@@ -18,6 +20,7 @@ class TableMeetingContainer extends Component{
       this.state = {
         meeting:{},
         openNewMeeting:false,
+        openDelete:false
       };
   }
   //Meeting
@@ -48,7 +51,25 @@ class TableMeetingContainer extends Component{
     this.setState({openNewMeeting:false})
     console.log(newMeeting)
     };
+    deleteMeeting = (data) => {
+      let {openDelete}=this.state;
+      openDelete = !openDelete
+      let meeting= Object.assign({},this.state.meeting);
+      this.setState({openDelete,meeting:data});
+      console.log(meeting)
+   };
+   confirmDelete=()=>{
+     let id = this.state.meeting.id
+      this.props.meetingActions.deleteMeeting(id)
+      .then(r=>{
+        Toast('¡Junta Eliminada!')
 
+      }).catch(e=>{
+          ToastDanger("Algo salio mal intentalo de nuevo mas tarde")
+      })
+      this.setState({openDelete:false})
+      console.log("El ID que voy a e=", id)
+   }
   render(){
     const {meeting,user,fetched}=this.props;
     if(!fetched)return<Loader/>
@@ -56,6 +77,8 @@ class TableMeetingContainer extends Component{
         <div className="Tablemeeting-container">
             <TableMeetingComponents
               meeting={meeting}
+              opendelete={this.deleteMeeting}
+              isStaff={user.is_superuser}
             />
             {!user.is_staff ? null :
             <div style={{display:'flex', justifyContent:'flex-end',marginRight:'20px'}}>
@@ -71,6 +94,7 @@ class TableMeetingContainer extends Component{
               handleChangeDate={this.handleChangeDate}
               onSubmit={this.onSubmit}
             />
+            <DeleteMeeting open={this.state.openDelete} confirmDelete={this.confirmDelete} close={this.deleteMeeting}/>
         </div>
 
     );
@@ -83,21 +107,10 @@ function mapStateToProps(state, ownProps) {
   let user =state.user.object;
   let profile = state.profile.object
   let meeting = state.meeting.list;
-  if(user.is_superuser!== true){
-    let userMeetings = meeting.filter(m=>{
-
-      let participant = m.participants.find(p=>{
-        return p.id == profile.id
-      })
-      if(participant!==undefined){
-        console.log(m)
-        return m
-      }
-
-    })
-    meeting = userMeetings
+  if(user.is_superuser){
+    meeting = state.meeting.list;
   }else{
-    meeting=meeting
+    meeting=state.meeting.myMeetings;
   }
 
 

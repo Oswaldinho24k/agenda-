@@ -54,7 +54,7 @@ import * as fastNoteActions from '../../redux/actions/fastNoteActions';
             contentStyle={modStyle}
             actions={actions}
             bodyStyle={{backgroundColor:'#FFFFA5'}}
-            titleStyle={{backgroundColor:'#FFFFA5',borderBottom:' 5px double black'}}
+            titleStyle={{backgroundColor:'#FFFFA5'}}
             actionsContainerStyle={{backgroundColor:'#FFFFA5'}}
 
             onRequestClose={this.props.close}

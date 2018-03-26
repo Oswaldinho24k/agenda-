@@ -2,7 +2,7 @@ import api from '../../Api/Django';
 import {getProfile}from './profileActions'
 import {getAllProfiles} from './employeesActions'
 import {getAllUser} from './userAllActions'
-import {getMeeting} from './meetingActions'
+import {getMeeting,getMyMeetings} from './meetingActions'
 import {getTasks,getMyTasks} from './tasksActions';
 import {getFile} from './fileActions';
 import {getOrder} from './orderActions';
@@ -80,15 +80,17 @@ export const checkIfUser=()=>(dispatch, getState)=>{
         if(user.is_superuser){
           dispatch(getTasks());
           dispatch(getMyTasks());
+          dispatch(getMeeting());
+          dispatch(getMyMeetings());
         }else{
           dispatch(getMyTasks());
+          dispatch(getMyMeetings());
         }
       });
 
       dispatch(getProfile());
       dispatch(getAllProfiles());
       dispatch(getAllUser());
-      dispatch(getMeeting());
       dispatch(getFile());
       dispatch(getOrder());
       dispatch(getNotes());

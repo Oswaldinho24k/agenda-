@@ -11,7 +11,10 @@ import orderReducer from './orderReducer';
 import notesReducer from './notesReducer';
 import immediateReducer from './immediateReducer';
 
+
+
 import projects from './projectReducer';
+import fastNoteReducer from "./fastNoteReducer";
 
 const rootReducer = combineReducers({
     user:userReducer,

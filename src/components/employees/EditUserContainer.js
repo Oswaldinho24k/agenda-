@@ -65,10 +65,10 @@ export default class DialogExampleCustomWidth extends React.Component {
               onChange={this.props.selectChange}
               floatingLabelFixed={true}
               hintStyle={{color:'rgba(0, 0, 0, 0.87)'}}
-              hintText={this.props.user.is_superuser ?"Administrador":[(!this.props.user.is_staff?"Empleado":"ProductManager")]}
+              hintText={this.props.user.is_superuser ?"Administrador":[(!this.props.user.is_staff?"Usuario  ":"Project-Manager")]}
             >
-              <MenuItem value={1} primaryText="Empleado" />
-              <MenuItem value={2} primaryText="ProductManager" />
+              <MenuItem value={1} primaryText="Usuario" />
+              <MenuItem value={2} primaryText="Project-Manager" />
               <MenuItem value={3} primaryText="Administrador" />
 
             </SelectField>

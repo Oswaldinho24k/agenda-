@@ -14,8 +14,8 @@ import * as notesActions from '../../redux/actions/notesActions';
     super(props);
       this.state = {
           newNote:{},
-          editOrder:{},
           value: null,
+          active:true,
        };
    }
 
@@ -25,7 +25,7 @@ import * as notesActions from '../../redux/actions/notesActions';
      newNote['meeting_id']=parseInt(this.props.id);
      this.props.notesActions.newNotes(newNote);
      this.props.close();
-     this.setState({value:null})
+     this.setState({value:null,newNote:{}})
      console.log(newNote)
    }
    onChange = (e) => {
@@ -40,18 +40,25 @@ import * as notesActions from '../../redux/actions/notesActions';
      this.setState({value,})
      console.log(newNote)
   };
+  cancel=()=>{
+    this.setState({value:null,newNote:{}})
+    this.props.close()
+  }
 
   render() {
+    let {newNote} = this.state;
+    console.log(newNote)
     const actions = [
 
       <FlatButton
         label="Cancelar"
         primary={true}
-        onClick={this.props.close}
+        onClick={this.cancel}
       />,
       <FlatButton
         label="Aceptar"
         primary={true}
+        disabled={newNote.text == undefined || newNote.autor_id == undefined ?  this.state.active:false }
         onClick={this.onSubmit}
       />,
     ];
@@ -68,7 +75,7 @@ import * as notesActions from '../../redux/actions/notesActions';
             style={{textAlign:'start'}}
             autoWidth={true}
             maxHeight={200}
-            required
+            required={true}
             floatingLabelText='Autor'
             onChange={this.handleChange}
             value={this.state.value}
@@ -79,7 +86,7 @@ import * as notesActions from '../../redux/actions/notesActions';
          </SelectField>
             <TextField
               name='text'
-              required
+              required={true}
               style={{textAlign:'start'}}
               floatingLabelText="Nota de usuario"
               multiLine={true}

@@ -15,6 +15,7 @@ import './index.css';
 
 export const store = configureStore();
 store.dispatch(checkIfUser());
+setTimeout(() => console.log(store.getState()), 2000);
 
 const muiTheme = getMuiTheme({
   appBar: {

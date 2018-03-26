@@ -6,7 +6,7 @@ import DetailEmployees from '../detailEmployees/DetailEmployeesPage';
 import MeetingPage from '../meetings/MeetingPage';
 import TableMeetingContainer from '../tablemeeting/TableMeetingContainer'
 import ProjectContainer from '../project/ProjectContainer';
-import ProjectsDetailPage from '../projectdetail/ProjectsDetailPage'
+import ProjectDetail from '../project/DetailProjectPage'
 import DashboardContainer from '../dash/DashboardContainer';
 import Calendar from '../calendar/CalendarContainer';
 
@@ -15,6 +15,7 @@ const Pages = ({props}) => (
         <Route exact path="/agenda" component={DashboardContainer}/>
         <Route path="/agenda/tasks" component={Calendar}/>
         <Route path="/agenda/dashboard" component={DashboardContainer} />
+        <Route path="/agenda/project/detail/:id" component={ProjectDetail}/>
         <Route path="/agenda/project" component={ProjectContainer}/>
         <Route path="/agenda/meeting/:id" component={MeetingPage}/>
         <Route path="/agenda/meeting" component={TableMeetingContainer}/>

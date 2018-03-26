@@ -48,7 +48,7 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                       style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264"}}
                   >
                     <div className="muro">
-                      <ImmediateAction isStaff={isStaff} userAll={userAll} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction}/>
+                      <ImmediateAction isStaff={isStaff} userAll={userAll} immediate={immediate} onDeleteAction={onDeleteAction} addPersonAction={addPersonAction} meeting={meeting}/>
                         {isStaff ?<form
                           onSubmit={onSubmitAction}
                           >
@@ -98,7 +98,7 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                       style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264", borderLeft:"1px dotted #63a2f1"}}
                   >
                     <div className="muro">
-                      <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile}/>
+                      <FileMeeting files={files} isStaff={isStaff} onDeleteFile={onDeleteFile} />
                         {isStaff?<form onSubmit={onSubmitFile}>
                           <div className="search">
                              <input required onChange={onChangeFile} name="name_file" type="text" className="fileTerm" placeholder="Nombre del Archivo"/>
@@ -126,7 +126,7 @@ const TabsComponents = ({archivo,addPersonAction,onDeleteAction,onChangeAction,o
                       style={{backgroundColor:"white", borderBottom:"2px solid #63a2f1", color:"#5f6264", borderLeft:"1px dotted #63a2f1"}}
                   >
                     <div className="muro">
-                      <NoteMeeting noteMe={notes}  isStaff={isStaff} onDeleteNote={onDeleteNote} openNote={openNote}/>
+                      <NoteMeeting noteMe={notes}  isStaff={isStaff} onDeleteNote={onDeleteNote} openNote={openNote} meeting={meeting}/>
                     </div>
                   </Tab>
                 </Tabs>

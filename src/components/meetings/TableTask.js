@@ -38,7 +38,6 @@ export default class NewTask extends React.Component {
     let user=this.props.isStaff;
     if(user){
       tasks=this.props.tasks
-
     }else{
       tasks=this.props.meeting.tasks
     }

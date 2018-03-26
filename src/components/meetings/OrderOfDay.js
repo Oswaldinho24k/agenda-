@@ -19,7 +19,7 @@ const OrderOfDay = ({order,open,onDelete,changeDone,isStaff,disabled,active}) =>
               </StepButton>
               {isStaff?<IconButton  onClick={()=>onDelete(data.id)}>
                 <Delete color="#c7c7c7" />
-              </IconButton>:<p> ...</p>}
+              </IconButton>:<p style={{color:"white"}}>...</p>}
             </Step>
 
           )}

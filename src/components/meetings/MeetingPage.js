@@ -280,8 +280,6 @@ class MeetingsPage extends Component{
           let {userAll,employees, meeting,fetched,tasks,user,files,order,id,notes,immediate} = this.props;
           let usersList = this.state.usersList;
           if(!fetched)return<Loader/>
-          console.log(meeting)
-
         return(
                 <div>
                   <AddParticipants
@@ -378,7 +376,6 @@ function mapStateToProps(state, ownProps) {
   let immediate = state.immediate.list.filter(f=>{
     return id == f.meeting.id
   })
-
 
     return {
       userAll: state.userAll.list,

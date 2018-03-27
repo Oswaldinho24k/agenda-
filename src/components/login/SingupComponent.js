@@ -1,22 +1,30 @@
 import React from 'react';
 import {TextField, RaisedButton} from 'material-ui';
-import {Card} from 'material-ui/Card'
-import {Link} from 'react-router-dom';
+import {Card} from 'material-ui/Card';
 
 
-const LoginComponent = ({onChange,onSubmit,usuario}) => {
+
+
+const LoginComponent = ({onChange,onSubmit}) => {
     return (
         <div className="fl_lg">
             <Card id="car">
-                <form
-                      onSubmit={onSubmit}
+                <form onSubmit={onSubmit}
                       className="formStyle">
-                    <h1>Iniciar sesión</h1>
+                    <h1>Registrate</h1>
+                    <TextField
+                        name="username"
+                        required
+                        onChange={onChange}
+                        floatingLabelText="Nombre de usuario"
+                        className="textFieldStyle"
+                        fullWidth={true}
+                    />
                     <TextField
                         name="email"
                         required
-                        floatingLabelText="E-mail"
                         onChange={onChange}
+                        floatingLabelText="E-mail"
                         type="email"
                         className="textFieldStyle"
                         fullWidth={true}
@@ -24,22 +32,29 @@ const LoginComponent = ({onChange,onSubmit,usuario}) => {
                     <TextField
                         name="password"
                         required
-                        floatingLabelText="Contraseña"
                         onChange={onChange}
+                        floatingLabelText="Contraseña"
+                        type="password"
+                        className="textFieldStyle"
+                        fullWidth={true}
+                    />
+                    <TextField
+                        name="password2"
+                        required
+                        onChange={onChange}
+                        floatingLabelText="Confirma tu contraseña"
                         type="password"
                         className="textFieldStyle"
                         fullWidth={true}
                     />
                     <RaisedButton
-                        label="Entrar"
+                        label="Crear cuenta"
                         primary={true}
                         className="styleButton"
                         type="submit"
                         fullWidth={true}
                     />
-                  <Link style={{color:'black',textDecoration:'none',fontWeight:'bold', marginTop:'7%'}} to={"/singup"}>Registro</Link>
                 </form>
-
             </Card>
         </div>
     );

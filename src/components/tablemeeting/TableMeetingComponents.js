@@ -6,6 +6,7 @@ TableBody,
 TableHeader,
 TableHeaderColumn,
 TableRow,
+TableRowColumn
 } from 'material-ui/Table';
 import TableComponents from './TableComponents'
 
@@ -31,7 +32,12 @@ return(
            </TableRow>
          </TableHeader>
          <TableBody >
-           {meeting.map(row=> <TableComponents key={row.id} data={row} opendelete={opendelete} isStaff={isStaff}/>)}
+          {
+            meeting.length > 0 ?
+             meeting.map(row=> <TableComponents key={row.id} data={row} opendelete={opendelete} isStaff={isStaff}/>):
+             <TableRow selectable={false}>
+                 <TableRowColumn colSpan="5">No existen juntas en las que participes</TableRowColumn>
+             </TableRow>}
          </TableBody>
         </Table>
      </Card>

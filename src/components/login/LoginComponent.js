@@ -37,7 +37,9 @@ const LoginComponent = ({onChange,onSubmit,usuario}) => {
                         type="submit"
                         fullWidth={true}
                     />
-                  <Link style={{color:'black',textDecoration:'none',fontWeight:'bold', marginTop:'7%'}} to={"/singup"}>Registro</Link>
+                  <span style={{marginTop:'7%'}}>¿Quieres trabajar con nosotros?  <Link style={{color:'black',textDecoration:'none',fontWeight:'bold'}} to={"/singup"}>registrate</Link></span>
+
+                  <Link style={{color:'black',textDecoration:'none',fontWeight:'bold'}} to={"/info"}>Olvidaste tu contraseña</Link>
                 </form>
 
             </Card>

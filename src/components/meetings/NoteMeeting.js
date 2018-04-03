@@ -5,39 +5,52 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Delete from 'material-ui/svg-icons/action/delete';
 import IconButton from 'material-ui/IconButton';
 import {GridList, GridTile} from 'material-ui/GridList';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 const NoteMeeting = ({noteMe,open,onDeleteNote,isStaff,openNote}) => (
   <div style={{ margin: 'auto'}}>
-    <GridList
-      cols={4}
-      style={style.gridList}
-    >
-        {noteMe.map(data =>
-          <Card key={data.id} style={{backgroundColor:'#FFFFA5'}}>
-          <CardHeader
-            title={data.autor.user.username}
-            avatar={data.autor.avatar}
-            textStyle={{paddingRight:'none'}}
-            style={style.cardEncabezado}
-            titleStyle={{fontSize:'13px'}}
-            children={isStaff?<IconButton style={style.iconDelete} onClick={()=>onDeleteNote(data.id)} tooltip="Eliminar nota">
-              <Delete color="#c7c7c7" />
-            </IconButton>:null}
-          />
-        <CardText style={style.cardTextito}>
-            <div>
-              <p style={style.paragraph}>{data.text}</p>
-            </div>
-          </CardText>
-        </Card>)}
-  </GridList>
-  {isStaff?<div style={style.btn}>
+
+      <GridList
+          cols={4}
+          style={style.gridList}
+        >
+            {noteMe.map(data =>
+              <Card key={data.id} style={{backgroundColor:'#FFFFA5'}}>
+              <CardHeader
+                title={data.autor.user.username}
+                avatar={data.autor.avatar}
+                textStyle={{paddingRight:'none'}}
+                style={style.cardEncabezado}
+                titleStyle={{fontSize:'13px'}}
+                children={isStaff?<IconButton style={style.iconDelete} onClick={()=>onDeleteNote(data.id)} tooltip="Eliminar nota">
+                  <Delete color="#c7c7c7" />
+                </IconButton>:null}
+              />
+
+            <CardText style={style.cardTextito}>
+                <div>
+                  <p style={style.paragraph}>{data.text}</p>
+                </div>
+              </CardText>
+
+            </Card>)}
+
+      </GridList>
+
+  {isStaff && noteMe.length>0 ?<div style={style.btn}>
       <FloatingActionButton mini={true} onClick={openNote}>
         <ContentAdd />
       </FloatingActionButton>
-    </div>:null}
+    </div>:null
+  }
+
   </div>
 );
+/*
+
+*/
+
 const style = {
   cardEncabezado:{
     display:'flex',
@@ -47,6 +60,8 @@ const style = {
   gridList: {
     height:'368px',
     maxHeight:'368px',
+    marginTop:'2px',
+    margin:'none',
     overflowY: 'auto',
     overflowX:'hidden',
     padding:'15px'
@@ -60,7 +75,7 @@ const style = {
     display:'flex',
     justifyContent:'space-between',
     overflow:'auto',
-    maxHeight:'47px'
+    maxHeight:'60px'
   },
   iconDelete:{
     width:'auto',
@@ -71,8 +86,11 @@ const style = {
     display:'flex',
     backgroundColor:'transparent',
     justifyContent: 'flex-end',
-    marginTop: '-50px',
+    marginTop: '-15px',
     marginRight: '15px',
+  },
+  btnNew:{
+    marginTop:'5px',
   },
 };
 

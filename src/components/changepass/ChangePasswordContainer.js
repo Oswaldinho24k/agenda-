@@ -16,7 +16,7 @@ import * as passActions from '../../redux/actions/passActions'
           },
           error:null,
           passNo:null,
-          message:"Change Password Success!!",
+          message:"Contraseña cambiada!!",
       };
   }
 
@@ -32,12 +32,12 @@ import * as passActions from '../../redux/actions/passActions'
   const message=this.state.message;
 
   if(newPassword.new_password1.length <= 5){
-    this.setState({error:'The password must contain at least 6 digits',passNo:true})
+    this.setState({error:'La contraseña debe contener 6 caracteres',passNo:true})
 
   }else{
 
     if(newPassword.new_password1 !== newPassword.new_password2){
-      this.setState({error:'Password does not match',passNo:true})
+      this.setState({error:'La contraseña no coincide',passNo:true})
     }  else{
         this.props.openClosePassword()
         this.props.passActions.changePass(newPassword)

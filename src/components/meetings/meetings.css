@@ -63,3 +63,10 @@
   display: flex;
   justify-content: center;
 }
+
+.btnNew{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}

@@ -348,9 +348,9 @@ class MeetingsPage extends Component{
 function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
   let user= state.user.object;
-  let meeting = state.meeting.list;
+  let meeting;
   let tasks = state.tasks.list;
-  if(user.is_staff){
+  if(user.is_superuser){
     meeting = state.meeting.list.find(a=>{
         return id == a.id;
     });
@@ -362,7 +362,6 @@ function mapStateToProps(state, ownProps) {
         return id == a.id;
     });
   }
-
 
   let files = state.files.list.filter(c=>{
     return id == c.meeting.id;

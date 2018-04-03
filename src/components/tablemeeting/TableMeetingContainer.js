@@ -73,6 +73,7 @@ class TableMeetingContainer extends Component{
   render(){
     const {meeting,user,fetched}=this.props;
     if(!fetched)return<Loader/>
+    console.log(meeting)
     return(
         <div className="Tablemeeting-container">
             <TableMeetingComponents

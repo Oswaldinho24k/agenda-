@@ -8,7 +8,7 @@ import TableMeetingContainer from '../tablemeeting/TableMeetingContainer'
 import ProjectContainer from '../project/ProjectContainer';
 import ProjectDetail from '../project/DetailProjectPage'
 import DashboardContainer from '../dash/DashboardContainer';
-import Calendar from '../calendar/CalendarContainer';
+import Calendar from '../calendar/CalendarContainer2';
 
 const Pages = ({props}) => (
     <Switch>

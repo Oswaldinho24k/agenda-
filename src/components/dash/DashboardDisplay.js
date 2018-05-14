@@ -4,7 +4,7 @@ import {Card, CardTitle} from 'material-ui/Card';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Done from 'material-ui/svg-icons/content/add';
-import Calendar from '../calendar/Calendar';
+import Calendar from '../calendar/Calendar2';
 import moment from 'moment'
 import '../../../node_modules/moment/locale/es'
 import Edit from 'material-ui/svg-icons/content/create';
@@ -55,13 +55,13 @@ export const DashboardDisplay = ({date,open,fastnote,viewNote})=>{
             <div className="flex">
                 <div className="proyectos" style={{margin:"30px 10px 0 0"}}>
                     <div style={{display:"flex", alignItems:"center", borderBottom: "1px solid #eee",  height:"30px"}}>
-                        <Calendar color="#40bca5" />
+
                         <h4>Proyectos</h4>
                     </div>
                 </div>
                 <div className="tareas"  style={{margin:"30px 0 0 10px"}}>
                     <div style={{display:"flex", alignItems:"center", borderBottom: "1px solid #eee", height:"30px"}}>
-                        <Calendar color="#63a2f1"/>
+
                         <h4>Tareas</h4>
                     </div>
                 </div>

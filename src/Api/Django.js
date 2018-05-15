@@ -87,14 +87,14 @@ const api={
     },
 //User RegisterContainer
     newUser:(register)=>{
-      const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
+      //const userToken = JSON.parse(localStorage.getItem('userAgendaToken'));
       return new Promise(function (resolve, reject) {
           const instance = axios.create({
               baseURL: urlRegister,
               // timeout: 2000,
               headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': 'Token ' + userToken
+                  //'Authorization': 'Token ' + userToken
               }
           });
           instance.post('',register)

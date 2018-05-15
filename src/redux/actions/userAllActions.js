@@ -59,6 +59,7 @@ export const newUser =(register)=>(dispatch, getState)=>{
           dispatch(getAllUser())
       }).catch(e=>{
       console.log(e)
+      throw e
   })
 };
 

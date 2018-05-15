@@ -82,7 +82,7 @@ export const checkIfUser=()=>(dispatch, getState)=>{
         console.log(getState())
         let user = getState().user.object
 
-        if(user.is_superuser){
+        if(user.is_staff){
           dispatch(getTasks());
           dispatch(getMyTasks());
           dispatch(getMeeting());

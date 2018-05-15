@@ -1,0 +1,23 @@
+
+.form{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px auto;
+
+}
+
+.form h4{
+    font-family: 'Open Sans', sans-serif;
+    color:rgb(51, 51, 51);
+    font-size: 20px;
+
+}
+
+
+.btn{
+  width: 50%;
+}
+.btnMod{
+  display: flex;
+  justify-content: center;
+}

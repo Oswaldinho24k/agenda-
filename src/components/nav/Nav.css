@@ -1,4 +1,17 @@
 .selected{
     background-color: darkorange;
-    color:blue;
+    color:white;
+}
+.titleNav{
+  display: flex;
+  justify-content:flex-end;
+  font-size: 20px;
+    background-color: #63a2f1;
+}
+.botonesNav{
+  color: rgb(255, 255, 255) !important;
+}
+
+.text{
+    color:white;
 }
